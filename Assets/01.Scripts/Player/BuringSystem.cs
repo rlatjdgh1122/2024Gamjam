@@ -40,13 +40,6 @@ public class BuringSystem : MonoBehaviour
             StopCoroutine(burningCoroutine);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            MinusBurningCnt(15f);
-        }
-
-        Debug.Log(BurningValue);
-
         wasGroundedLastFrame = isGrounded;
     }
 
@@ -61,7 +54,7 @@ public class BuringSystem : MonoBehaviour
         burningCoroutine = null;
     }
 
-    public void MinusBurningCnt(float minusValue)
+    public void MinusBurningValue(float minusValue)
     {
         BurningValue -= minusValue;
     }
