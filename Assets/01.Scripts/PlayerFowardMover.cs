@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFowardMover : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    public float MoveSpeed => _moveSpeed;
+    public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
     public bool IsEnable = true;
 
