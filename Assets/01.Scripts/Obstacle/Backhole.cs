@@ -36,4 +36,10 @@ public class Backhole : MonoBehaviour
     {
         //ªË¡¶Ω√≈¥
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, size);
+    }
 }
