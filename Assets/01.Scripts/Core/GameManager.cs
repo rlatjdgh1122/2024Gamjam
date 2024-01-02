@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         if (_mover.IsEnable)
         {
-            float speed = 1.0f;
+            float speed = _mover.MoveSpeed;
 
             float decreaseAmount = speed / distanceToEarth;
             distanceToEarth -= decreaseAmount * Time.deltaTime;
