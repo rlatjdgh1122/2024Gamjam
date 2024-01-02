@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class Story
 public class LoadStory : MonoBehaviour
 {
     [SerializeField] private Image _curSprite;
+    [SerializeField] private TextMeshProUGUI _curTex;
+
     public List<Story> storyList = new();
 
     private void Update()
