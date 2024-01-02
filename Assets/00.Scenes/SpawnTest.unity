@@ -266,19 +266,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079334e574526bc4a8f684ac2c4561f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCount: 10
-  obstacleSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  settings:
+  - type: 0
+    spawnPivot: {fileID: 537500242}
+    radius: 50
+    length: 100
+    asteroidCount: 0
+    asteroidLists:
+    - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
+    - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
+    - {fileID: 835300541022449616, guid: 11bd951626e5a5c499cbab11ccc059a2, type: 3}
+    - {fileID: 2213562617685566943, guid: 2a5ca1d91a2d2034e9a78fde36750504, type: 3}
+    - {fileID: 2717301764559762626, guid: 95f814b54f4206344a4d02faeb1472b0, type: 3}
+    - {fileID: 523259963152948840, guid: b42b0b1e9c590734bab734d53f760722, type: 3}
+    - {fileID: 3477517369449094825, guid: de818801f775af040a1f17a3571bc310, type: 3}
+    - {fileID: 29378652999175465, guid: 2bfdedabf32a6c54bb5451cdcab49c67, type: 3}
+    - {fileID: 7888490056693641791, guid: f08f405e0f0efb445ad1c288e04e84ff, type: 3}
+    - {fileID: 69953340018575585, guid: 42a7683b5638aca4bac5b66fe576f4e5, type: 3}
+    - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
+    trashCount: 0
+    trashLists: []
+    etcLists: []
+  - type: 1
+    spawnPivot: {fileID: 537500242}
+    radius: 20
+    length: 100
+    asteroidCount: 100
+    asteroidLists:
+    - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
+    - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
+    - {fileID: 835300541022449616, guid: 11bd951626e5a5c499cbab11ccc059a2, type: 3}
+    - {fileID: 2213562617685566943, guid: 2a5ca1d91a2d2034e9a78fde36750504, type: 3}
+    - {fileID: 2717301764559762626, guid: 95f814b54f4206344a4d02faeb1472b0, type: 3}
+    - {fileID: 523259963152948840, guid: b42b0b1e9c590734bab734d53f760722, type: 3}
+    - {fileID: 3477517369449094825, guid: de818801f775af040a1f17a3571bc310, type: 3}
+    - {fileID: 29378652999175465, guid: 2bfdedabf32a6c54bb5451cdcab49c67, type: 3}
+    - {fileID: 7888490056693641791, guid: f08f405e0f0efb445ad1c288e04e84ff, type: 3}
+    - {fileID: 69953340018575585, guid: 42a7683b5638aca4bac5b66fe576f4e5, type: 3}
+    - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
+    trashCount: 0
+    trashLists: []
+    etcLists: []
+  - type: 2
+    spawnPivot: {fileID: 537500242}
+    radius: 20
+    length: 100
+    asteroidCount: 100
+    asteroidLists:
+    - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
+    - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
+    - {fileID: 835300541022449616, guid: 11bd951626e5a5c499cbab11ccc059a2, type: 3}
+    - {fileID: 2213562617685566943, guid: 2a5ca1d91a2d2034e9a78fde36750504, type: 3}
+    - {fileID: 2717301764559762626, guid: 95f814b54f4206344a4d02faeb1472b0, type: 3}
+    - {fileID: 523259963152948840, guid: b42b0b1e9c590734bab734d53f760722, type: 3}
+    - {fileID: 3477517369449094825, guid: de818801f775af040a1f17a3571bc310, type: 3}
+    - {fileID: 29378652999175465, guid: 2bfdedabf32a6c54bb5451cdcab49c67, type: 3}
+    - {fileID: 7888490056693641791, guid: f08f405e0f0efb445ad1c288e04e84ff, type: 3}
+    - {fileID: 69953340018575585, guid: 42a7683b5638aca4bac5b66fe576f4e5, type: 3}
+    - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
+    trashCount: 0
+    trashLists: []
+    etcLists: []
+  - type: 3
+    spawnPivot: {fileID: 537500242}
+    radius: 20
+    length: 100
+    asteroidCount: 100
+    asteroidLists:
+    - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
+    - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
+    - {fileID: 835300541022449616, guid: 11bd951626e5a5c499cbab11ccc059a2, type: 3}
+    - {fileID: 2213562617685566943, guid: 2a5ca1d91a2d2034e9a78fde36750504, type: 3}
+    - {fileID: 2717301764559762626, guid: 95f814b54f4206344a4d02faeb1472b0, type: 3}
+    - {fileID: 523259963152948840, guid: b42b0b1e9c590734bab734d53f760722, type: 3}
+    - {fileID: 3477517369449094825, guid: de818801f775af040a1f17a3571bc310, type: 3}
+    - {fileID: 29378652999175465, guid: 2bfdedabf32a6c54bb5451cdcab49c67, type: 3}
+    - {fileID: 7888490056693641791, guid: f08f405e0f0efb445ad1c288e04e84ff, type: 3}
+    - {fileID: 69953340018575585, guid: 42a7683b5638aca4bac5b66fe576f4e5, type: 3}
+    - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
+    trashCount: 0
+    trashLists: []
+    etcLists: []
+  - type: 4
+    spawnPivot: {fileID: 537500242}
+    radius: 20
+    length: 100
+    asteroidCount: 20
+    asteroidLists:
+    - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
+    - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
+    - {fileID: 835300541022449616, guid: 11bd951626e5a5c499cbab11ccc059a2, type: 3}
+    - {fileID: 2213562617685566943, guid: 2a5ca1d91a2d2034e9a78fde36750504, type: 3}
+    - {fileID: 2717301764559762626, guid: 95f814b54f4206344a4d02faeb1472b0, type: 3}
+    - {fileID: 523259963152948840, guid: b42b0b1e9c590734bab734d53f760722, type: 3}
+    - {fileID: 3477517369449094825, guid: de818801f775af040a1f17a3571bc310, type: 3}
+    - {fileID: 29378652999175465, guid: 2bfdedabf32a6c54bb5451cdcab49c67, type: 3}
+    - {fileID: 7888490056693641791, guid: f08f405e0f0efb445ad1c288e04e84ff, type: 3}
+    - {fileID: 69953340018575585, guid: 42a7683b5638aca4bac5b66fe576f4e5, type: 3}
+    - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
+    trashCount: 0
+    trashLists: []
+    etcLists: []
 --- !u!1 &264441551
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,5 @@ public class Asteroid : SpawnObstacle
 
     public override void Init()
     {
-        throw new System.NotImplementedException();
     }
 }
