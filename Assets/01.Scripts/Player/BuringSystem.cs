@@ -7,7 +7,7 @@ public class BuringSystem : MonoBehaviour
     private bool wasGroundedLastFrame;
     private bool isGrounded => characterController.isGrounded;
 
-    public float burningValue;
+    private float burningValue;
     public float BurningValue
     {
         get
@@ -54,9 +54,11 @@ public class BuringSystem : MonoBehaviour
         burningCoroutine = null;
     }
 
-    public void MinusBurningValue(float minusValue)
+    public void DecreaseBurningValue(float minusValue)
     {
         BurningValue -= minusValue;
+
+        
     }
 
 
