@@ -7,6 +7,7 @@ public class BuringSystem : MonoBehaviour
     private bool wasDetectLastFrame = true;
     private bool IsDetectObstacle;
 
+    ParticleSystem _fireParticle;
 
     [SerializeField]
     private PoolAbleParticle fireParticle;
@@ -34,6 +35,11 @@ public class BuringSystem : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            DecreaseBurningValue(5);
+        }
+
         if (wasDetectLastFrame && !IsDetectObstacle)
         {
             burningCoroutine = StartCoroutine(BuringCorou());
@@ -60,6 +66,7 @@ public class BuringSystem : MonoBehaviour
             if(BurningValue >= maxBurningValue * 0.25f)
             {
                 PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
+                _fireParticle = particle.GetComponent<ParticleSystem>();
                 particle.gameObject.transform.SetParent(transform, false);
                 particle.SetStartSize(burningValue * 0.3f);
             }
@@ -73,6 +80,10 @@ public class BuringSystem : MonoBehaviour
     public void DecreaseBurningValue(float minusValue)
     {
         BurningValue -= minusValue;
+        if(_fireParticle != null)
+        {
+            _fireParticle.Stop();
+        }
     }
 
     public void SetDetectObstacle()
