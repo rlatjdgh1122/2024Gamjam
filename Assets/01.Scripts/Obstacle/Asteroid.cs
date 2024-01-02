@@ -15,6 +15,13 @@ public class Asteroid : MonoBehaviour
     private Vector2 dir; //움직일 방향
 
     private float speed = 0;
+
+    private Fracture fracture = null;
+
+    private void Awake()
+    {
+        fracture = GetComponent<Fracture>();
+    }
     private void Start()
     {
         speed = Random.Range(0, (float)MaxSpeed); //랜덤으로 스피드
@@ -32,5 +39,6 @@ public class Asteroid : MonoBehaviour
     {
         //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
         //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
+        fracture.FractureObject();
     }
 }
