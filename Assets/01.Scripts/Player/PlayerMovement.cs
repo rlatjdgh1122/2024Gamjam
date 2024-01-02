@@ -1,24 +1,47 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 5.0f;
+    [SerializeField]
+    private float moveSpeed = 5f;
+    [SerializeField]
+    public float rotateSpeed = 100f;
 
-    private CharacterController characterController;
+    private Transform visualTrm;
+
+    float horizontalInput;
+    float verticalInput;
+
+    Quaternion originQ;
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        visualTrm = transform.Find("Visual").transform;
     }
 
-    private void Update()
+    private void Start()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        originQ = visualTrm.rotation;
+    }
 
-        Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput);
+    void Update()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        characterController.Move(movement * movementSpeed * Time.deltaTime);
+        // ¿Ãµø
+        Vector3 moveDirection = new Vector3(horizontalInput, verticalInput, 0f).normalized;
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+        Vector3 rotation = new Vector3(verticalInput, -horizontalInput, 0f) * rotateSpeed * Time.deltaTime;
+
+        visualTrm.Rotate(rotation);
+
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+            visualTrm.rotation = Quaternion.Lerp(visualTrm.rotation, originQ, Time.deltaTime);
+        }
     }
 }

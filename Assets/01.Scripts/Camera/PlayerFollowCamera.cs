@@ -1,20 +1,20 @@
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerFollowCamera : MonoBehaviour
 {
-    private GameObject starCam;
-    private float galaxyRadius;
+    [SerializeField]
+    private Transform _targetObj;
 
-    void Start()
-    {
-        starCam = GameObject.FindObjectOfType<StarCamera>().gameObject;
-        galaxyRadius = GameObject.FindObjectOfType<StarGeneration>().galaxy.radiusH;
-    }
+    CinemachineVirtualCamera _followCam;
 
-    void LateUpdate()
+    void Awake()
     {
-        transform.position = new Vector3((10 / galaxyRadius) * starCam.transform.position.x, (10 / galaxyRadius) * starCam.transform.position.y, (10 / galaxyRadius) * starCam.transform.position.z);
-        transform.rotation = starCam.transform.rotation;
-        //print(starCam.transform.position + " " + transform.position);
+        _followCam = GetComponent<CinemachineVirtualCamera>();
+
+        _followCam.Follow = _targetObj;
+
+        //virtualCamera.m_XAxis.m_InputAxisName = "";
+        //virtualCamera.m_YAxis.m_InputAxisName = ""; 
     }
 }
