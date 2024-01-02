@@ -7,6 +7,9 @@ public class BuringSystem : MonoBehaviour
     private bool wasGroundedLastFrame;
     private bool isGrounded => characterController.isGrounded;
 
+
+    [SerializeField]
+    private float maxBurningValue;
     private float burningValue;
     public float BurningValue
     {
@@ -16,7 +19,7 @@ public class BuringSystem : MonoBehaviour
         }
         set
         {
-            burningValue = Mathf.Clamp(value, 0, 10f);
+            burningValue = Mathf.Clamp(value, 0, maxBurningValue);
         }
     }
 
@@ -57,9 +60,5 @@ public class BuringSystem : MonoBehaviour
     public void DecreaseBurningValue(float minusValue)
     {
         BurningValue -= minusValue;
-
-        
     }
-
-
 }
