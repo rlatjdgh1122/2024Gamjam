@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,9 @@ public class DurabilitySystem : MonoBehaviour
     private float durabilityValue;
 
     [SerializeField]
-    private float maxDurabilityValue;
+    private float firstSettingValue;
+    [SerializeField]
+    private float maxValue;
 
     public float DurabilityValue
     {
@@ -18,12 +21,25 @@ public class DurabilitySystem : MonoBehaviour
         }
         set
         {
-            durabilityValue = Mathf.Clamp(value, 0, maxDurabilityValue);
+            durabilityValue = Mathf.Clamp(value, 0, maxValue);
         }
     }
 
-    public void DecreaseDurabilityValue(float decreaseValue)
+    private void Start()
     {
-        DurabilityValue -= decreaseValue;
+        durabilityValue = firstSettingValue;
+    }
+
+    public void ChangeValue(float decreaseValue)
+    {
+        DOTween.To(() => DurabilityValue, x => DurabilityValue = x, DurabilityValue + decreaseValue, 1.0f);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ChangeValue(0.1f);
+        }
     }
 }
