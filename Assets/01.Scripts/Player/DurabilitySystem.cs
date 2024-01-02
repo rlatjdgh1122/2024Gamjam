@@ -6,6 +6,10 @@ public class DurabilitySystem : MonoBehaviour
 {
     //내구도임
     private float durabilityValue;
+
+    [SerializeField]
+    private float maxDurabilityValue;
+
     public float DurabilityValue
     {
         get
@@ -14,7 +18,7 @@ public class DurabilitySystem : MonoBehaviour
         }
         set
         {
-            durabilityValue = Mathf.Clamp(value, 0, 10f);
+            durabilityValue = Mathf.Clamp(value, 0, maxDurabilityValue);
         }
     }
 
