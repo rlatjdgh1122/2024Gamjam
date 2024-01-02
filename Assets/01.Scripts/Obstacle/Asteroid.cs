@@ -19,6 +19,7 @@ public class Asteroid : SpawnObstacle
             if (player.gameObject.TryGetComponent<PlayerManager>(out var Compo))
             {
                 //Compo.GetMoveToForward;
+                Compo.GetMoveToForward.ApplySpeed(lowerSpeed);
             }
         }
         //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
