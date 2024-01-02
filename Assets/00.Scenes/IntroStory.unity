@@ -571,10 +571,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _curSprite: {fileID: 861601135}
-  _curTex: {fileID: 0}
+  _curTex: {fileID: 1058889783}
   storyList:
-  - StoryContent: 'asdfasdasdfasdfasdfasdfasdfasdfafevasef asef asf ascvsef xcvadf
-      asdf '
+  - StoryContent: "\uBC30\uAC00 \uB108\uBB34 \uACE0\uD504\uB2E4"
+    Delay: 0.125
+    Img: {fileID: 21300000, guid: 209574eee167cce49bbe94648b795926, type: 3}
+  - StoryContent: "\uADF8\uB798\uC11C \uC74C\uC2DD\uC744 \uBA39\uC5C8\uB2E4"
+    Delay: 0.125
+    Img: {fileID: 21300000, guid: 209574eee167cce49bbe94648b795926, type: 3}
+  - StoryContent: "\uB108\uBB34 \uB9CE\uC774 \uBA39\uC5C8\uB098"
+    Delay: 0.125
+    Img: {fileID: 21300000, guid: 209574eee167cce49bbe94648b795926, type: 3}
+  - StoryContent: "\uBC30\uBD80\uB974\uB2E4"
+    Delay: 0.125
     Img: {fileID: 21300000, guid: 209574eee167cce49bbe94648b795926, type: 3}
 --- !u!1 &1227644714
 GameObject:
