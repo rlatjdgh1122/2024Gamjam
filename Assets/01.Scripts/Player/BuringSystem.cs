@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class BuringSystem : MonoBehaviour
 {
-    private CharacterController characterController;
-    private bool wasGroundedLastFrame;
-    private bool isGrounded => characterController.isGrounded;
+    private bool wasDetectLastFrame = true;
+    private bool IsDetectObstacle;
 
 
     [SerializeField]
-    private float maxBurningValue;
+    private PoolAbleParticle fireParticle;
+
+    [SerializeField]
+    private float overlapSphereRadius;
+
+    [SerializeField]
+    private float maxBurningValue = 2;
+    [SerializeField]
     private float burningValue;
     public float BurningValue
     {
@@ -23,34 +30,40 @@ public class BuringSystem : MonoBehaviour
         }
     }
 
-    private Coroutine burningCoroutine;
-
-    private void Start()
-    {
-        characterController = transform.parent.GetComponent<CharacterController>();
-        wasGroundedLastFrame = isGrounded;
-    }
+    private Coroutine burningCoroutine = null;
 
     private void Update()
     {
-        if (wasGroundedLastFrame && !isGrounded)
+        if (wasDetectLastFrame && !IsDetectObstacle)
         {
             burningCoroutine = StartCoroutine(BuringCorou());
         }
 
-        if (isGrounded && burningCoroutine != null)
+        if (IsDetectObstacle && burningCoroutine != null)
         {
             StopCoroutine(burningCoroutine);
         }
 
-        wasGroundedLastFrame = isGrounded;
+        wasDetectLastFrame = IsDetectObstacle;
+        if(IsDetectObstacle)
+        {
+            IsDetectObstacle = false;
+        }
     }
 
     private IEnumerator BuringCorou()
     {
-        while(BurningValue <= 10.0f)
+        while(BurningValue <= maxBurningValue)
         {
-            BurningValue += 0.1f;
+            BurningValue += 0.01f;
+
+            if(BurningValue >= maxBurningValue * 0.25f)
+            {
+                PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
+                particle.gameObject.transform.SetParent(transform, false);
+                particle.SetStartSize(burningValue * 0.3f);
+            }
+
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -60,5 +73,10 @@ public class BuringSystem : MonoBehaviour
     public void DecreaseBurningValue(float minusValue)
     {
         BurningValue -= minusValue;
+    }
+
+    public void SetDetectObstacle()
+    {
+        IsDetectObstacle = true;
     }
 }

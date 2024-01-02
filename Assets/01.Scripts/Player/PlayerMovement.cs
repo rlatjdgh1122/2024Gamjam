@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -36,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
         Vector3 rotation = new Vector3(verticalInput, -horizontalInput, 0f) * rotateSpeed * Time.deltaTime;
-
         visualTrm.Rotate(rotation);
 
         if (horizontalInput == 0 && verticalInput == 0)
