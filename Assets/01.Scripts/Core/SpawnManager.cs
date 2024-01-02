@@ -21,9 +21,13 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i < obstacleSpawnPoints.Length; ++i)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            obstacleSpawnPoints[i].Spawn();
+            for (int i = 0; i < obstacleSpawnPoints.Length; ++i)
+            {
+                obstacleSpawnPoints[i].Spawn();
+            }
         }
+        
     }
 }

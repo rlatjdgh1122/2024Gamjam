@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnObstacle : PoolableMono
+public abstract class SpawnObstacle : Obstacle
 {
     [SerializeField] private float _groundRadius;
     [SerializeField] private float _obstacleRadius;
@@ -45,13 +45,6 @@ public class SpawnObstacle : PoolableMono
             transform.gameObject.SetActive(true);
         }
     }
-    public override void Init()
-    {
-
-    }
-
-
-
 #if UNITY_EDITOR
 
     private void OnDrawGizmos()
