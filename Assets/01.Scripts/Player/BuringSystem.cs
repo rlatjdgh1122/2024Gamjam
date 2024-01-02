@@ -24,7 +24,7 @@ public class BuringSystem : MonoBehaviour
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = transform.parent.GetComponent<CharacterController>();
         wasGroundedLastFrame = isGrounded;
     }
 
