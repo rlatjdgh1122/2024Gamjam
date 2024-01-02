@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class SpawnObstacle : PoolableMono
 {
     public readonly int MaxDamage = 3;
@@ -48,7 +49,7 @@ public abstract class SpawnObstacle : PoolableMono
         //움직이는 코드
         transform.Translate(dir.normalized * speed * Time.deltaTime);
         //회전하는 코드
-        transform.Rotate(dir.normalized, (speed + 1f * 50f) * Time.deltaTime);
+        transform.Rotate(dir.normalized, speed * 50f * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
