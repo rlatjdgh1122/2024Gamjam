@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerFowardMover : MonoBehaviour
 {
     [SerializeField] private float _maxSpeed = 100f;
+    [SerializeField] private float _duration = 10f;
     private float _speed = 0;
     public float MoveSpeed
     {
@@ -21,8 +22,6 @@ public class PlayerFowardMover : MonoBehaviour
     public bool IsEnable = true;
     public bool IsSpeed = true;
 
-
-
     private void Start()
     {
         MoveSpeed = 1;
@@ -36,7 +35,7 @@ public class PlayerFowardMover : MonoBehaviour
     {
         if (IsSpeed)
         {
-            MoveSpeed += 10f * Time.deltaTime;
+            MoveSpeed += _duration * Time.deltaTime;
 
             if (MoveSpeed >= _maxSpeed)
             {

@@ -21,7 +21,7 @@ public class DistacneFillBar : MonoBehaviour
 
     private void Update()
     {
-        float normalizedDistance = GameManager.Instance.distanceToEarth / 100.0f;
+        float normalizedDistance = GameManager.Instance.distanceToEarth / 150;
         float invertedFillAmount = 1.0f - normalizedDistance;
 
         _fillContainer.fillAmount = Mathf.Clamp01(invertedFillAmount);
