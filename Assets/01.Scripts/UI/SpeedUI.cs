@@ -7,8 +7,6 @@ public class SpeedUI : MonoBehaviour
 {
     private TextMeshProUGUI _speedText;
 
-    [SerializeField] private PlayerFowardMover _player;
-
     private void Awake()
     {
         _speedText = GetComponent<TextMeshProUGUI>();
@@ -16,6 +14,7 @@ public class SpeedUI : MonoBehaviour
 
     private void Update()
     {
-        _speedText.text = $"{_player.MoveSpeed * 200} km/s";
+        _speedText.text = (PlayerManager.Instance.GetMoveToForward.MoveSpeed * 200).ToString("N0") + " km/s";
     }
+
 }
