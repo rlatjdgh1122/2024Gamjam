@@ -8,7 +8,7 @@ public class Satellite : SpawnObstacle
         rb.useGravity = false;
 
         speed = MaxSpeed; //랜덤으로 스피드
-        dir = Vector3.forward;
+        dir = Vector3.forward * -1f;
     }
     protected override void Update()
     {
