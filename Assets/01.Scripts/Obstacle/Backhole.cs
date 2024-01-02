@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Backhole : MonoBehaviour
 {
+    public LayerMask mask;
     [Header("플레이어 영향 줄 스탯")]
     public int size = 30; //범위 크기 
     public int strength = 20; //힘
@@ -11,7 +12,7 @@ public class Backhole : MonoBehaviour
     [SerializeField] private Collider[] colls;
     private void FixedUpdate()
     {
-        colls = Physics.OverlapSphere(transform.position, size);
+        colls = Physics.OverlapSphere(transform.position, size, mask);
         if (colls.Length > 0)
         {
             foreach (Collider col in colls)
@@ -34,5 +35,11 @@ public class Backhole : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //삭제시킴
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, size);
     }
 }

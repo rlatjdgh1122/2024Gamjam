@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trash : SpawnObstacle
+public class Item : SpawnObstacle
 {
     protected override void Start()
     {
@@ -14,12 +14,12 @@ public class Trash : SpawnObstacle
     }
     public override void CollisonEvent(Collision player)
     {
-        //플레이어의 크기를 줄여줌
-        //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
+       this.gameObject.SetActive(false);
+        //플레이어의 체력(크기)을 늘려줄게요
     }
 
     public override void Init()
     {
-        throw new System.NotImplementedException();
+
     }
 }
