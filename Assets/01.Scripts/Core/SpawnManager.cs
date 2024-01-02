@@ -54,7 +54,7 @@ public class SpawnManager : MonoBehaviour
 
         Init();
     }
-    private void Update()  
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -89,7 +89,7 @@ public class SpawnManager : MonoBehaviour
             var obj = PoolManager.Instance.Pop(name) as SpawnObstacle;
 
             var randomPos = setting.spawnPivot.position + Random.insideUnitSphere * radius +
-           new Vector3(0, Random.Range(-length, length), 0);
+           new Vector3(0, 0, Random.Range(-length, length));
 
             obj.Spawn(randomPos);
 
