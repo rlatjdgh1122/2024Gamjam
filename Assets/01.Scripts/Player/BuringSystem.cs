@@ -1,0 +1,70 @@
+using System.Collections;
+using UnityEngine;
+
+public class BuringSystem : MonoBehaviour
+{
+    private CharacterController characterController;
+    private bool wasGroundedLastFrame;
+    private bool isGrounded => characterController.isGrounded;
+
+    public float burningValue;
+    public float BurningValue
+    {
+        get
+        {
+            return burningValue;
+        }
+        set
+        {
+            burningValue = Mathf.Clamp(value, 0, 10f);
+        }
+    }
+
+    private Coroutine burningCoroutine;
+
+    private void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+        wasGroundedLastFrame = isGrounded;
+    }
+
+    private void Update()
+    {
+        if (wasGroundedLastFrame && !isGrounded)
+        {
+            burningCoroutine = StartCoroutine(BuringCorou());
+        }
+
+        if (isGrounded && burningCoroutine != null)
+        {
+            StopCoroutine(burningCoroutine);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            MinusBurningCnt(15f);
+        }
+
+        Debug.Log(BurningValue);
+
+        wasGroundedLastFrame = isGrounded;
+    }
+
+    private IEnumerator BuringCorou()
+    {
+        while(BurningValue <= 10.0f)
+        {
+            BurningValue += 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        burningCoroutine = null;
+    }
+
+    public void MinusBurningCnt(float minusValue)
+    {
+        BurningValue -= minusValue;
+    }
+
+
+}
