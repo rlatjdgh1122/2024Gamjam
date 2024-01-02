@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Obstacle : MonoBehaviour
+public abstract class Obstacle : PoolableMono
 {
     [Header("플레이어에게 영향을 줄 스탯")]
     //크기가 크면 크기를 많이 줄여주고 온도를 많이 낮줘줌
