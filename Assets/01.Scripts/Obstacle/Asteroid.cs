@@ -14,6 +14,7 @@ public class Asteroid : SpawnObstacle
     {
         //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
         //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
+        PoolManager.Instance.Push(this);
     }
 
     public override void Init()
