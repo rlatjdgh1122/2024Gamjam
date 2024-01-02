@@ -52,8 +52,8 @@ public abstract class SpawnObstacle : PoolableMono
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
         CollisonEvent(collision);
+        //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
         //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
     }
     public abstract void CollisonEvent(Collision player);

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Asteroid : SpawnObstacle
