@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,6 @@ public class DistacneFillBar : MonoBehaviour
     [SerializeField] private Image[] _circles;
     int cnt = 0;
 
-    public UnityEvent FillEvent;
-
-    bool canFill = true;
-
     private void Awake()
     {
         _fillContainer = GetComponent<Image>();
@@ -29,40 +26,19 @@ public class DistacneFillBar : MonoBehaviour
 
         _fillContainer.fillAmount = Mathf.Clamp01(invertedFillAmount);
 
-        if (_fillContainer.fillAmount >= 0.111f && canFill)
-        {
-            FillEvent?.Invoke();
-            canFill = false;
-        }
+        float targetFill = (cnt + 1) / 6.0f;
 
-        if (_fillContainer.fillAmount >= 0.333f && !canFill)
+        if (_fillContainer.fillAmount >= targetFill && cnt < 6)
         {
-            FillEvent?.Invoke();
-            canFill = true;
-        }
-
-        if (_fillContainer.fillAmount >= 0.555f && canFill)
-        {
-            FillEvent?.Invoke();
-            canFill = false;
-        }
-
-        if (_fillContainer.fillAmount >= 0.777f && !canFill)
-        {
-            FillEvent?.Invoke();
-            canFill = true;
-        }
-
-        if (_fillContainer.fillAmount >= 1f && canFill)
-        {
-            FillEvent?.Invoke();
-            canFill = false;
+            FadeInCircleImage();
         }
     }
 
     public void FadeInCircleImage()
     {
+        int prevCnt = cnt;
         _circles[cnt].DOColor(_fillColor, 0.5f);
+        _circles[cnt].rectTransform.DOScale(1.25f, 0.5f);
         cnt++;
     }
 }

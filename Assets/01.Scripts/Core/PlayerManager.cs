@@ -21,14 +21,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private MoveToForward _moveToForward;
-    public MoveToForward GetMoveToForward
+    private PlayerFowardMover _moveToForward;
+    public PlayerFowardMover GetMoveToForward
     {
         get
         {
             if (_moveToForward == null)
             {
-                _moveToForward = Player.GetComponent<MoveToForward>();
+                _moveToForward = Player.GetComponent<PlayerFowardMover>();
             }
             return _moveToForward;
         }
