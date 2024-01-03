@@ -1516,7 +1516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ac42e9cccd8df448cd289e0f28b52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 3
+  punchStopTime: 3
+  beforePunchwaitTime: 1
+  rotateSpeed: 100
 --- !u!64 &2592283050036814684
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -17,10 +17,10 @@ public class EarthEvent : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyUp(KeyCode.O))
-        //{
-        //    PlanetEventManager.Instance.InvokePlanetEventHandler(PlanetEnum.Earth);
-        //}
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            PlanetEventManager.Instance.InvokePlanetEventHandler(PlanetEnum.Earth);
+        }
     }
 
     private void EnterEarthAreaEvent()
