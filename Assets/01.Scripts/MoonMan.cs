@@ -1,11 +1,18 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MoonMan : MonoBehaviour
 {
     [SerializeField]
-    private float waitTime = 3f;
+    private float punchStopTime = 3f;
+
+    [SerializeField]
+    private float beforePunchwaitTime = 3f;
+
+    [SerializeField]
+    private float rotateSpeed = 1.0f;
 
     private Animator _animator;
 
@@ -18,7 +25,7 @@ public class MoonMan : MonoBehaviour
 
     private IEnumerator PunchCoroutine()
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(beforePunchwaitTime);
 
         _animator.SetTrigger("PunchTrigger");
 
@@ -36,4 +43,27 @@ public class MoonMan : MonoBehaviour
         }
     }
 
+    private void OnAnimationStopEvent()
+    {
+        StartCoroutine(AniStopCorou());
+    }
+
+    private IEnumerator AniStopCorou()
+    {
+        _animator.speed = 0.0f;
+
+        float curTime = 0;
+
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(PlayerManager.Instance.Player.transform.position);
+
+        while (curTime <= punchStopTime)
+        {
+            Debug.Log(transform.rotation);
+            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, curTime);
+            curTime += Time.deltaTime * rotateSpeed;
+            yield return null;
+        }
+        _animator.speed = 1.0f;
+    }
 }
