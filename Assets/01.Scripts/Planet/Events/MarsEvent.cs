@@ -12,6 +12,6 @@ public class MarsEvent : MonoBehaviour
     private void EnterMarsAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Mars - 1);
-        Debug.Log("화성 지나감");
+        Debug.Log("다음 행성 : 화성");
     }
 }

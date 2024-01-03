@@ -12,7 +12,7 @@ public class UranusEvent : MonoBehaviour
     private void EnterUranusAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Uranus - 1);
-        Debug.Log("천왕성 지나감");
+        Debug.Log("다음 행성 : 천왕성");
 
     }
 }

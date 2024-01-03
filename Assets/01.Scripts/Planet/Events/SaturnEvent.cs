@@ -12,7 +12,7 @@ public class SaturnEvent : MonoBehaviour
     private void EnterSaturnAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Saturn - 1);
-        Debug.Log("토성 지나감");
+        Debug.Log("다음 행성 : 토성");
 
     }
 }

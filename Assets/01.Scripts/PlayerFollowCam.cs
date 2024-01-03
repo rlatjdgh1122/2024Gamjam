@@ -47,6 +47,8 @@ public class PlayerFollowCam : MonoBehaviour
     private void Start()
     {
         _followCam.m_Lens.FieldOfView = minLensValue;
+        m_channelsPerlin.m_AmplitudeGain = 0;
+        m_channelsPerlin.m_FrequencyGain = 0;
     }
 
     private void LateUpdate()
