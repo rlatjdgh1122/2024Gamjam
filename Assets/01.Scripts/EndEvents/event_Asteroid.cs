@@ -8,7 +8,7 @@ public class event_Asteroid : MonoBehaviour
 
     private void Awake()
     {
-        _moveSpeed = Random.Range(16, 20);
+        _moveSpeed = Random.Range(20, 26);
     }
 
     private void Update()

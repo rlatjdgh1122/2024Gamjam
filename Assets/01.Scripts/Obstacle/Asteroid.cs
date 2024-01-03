@@ -21,6 +21,7 @@ public class Asteroid : SpawnObstacle
                 //Compo.GetMoveToForward;
             }
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.2f);
 
             //카메라 쉐이크
             PlayerFollowCam.Instance.ShakeTest();

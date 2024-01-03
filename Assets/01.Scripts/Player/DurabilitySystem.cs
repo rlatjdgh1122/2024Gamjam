@@ -34,12 +34,4 @@ public class DurabilitySystem : MonoBehaviour
     {
         DOTween.To(() => DurabilityValue, x => DurabilityValue = x, DurabilityValue + decreaseValue, 1.0f).SetEase(Ease.OutQuart);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ChangeValue(-0.1f);
-        }
-    }
 }
