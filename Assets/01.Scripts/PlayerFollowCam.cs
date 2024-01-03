@@ -9,12 +9,16 @@ using UnityEngine;
 
 public class PlayerFollowCam : MonoBehaviour
 {
+    [Header("게임 설정")]
+    public float speedAdaptationTime = 3f;
+    public float zoominDelay = .5f;
+    [Header("카메라 설정")]
     public float minLensValue = 65f;
     public float maxLensValue = 82f;
     public Vector3 zoomoutSpeedEffectPos;
     public Vector3 baseSpeedEffectPos;
 
-    public float zoomDelay = 1f;
+    public float zoomoutDelay = 1f;
 
     public static PlayerFollowCam Instance;
 
@@ -54,8 +58,9 @@ public class PlayerFollowCam : MonoBehaviour
         {
             if (isChecked == false)
             {
-                //60이상이 넘었을때 한 번 실행(enter)
+                //한 번 실행(enter)
                 StartCoroutine(CamZoom());
+                StartCoroutine(SpeedAdap());
             }
             isChecked = true;
         }
@@ -63,8 +68,10 @@ public class PlayerFollowCam : MonoBehaviour
         {
             if (isChecked == true)
             {
-                //60이상이 안 넘었을때 한 번 실행(exit)
+                //한 번 실행(exit)
                 StopCoroutine(CamZoom());
+                StopCoroutine(SpeedAdap());
+
                 _followCam.m_Lens.FieldOfView = minLensValue;
                 speedParticle.localPosition = baseSpeedEffectPos;
             }
@@ -80,17 +87,37 @@ public class PlayerFollowCam : MonoBehaviour
     {
         StartCoroutine(CamShake(delay, value));
     }
+
+    private IEnumerator SpeedAdap()
+    {
+        yield return new WaitForSeconds(speedAdaptationTime);
+
+        float startValue = _followCam.m_Lens.FieldOfView;
+        float timer = 0f;
+
+        Vector3 startPos = speedParticle.localPosition;
+        while (timer < zoominDelay)
+        {
+            timer += Time.deltaTime;
+            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, minLensValue, timer / zoominDelay);
+            speedParticle.localPosition = Vector3.Lerp(startPos, zoomoutSpeedEffectPos, timer / zoominDelay);
+
+            yield return null;
+        }
+        _followCam.m_Lens.FieldOfView = minLensValue;
+        speedParticle.localPosition = baseSpeedEffectPos;
+    }
     private IEnumerator CamZoom()
     {
         float startValue = _followCam.m_Lens.FieldOfView;
         float timer = 0f;
 
         Vector3 startPos = speedParticle.localPosition;
-        while (timer < zoomDelay)
+        while (timer < zoomoutDelay)
         {
             timer += Time.deltaTime;
-            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, maxLensValue, timer / zoomDelay);
-            speedParticle.localPosition = Vector3.Lerp(startPos, zoomoutSpeedEffectPos, timer / zoomDelay);
+            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, maxLensValue, timer / zoomoutDelay);
+            speedParticle.localPosition = Vector3.Lerp(startPos, zoomoutSpeedEffectPos, timer / zoomoutDelay);
 
             yield return null;
         }

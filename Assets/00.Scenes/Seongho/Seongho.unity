@@ -263,7 +263,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1500
-  field of view: 65
+  field of view: 78.21939
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1605,6 +1605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8b452d15e1ac4487bb3083fa4c8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentSpeed: 0
+  _speedChangeRate: 50
+  canSpeedText: 0
 --- !u!1001 &282137467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2179,7 +2182,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8482876765030638960}
   m_Lens:
-    FieldOfView: 65
+    FieldOfView: 78.21939
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1500
@@ -2225,12 +2228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTargetValue: 50
+  speedAdaptationTime: 3
+  zoominDelay: 0.5
   minLensValue: 65
   maxLensValue: 90
   zoomoutSpeedEffectPos: {x: 0, y: 0, z: 7}
   baseSpeedEffectPos: {x: 0, y: 0, z: 15}
-  zoomDelay: 1
+  zoomoutDelay: 1
   followCamFOVMultipleValue: 2
   totalMultipleValue: 0
 --- !u!1 &367751051
@@ -13257,16 +13261,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6656119474787429212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6410f0d76cbb4024daa9ce6aa6fd19cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 988a8ec0a782179449a0720bb815eecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CanFire: 0
   fireParticle: {fileID: 9158217313775459068, guid: 4d7e19c9fcb52be4bb9a8ba855ffe12d, type: 3}
   overlapSphereRadius: 1
-  firstSettingValue: 0.02
+  firstSettingValue: 0.5
   increaseValue: 0.2
-  waitTime: 0.07
-  maxBurningValue: 30
+  waitTime: 0.12
+  maxBurningValue: 15
 --- !u!1 &802467501
 GameObject:
   m_ObjectHideFlags: 0
