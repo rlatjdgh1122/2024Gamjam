@@ -263,7 +263,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1500
-  field of view: 65.1999
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1929,6 +1929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba482c8bab3b6f74789e24a20502ce28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MoonMan: {fileID: 0}
+  _moonManSpawnPoint: {fileID: 0}
 --- !u!4 &339710403
 Transform:
   m_ObjectHideFlags: 0
@@ -2177,7 +2179,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8482876765030638960}
   m_Lens:
-    FieldOfView: 65.1999
+    FieldOfView: 90
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1500
@@ -2223,6 +2225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minLensValue: 65
+  maxLensValue: 90
+  zoomoutSpeedEffectPos: {x: 0, y: 0, z: 7}
+  baseSpeedEffectPos: {x: 0, y: 0, z: 15}
+  zoomDelay: 1
   followCamFOVMultipleValue: 2
   totalMultipleValue: 0
 --- !u!1 &367751051
@@ -40055,6 +40062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b59fb68d23bf439fe73ec07b7eecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2072401692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4563211026197103274, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
+  m_PrefabInstance: {fileID: 4777765842494326402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093742016
 GameObject:
   m_ObjectHideFlags: 0
@@ -46071,8 +46083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ae371c0eda3c14598ae0dcfccbd463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1000
-  _duration: 4
+  _maxSpeed: 100
+  _duration: 10
   IsEnable: 1
   IsSpeed: 1
 --- !u!23 &3216764239291002247
@@ -46637,7 +46649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271107289499016209, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1271107289499016209, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -46671,16 +46683,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedLineEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 8957464110478412183, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4563211026197103274, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4777765842494326406}
   m_SourcePrefab: {fileID: 100100000, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
 --- !u!4 &4777765842494326403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1271107289499016209, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
   m_PrefabInstance: {fileID: 4777765842494326402}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4777765842494326406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072401692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9435305426ed15479d3f5de4c1ddaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4850481656533147368
 Transform:
   m_ObjectHideFlags: 0
@@ -48271,7 +48302,6 @@ SceneRoots:
   - {fileID: 186121238}
   - {fileID: 367751052}
   - {fileID: 32106718}
-  - {fileID: 365611205}
   - {fileID: 34140803}
   - {fileID: 73416527}
   - {fileID: 568074972}
@@ -48286,3 +48316,4 @@ SceneRoots:
   - {fileID: 1774646543}
   - {fileID: 339710403}
   - {fileID: 8482876765030638960}
+  - {fileID: 365611205}

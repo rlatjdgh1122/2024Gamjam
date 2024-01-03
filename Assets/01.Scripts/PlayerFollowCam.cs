@@ -3,15 +3,24 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerFollowCam : MonoBehaviour
 {
+    public float minLensValue = 65f;
+    public float maxLensValue = 82f;
+    public Vector3 zoomoutSpeedEffectPos;
+    public Vector3 baseSpeedEffectPos;
+
+    public float zoomDelay = 1f;
+
     public static PlayerFollowCam Instance;
 
     private CinemachineVirtualCamera _followCam;
     private CinemachineBasicMultiChannelPerlin m_channelsPerlin;
+    private Transform speedParticle;
 
     [SerializeField]
     private float followCamFOVMultipleValue = 2;
@@ -19,20 +28,50 @@ public class PlayerFollowCam : MonoBehaviour
     [SerializeField]
     private float totalMultipleValue;
 
+    private bool isChecked = false;
     private void Awake()
     {
         Instance = this;
 
         _followCam = GetComponent<CinemachineVirtualCamera>();
         m_channelsPerlin = _followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        var player = GameObject.Find("Player");
+        speedParticle = player.transform.Find("SpeedLineEffect");
+    }
+
+    private void Start()
+    {
+        _followCam.m_Lens.FieldOfView = minLensValue;
     }
 
     private void LateUpdate()
     {
-        totalMultipleValue = (PlayerManager.Instance.GetBuringSystem.BurningValue + 1) * followCamFOVMultipleValue;
-        //_followCam.m_Lens.FieldOfView = Mathf.Lerp(_followCam.m_Lens.FieldOfView, 60 + totalMultipleValue, Time.deltaTime);
+        totalMultipleValue =
+            (PlayerManager.Instance.GetMoveToForward.MoveSpeed / 10f) * followCamFOVMultipleValue;
 
-        //_speedLineEffect.DOMoveZ(PlayerManager.Instance.GetBuringSystem.MaxBurningValue);
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= 60f)
+        {
+            if (isChecked == false)
+            {
+                //60이상이 넘었을때 한 번 실행(enter)
+                StartCoroutine(CamZoom());
+            }
+            isChecked = true;
+        }
+        else
+        {
+            if (isChecked == true)
+            {
+                //60이상이 안 넘었을때 한 번 실행(exit)
+                StopCoroutine(CamZoom());
+                _followCam.m_Lens.FieldOfView = minLensValue;
+                speedParticle.localPosition = baseSpeedEffectPos;
+
+                speedParticle.gameObject.SetActive(false);
+            }
+            isChecked = false;
+        }
     }
 
     public void ShakeTest()
@@ -43,7 +82,21 @@ public class PlayerFollowCam : MonoBehaviour
     {
         StartCoroutine(CamShake(delay, value));
     }
+    private IEnumerator CamZoom()
+    {
+        float startValue = _followCam.m_Lens.FieldOfView;
+        float timer = 0f;
 
+        Vector3 startPos = speedParticle.localPosition;
+        while (timer < zoomDelay)
+        {
+            timer += Time.deltaTime;
+            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, maxLensValue, timer / zoomDelay);
+            speedParticle.localPosition = Vector3.Lerp(startPos, zoomoutSpeedEffectPos, timer / zoomDelay);
+
+            yield return null;
+        }
+    }
     private IEnumerator CamShake(float delay, float value)
     {
         m_channelsPerlin.m_AmplitudeGain = value;
@@ -51,5 +104,10 @@ public class PlayerFollowCam : MonoBehaviour
         yield return new WaitForSeconds(delay);
         m_channelsPerlin.m_AmplitudeGain = 0;
         m_channelsPerlin.m_FrequencyGain = 0;
+    }
+
+    private void OnDestroy()
+    {
+        _followCam.m_Lens.FieldOfView = minLensValue;
     }
 }
