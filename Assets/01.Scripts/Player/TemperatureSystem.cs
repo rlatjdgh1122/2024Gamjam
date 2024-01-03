@@ -12,9 +12,11 @@ public class TemperatureSystem : MonoBehaviour
 
     private void Awake()
     {
-        _iceMat.SetInt("_Freezing", ice ? 1 : 0);
-        _hotMat.SetInt("_Freezing", hot ? 1 : 0);
+        _iceMat.SetInt("_Freezing", 0);
+        _hotMat.SetInt("_Freezing", 0);
     }
+
+
 
     public void ScreenToIce(float temperature)
     {
