@@ -11,6 +11,8 @@ public class SpaceShip : MonoBehaviour
     [SerializeField]
     private PoolAbleParticle fireParticle;
 
+    [SerializeField] private Transform firePos;
+
     private Transform _target;
 
     bool IsLaunch = false;
@@ -27,7 +29,7 @@ public class SpaceShip : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 3.5f);
             transform.Rotate(-_target.transform.position, 2);
             ShotParticle();
-            if (Vector3.Distance(transform.position, _target.position) <= 100)
+            if (Vector3.Distance(transform.position, _target.position) <= 50)
                 IsLaunch = true;
         }   
     }
@@ -36,7 +38,7 @@ public class SpaceShip : MonoBehaviour
     {
         PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
         _fireParticle = particle.GetComponent<ParticleSystem>();
-        particle.gameObject.transform.SetParent(transform, false);
-        particle.SetSpaceShipSetting(1);
+        particle.gameObject.transform.SetParent(firePos, false);
+        particle.SetSpaceShipSetting(3);
     }
 }
