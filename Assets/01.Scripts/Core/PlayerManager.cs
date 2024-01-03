@@ -93,8 +93,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (_buringSystem == null)
             {
-                //_buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
-                _buringSystem = GameObject.FindObjectOfType<BuringSystem>();
+                _buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
             }
             return _buringSystem;
         }
@@ -104,11 +103,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("SpawnManager is not NULL");
-
+            Debug.LogError("PlayerManager is multiple");
         }
-        Instance = this;
 
+        Instance = this;
         Player = GameObject.FindWithTag("Player");
     }
 }
