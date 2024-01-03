@@ -24,7 +24,7 @@ public class Asteroid : SpawnObstacle
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
 
             //카메라 쉐이크
-
+            PlayerFollowCam.Instance.ShakeTest();
 
             //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
             var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
