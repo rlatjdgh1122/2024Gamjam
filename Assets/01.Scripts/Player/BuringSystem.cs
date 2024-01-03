@@ -36,13 +36,6 @@ public class BuringSystem : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerManager.Instance.IsDie)
-        {
-            _fireParticle.Stop();
-            
-            return;
-        }
-
         if (wasDetectLastFrame && !IsDetectObstacle)
         {
             burningCoroutine = StartCoroutine(BuringCorou());
