@@ -32,6 +32,12 @@ public class SpaceShip : MonoBehaviour
             if (Vector3.Distance(transform.position, _target.position) <= 50)
                 IsLaunch = true;
         }   
+
+        if (IsLaunch)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.back, 3.5f);
+            transform.Rotate(-_target.transform.position, 2);
+        }
     }
 
     private void ShotParticle()
