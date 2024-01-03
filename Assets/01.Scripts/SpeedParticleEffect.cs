@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpeedParticleEffect : MonoBehaviour
 {
+    public int Count = 10;
     private ParticleSystem _ps;
 
     private void Awake()
@@ -18,6 +19,6 @@ public class SpeedParticleEffect : MonoBehaviour
     public void Apply()
     {
         var ps = _ps.main;
-        ps.maxParticles = (int)PlayerManager.Instance.GetMoveToForward.MoveSpeed;
+        ps.maxParticles = (int)PlayerManager.Instance.GetMoveToForward.MoveSpeed * Count;
     }
 }

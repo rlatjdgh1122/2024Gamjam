@@ -9,16 +9,18 @@ using UnityEngine;
 
 public class PlayerFollowCam : MonoBehaviour
 {
-    [Header("게임 설정")]
+    [Header("적응 설정")]
     public float speedAdaptationTime = 3f;
     public float zoominDelay = .5f;
-    [Header("카메라 설정")]
+    public float adaptationLensValue = 80f;
+    public Vector3 apdaptationSpeedEffectPos;
+    [Header("가속도 설정")]
     public float minLensValue = 65f;
-    public float maxLensValue = 82f;
+    public float maxLensValue = 100f;
+    public float zoomoutDelay = 1f;
     public Vector3 zoomoutSpeedEffectPos;
     public Vector3 baseSpeedEffectPos;
 
-    public float zoomoutDelay = 1f;
 
     public static PlayerFollowCam Instance;
 
@@ -47,6 +49,9 @@ public class PlayerFollowCam : MonoBehaviour
     private void Start()
     {
         _followCam.m_Lens.FieldOfView = minLensValue;
+        speedParticle.localPosition = baseSpeedEffectPos;
+        m_channelsPerlin.m_AmplitudeGain = 0;
+        m_channelsPerlin.m_FrequencyGain = 0;
     }
 
     private void LateUpdate()
@@ -100,13 +105,13 @@ public class PlayerFollowCam : MonoBehaviour
         while (timer < zoominDelay)
         {
             timer += Time.deltaTime;
-            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, minLensValue, timer / zoominDelay);
-            speedParticle.localPosition = Vector3.Lerp(startPos, zoomoutSpeedEffectPos, timer / zoominDelay);
+            _followCam.m_Lens.FieldOfView = Mathf.Lerp(startValue, adaptationLensValue, timer / zoominDelay);
+            speedParticle.localPosition = Vector3.Lerp(startPos, apdaptationSpeedEffectPos, timer / zoominDelay);
 
             yield return null;
         }
-        _followCam.m_Lens.FieldOfView = minLensValue;
-        speedParticle.localPosition = baseSpeedEffectPos;
+        _followCam.m_Lens.FieldOfView = adaptationLensValue;
+        speedParticle.localPosition = apdaptationSpeedEffectPos;
     }
     private IEnumerator CamZoom()
     {
