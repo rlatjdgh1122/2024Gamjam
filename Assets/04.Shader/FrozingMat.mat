@@ -46,7 +46,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Emission: 0.6
-    - _Freezing: 1
+    - _Freezing: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Sides: 35.9
