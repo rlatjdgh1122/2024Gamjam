@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
             {
                 isDie = true;
             }
-            Debug.Log($"Value: {GetBuringSystem.BurningValue}");
             return isDie;
         }
     }

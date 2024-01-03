@@ -36,15 +36,9 @@ public class BuringSystem : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerManager.Instance.IsDie)
+        if (PlayerManager.Instance.IsDie)
         {
-            _fireParticle.Play();
             return;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            DecreaseBurningValue(5);
         }
 
         if (wasDetectLastFrame && !IsDetectObstacle)
@@ -76,7 +70,6 @@ public class BuringSystem : MonoBehaviour
                 _fireParticle = particle.GetComponent<ParticleSystem>();
                 particle.gameObject.transform.SetParent(transform, false);
                 particle.SetStartLifetime((maxBurningValue - BurningValue) * 0.1f);
-                Debug.Log((maxBurningValue - BurningValue) * 0.1f);
             }
 
             yield return new WaitForSeconds(0.1f);
