@@ -79,12 +79,12 @@ public class Galaxy : MonoBehaviour {
                 }
             }
         }
-        print("Total Stars In Galaxy: " + totalStars);
-        print("Vertical star population on the galaxy grid:");
-        for (int i = 0; i < starHeightPop.GetLength(0); i++)
-        {
-            print(i - ((starHeightPop.GetLength(0) - 1) / 2) + ": " + starHeightPop[i]);
-        }
+        //print("Total Stars In Galaxy: " + totalStars);
+        //print("Vertical star population on the galaxy grid:");
+        //for (int i = 0; i < starHeightPop.GetLength(0); i++)
+        //{
+        //    print(i - ((starHeightPop.GetLength(0) - 1) / 2) + ": " + starHeightPop[i]);
+        //}
     }
 
     private void Update()
