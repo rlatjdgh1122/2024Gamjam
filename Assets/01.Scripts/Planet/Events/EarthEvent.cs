@@ -11,5 +11,8 @@ public class EarthEvent : MonoBehaviour
 
     private void EnterEarthAreaEvent()
     {
+        SpawnManager.Instance.Spawn(PlanetEnum.Earth);
+        Debug.Log("지구 지나감");
+
     }
 }

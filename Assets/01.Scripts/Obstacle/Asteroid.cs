@@ -17,11 +17,11 @@ public class Asteroid : SpawnObstacle
         if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
-            if (player.transform.root.TryGetComponent<PlayerManager>(out var Compo))
+            //if (player.transform.root.TryGetComponent<PlayerManager>(out var Compo))
             {
                 //Compo.GetMoveToForward;
-                Compo.GetMoveToForward.ApplySpeed(lowerSpeed);
             }
+            PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
 
             //카메라 쉐이크
 

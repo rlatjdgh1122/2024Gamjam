@@ -5,8 +5,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform Target;
-    public float ReachedTime;
+    public Transform[] Target;
+    private int curTargetIdx = 0;
 
     [SerializeField]
     private float moveSpeed = 5f;
@@ -18,9 +18,8 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    private bool canTimer = true;
-
     Quaternion originQ;
+
 
     private void Awake()
     {
@@ -30,8 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         originQ = visualTrm.rotation;
-
-        Debug.Log($"{Vector3.Distance(transform.position, Target.transform.position)}");
     }
 
     void Update()
@@ -51,15 +48,15 @@ public class PlayerMovement : MonoBehaviour
             visualTrm.rotation = Quaternion.Lerp(visualTrm.rotation, originQ, Time.deltaTime);
         }
 
-
-        if (Vector3.Distance(transform.position, Target.transform.position) < 10f)
+        if (curTargetIdx <= 5)
         {
-            canTimer = false;
-        }
-        
-        if (canTimer)
-        {
-            ReachedTime += Time.deltaTime;
+            if (-1 * (transform.position.z - Target[curTargetIdx].transform.position.z) < 10f) //높이만 거리를 잼
+            {
+                Debug.Log(curTargetIdx);
+                var type = (int)PlanetEnum.Neptune - curTargetIdx;
+                PlanetEventManager.Instance.InvokePlanetEventHandler((PlanetEnum)type);
+                ++curTargetIdx;
+            }
         }
     }
 }
