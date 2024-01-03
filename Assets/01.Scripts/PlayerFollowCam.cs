@@ -29,7 +29,7 @@ public class PlayerFollowCam : MonoBehaviour
 
     private void LateUpdate()
     {
-        totalMultipleValue = (PlayerManager.Instance.GetBuringSystem.BurningValue + 1) * followCamFOVMultipleValue;
+        //totalMultipleValue = (PlayerManager.Instance.GetBuringSystem.BurningValue + 1) * followCamFOVMultipleValue;
         //_followCam.m_Lens.FieldOfView = Mathf.Lerp(_followCam.m_Lens.FieldOfView, 60 + totalMultipleValue, Time.deltaTime);
 
         //_speedLineEffect.DOMoveZ(PlayerManager.Instance.GetBuringSystem.MaxBurningValue);
