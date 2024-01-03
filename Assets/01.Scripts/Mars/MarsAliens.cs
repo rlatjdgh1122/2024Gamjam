@@ -7,7 +7,7 @@ public class MarsAliens : MonoBehaviour
     [SerializeField] Transform Target;
     [SerializeField] Transform FirePos;
     [SerializeField] GameObject Bullet;
-    [SerializeField] float TargetDistance = 10f;
+    [SerializeField] float TargetDistance = 100f;
     private float DistanceToTarget;
 
     bool Canshoot = true;
