@@ -29,8 +29,9 @@ public class PoolAbleParticle : PoolableMono
         PoolManager.Instance.Push(this);
     }
 
-    public void SetStartLifetime(float startLifeTime)
+    public void SetStartLifetime(float value)
     {
-        _mainModule.startLifetime = startLifeTime;
+        _mainModule.startSize = value;
+        _mainModule.startLifetime = 0.1f;
     }
 }
