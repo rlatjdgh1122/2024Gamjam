@@ -2,6 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Asteroid : SpawnObstacle
 {
+    public ParticleLifeTimer _particle;
     protected override void Start()
     {
         base.Start();
@@ -15,15 +16,21 @@ public class Asteroid : SpawnObstacle
                 if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
-            if (player.transform.TryGetComponent<PlayerManager>(out var Compo))
+            //if (player.transform.root.TryGetComponent<PlayerManager>(out var Compo))
             {
                 //Compo.GetMoveToForward;
-                Compo.GetMoveToForward.ApplySpeed(lowerSpeed);
             }
+            PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
+
+            //카메라 쉐이크
+
+
+            //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
+            var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
+            obj.Setting(transform, size / 2f);
 
             PoolManager.Instance.Push(this);
         }
-        //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
     }
 
     public override void Init()

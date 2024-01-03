@@ -152,13 +152,9 @@ MonoBehaviour:
   lowerSpeed: 0
   maxSize: 5
   MaxSpeed: 1
-  _groundRadius: 0
   _obstacleRadius: 20
-  _ground:
-    serializedVersion: 2
-    m_Bits: 0
   _obstacle:
     serializedVersion: 2
     m_Bits: 64
-  _radius: 60
   CanSpawn: 0
+  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}

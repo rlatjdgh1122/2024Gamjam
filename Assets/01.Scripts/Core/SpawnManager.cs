@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum PlanetType
-{
-    Mars, //수성
-    Jupiter, //목성
-    Saturn, //토성
-    Uranus, //천왕성
-    Neptune //해왕성
-}
 [System.Serializable]
 public class Setting
 {
-    public PlanetType type;
+    public PlanetEnum type;
     [Header("위치 설정")]
     public Transform spawnPivot;
     public int radius;
@@ -29,12 +21,13 @@ public class Setting
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
+
     public List<Setting> settings = new(); //행성들마다 생성
-    public Dictionary<PlanetType, Setting> planetLists = new(); //저장
+    public Dictionary<PlanetEnum, Setting> planetLists = new(); //저장
     private List<SpawnObstacle> dummyObjs = new(); //이전 스폰된 오브젝트를 지워줌
     private List<GameObject> etcObjs = new(); //이전 스폰된 오브젝트를 지워줌
 
-    private PlanetType curType = PlanetType.Neptune;
+    private PlanetEnum curType = PlanetEnum.Neptune;
     private void Awake()
     {
         if (Instance != null)
@@ -47,7 +40,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         int idx = 0;
-        foreach (PlanetType type in Enum.GetValues(typeof(PlanetType)))
+        foreach (PlanetEnum type in Enum.GetValues(typeof(PlanetEnum)))
         {
             planetLists.Add(type, settings[idx++]);
         }
@@ -58,15 +51,15 @@ public class SpawnManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Spawn(PlanetType.Neptune);
+            Spawn(PlanetEnum.Neptune);
         }
     }
     public void Init()
     {
         Despawn();
-        Spawn(PlanetType.Neptune);
+        Spawn(PlanetEnum.Neptune);
     }
-    public void Spawn(PlanetType planet)
+    public void Spawn(PlanetEnum planet)
     {
         Despawn(); //확인용
 

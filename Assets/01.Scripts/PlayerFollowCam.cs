@@ -1,4 +1,4 @@
-using Cinemachine; 
+using Cinemachine;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -26,7 +26,7 @@ public class PlayerFollowCam : MonoBehaviour
         Instance = this;
 
         _followCam = GetComponent<CinemachineVirtualCamera>();
-
+        //_speedLineEffect = PlayerManager.Instance.Player.transform.Find("SpeedLineEffect");
         m_channelsPerlin = _followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 

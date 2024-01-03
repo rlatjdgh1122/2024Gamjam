@@ -29,6 +29,8 @@ public abstract class SpawnObstacle : PoolableMono
     [SerializeField] private LayerMask _obstacle;
 
     public bool CanSpawn;
+
+    protected float size = 0f;
     protected virtual void Start()
     {
         var rb = GetComponent<Rigidbody>();
@@ -37,12 +39,12 @@ public abstract class SpawnObstacle : PoolableMono
         speed = Random.Range(0, (float)MaxSpeed); //랜덤으로 스피드
         dir = Random.insideUnitSphere * 1f; //랜덤 방향
 
-        var size = Random.Range(1f, MaxSize);
+        size = Random.Range(1f, MaxSize);
         transform.localScale = new Vector3(size, size, size);
 
         damage = (int)size * MaxDamage;
         lowerTem = (int)size * MaxLowerTem;
-        lowerSpeed = (int)size * MaxLowerSpeed;
+        lowerSpeed = (int)size * MaxLowerSpeed * 3;
     }
     protected virtual void Update()
     {

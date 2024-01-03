@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class JupiterEvent : MonoBehaviour
+{
+    private void Start()
+    {
+        PlanetEventManager.Instance.AddEvent(PlanetEnum.Jupiter, EnterJupiterAreaEvent);
+    }
+
+    private void EnterJupiterAreaEvent()
+    {
+        SpawnManager.Instance.Spawn(PlanetEnum.Jupiter);
+        Debug.Log("목성 지나감");
+
+    }
+}

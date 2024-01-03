@@ -12047,6 +12047,7 @@ MonoBehaviour:
   _poolingListSO: {fileID: 11400000, guid: 0001cd14f4dcee9428f0ea08578a8458, type: 2}
   distanceToEarth: 100
   _mover: {fileID: 3216572056759791426}
+  GameOver: 0
 --- !u!1 &1560868581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4899774335478708286, guid: 49ed12bae5fd85947a4c45b5b4e6fcdc, type: 3}
@@ -23129,6 +23130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 100
+  _duration: 10
   IsEnable: 1
   IsSpeed: 1
 --- !u!23 &3216764238334024469
@@ -25150,6 +25152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c886156faf3544eb2b41527f0fd70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  ReachedTime: 0
   moveSpeed: 30
   rotateSpeed: 100
 --- !u!54 &9032119015190158646
