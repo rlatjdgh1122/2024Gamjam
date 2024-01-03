@@ -5,6 +5,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform Target;
+
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
