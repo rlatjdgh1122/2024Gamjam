@@ -21,17 +21,17 @@ public class Tomato : MonoBehaviour
         StartCoroutine(DestroyTomato());
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject == GameObject.Find("target"))
-        {
-            Debug.Log("궤임 오우버");
-        }
-    }
-
     IEnumerator DestroyTomato()
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == target)
+        {
+            Debug.Log("충돌");
+        }
     }
 }

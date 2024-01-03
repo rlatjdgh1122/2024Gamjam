@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MarsAliens : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] Transform Target;
     [SerializeField] Transform FirePos;
     [SerializeField] GameObject Bullet;
     [SerializeField] float TargetDistance = 10f;
@@ -14,12 +14,18 @@ public class MarsAliens : MonoBehaviour
 
     private void Update()
     {
-        DistanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        DistanceToTarget = Vector3.Distance(transform.position, Target.transform.position);
 
         if (DistanceToTarget <= TargetDistance && Canshoot)
         {
             StartCoroutine(EnemySpawn());
         }
+
+        Vector3 directionToTarget = Target.position - transform.position;
+
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3);
     }
     
     IEnumerator EnemySpawn()
