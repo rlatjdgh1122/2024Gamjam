@@ -86,15 +86,15 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private BuringSystem _buringSystem;
-    public BuringSystem GetBuringSystem
+    private BurningSystem _buringSystem;
+    public BurningSystem GetBuringSystem
     {
         get
         {
             if (_buringSystem == null)
             {
                 //_buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
-                _buringSystem = GameObject.FindObjectOfType<BuringSystem>();
+                _buringSystem = GameObject.FindObjectOfType<BurningSystem>();
             }
             return _buringSystem;
         }

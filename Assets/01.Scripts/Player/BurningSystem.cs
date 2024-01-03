@@ -1,15 +1,15 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class BuringSystem : MonoBehaviour
+public class BurningSystem : MonoBehaviour
 {
     private bool wasDetectLastFrame = true;
     private bool IsDetectObstacle;
 
     public bool CanFire = false;
-
-    ParticleSystem _fireParticle;
 
     [SerializeField]
     private PoolAbleParticle fireParticle;
@@ -26,7 +26,10 @@ public class BuringSystem : MonoBehaviour
     [SerializeField]
     private float maxBurningValue = 2;
     public float MaxBurningValue => maxBurningValue;
-    
+
+    private List<ParticleSystem> _fireParticleList = new List<ParticleSystem>();
+
+
     private float burningValue;
     public float BurningValue
     {
@@ -90,7 +93,7 @@ public class BuringSystem : MonoBehaviour
     private void ShotParticle()
     {
         PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
-        _fireParticle = particle.GetComponent<ParticleSystem>();
+        _fireParticleList.Add(particle.GetComponent<ParticleSystem>());
         particle.gameObject.transform.SetParent(transform, false);
         particle.SetStartLifetime(burningValue * firstSettingValue);
     }
@@ -98,10 +101,11 @@ public class BuringSystem : MonoBehaviour
     public void DecreaseBurningValue(float minusValue)
     {
         burningValue -= minusValue;
-        if(_fireParticle != null)
+        for(int i = 0; i < _fireParticleList.Count; i++)
         {
-            _fireParticle.Stop();
+            _fireParticleList[i]?.Stop();
         }
+        _fireParticleList.Clear();
     }
 
     public void SetDetectObstacle()
