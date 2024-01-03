@@ -55,7 +55,6 @@ public class PlayerFollowCam : MonoBehaviour
     {
         totalMultipleValue =
             (PlayerManager.Instance.GetMoveToForward.MoveSpeed / 10f) * followCamFOVMultipleValue;
-
         if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= startTargetValue)
         {
             if (isChecked == false)
