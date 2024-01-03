@@ -32,7 +32,7 @@ public class PoolAbleParticle : PoolableMono
     public void SetStartLifetime(float value)
     {
         _mainModule.startSize = value;
-        _mainModule.startLifetime = 0.1f;
+        _mainModule.startLifetime = 0.04f;
     }
 
     public void SetSpaceShipSetting(float value)
