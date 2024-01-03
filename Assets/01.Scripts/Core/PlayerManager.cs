@@ -104,10 +104,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("PlayerManager is multiple");
+            Debug.Log("PlayerManager is multiple");
         }
-
         Instance = this;
-        Player = GameObject.FindWithTag("Player");
+
+        Player = GameObject.Find("Player");
     }
 }
