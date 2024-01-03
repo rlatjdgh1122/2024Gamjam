@@ -6,6 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerMovement : MonoBehaviour
 {
     public Transform Target;
+    public float ReachedTime;
 
     [SerializeField]
     private float moveSpeed = 5f;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    private bool canTimer = true;
+
     Quaternion originQ;
 
     private void Awake()
@@ -27,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         originQ = visualTrm.rotation;
+
+        Debug.Log($"{Vector3.Distance(transform.position, Target.transform.position)}");
     }
 
     void Update()
@@ -44,6 +49,17 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput == 0 && verticalInput == 0)
         {
             visualTrm.rotation = Quaternion.Lerp(visualTrm.rotation, originQ, Time.deltaTime);
+        }
+
+
+        if (Vector3.Distance(transform.position, Target.transform.position) < 10f)
+        {
+            canTimer = false;
+        }
+        
+        if (canTimer)
+        {
+            ReachedTime += Time.deltaTime;
         }
     }
 }

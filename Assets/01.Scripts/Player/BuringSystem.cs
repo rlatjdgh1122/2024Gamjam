@@ -38,6 +38,8 @@ public class BuringSystem : MonoBehaviour
     {
         if(PlayerManager.Instance.IsDie)
         {
+            _fireParticle.Stop();
+            
             return;
         }
 
