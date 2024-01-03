@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6559578415894215086}
   - component: {fileID: 6416601126462682392}
   - component: {fileID: 4742946819947427933}
+  - component: {fileID: 8536714032781938505}
   m_Layer: 0
   m_Name: DestroyParticle
   m_TagString: Untagged
@@ -4886,3 +4887,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8536714032781938505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777924526786784773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437966ac58206104d98eda76e29e1989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
