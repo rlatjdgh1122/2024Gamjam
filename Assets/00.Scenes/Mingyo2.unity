@@ -6748,6 +6748,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2714819162376106419, guid: e8a34e57dec47184f860be859978a098, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3216572056181083311, guid: e8a34e57dec47184f860be859978a098, type: 3}
       propertyPath: _moveSpeed
       value: 50
@@ -21674,7 +21678,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2029566425}
-  - component: {fileID: 2029566427}
   - component: {fileID: 2029566426}
   m_Layer: 0
   m_Name: PlanetEventManager
@@ -21708,18 +21711,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4259ae21d245f2b43a823b2339f9ff5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2029566427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029566424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f44d8fbbecd4cbb459a2036ebaa90ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2064967175
@@ -21817,6 +21808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba482c8bab3b6f74789e24a20502ce28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moon: {fileID: 8947007805159227586, guid: 38de99c051dcfd74ebd920fde3b4e542, type: 3}
 --- !u!4 &2141531045
 Transform:
   m_ObjectHideFlags: 0

@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("SpawnManager is not NULL");
+            Debug.LogError("PlayerManager is multiple");
         }
 
         Instance = this;

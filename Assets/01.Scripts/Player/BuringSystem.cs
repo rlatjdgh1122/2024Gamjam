@@ -36,7 +36,7 @@ public class BuringSystem : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerManager.Instance.IsDie)
+        if(PlayerManager.Instance.IsDie)
         {
             return;
         }

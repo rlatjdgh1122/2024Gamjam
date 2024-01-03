@@ -19,7 +19,7 @@ public class PlayerFollowCam : MonoBehaviour
     private void Awake()
     {
         _followCam = GetComponent<CinemachineVirtualCamera>();
-        _speedLineEffect = PlayerManager.Instance.Player.transform.Find("SpeedLineEffect");
+        //_speedLineEffect = PlayerManager.Instance.Player.transform.Find("SpeedLineEffect");
     }
 
     private void LateUpdate()
