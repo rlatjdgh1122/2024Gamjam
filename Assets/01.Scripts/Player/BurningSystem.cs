@@ -29,6 +29,8 @@ public class BurningSystem : MonoBehaviour
 
     private List<ParticleSystem> _fireParticleList = new List<ParticleSystem>();
 
+    private bool canShotParticle = false;
+
 
     private float burningValue;
     public float BurningValue
@@ -80,7 +82,7 @@ public class BurningSystem : MonoBehaviour
         {
             burningValue += increaseValue;
 
-            if(burningValue >= 3.0f)
+            if(/*burningValue >= 3.0f*/ canShotParticle)
             {
                 ShotParticle();
             }
@@ -106,10 +108,16 @@ public class BurningSystem : MonoBehaviour
             _fireParticleList[i]?.Stop();
         }
         _fireParticleList.Clear();
+        canShotParticle = false;
     }
 
     public void SetDetectObstacle()
     {
         IsDetectObstacle = true;
+    }
+
+    public void SetShotParticle()
+    {
+        canShotParticle = true;
     }
 }
