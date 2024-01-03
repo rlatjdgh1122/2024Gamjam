@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerFowardMover _mover;
 
+    public bool GameOver = false;
+
     private void Awake()
     {
         if (Instance != null)
