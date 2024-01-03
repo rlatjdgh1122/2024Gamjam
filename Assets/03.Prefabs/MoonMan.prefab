@@ -1518,7 +1518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   punchStopTime: 3
   beforePunchwaitTime: 1
-  rotateSpeed: 1
+  rotateSpeed: 100
 --- !u!64 &2592283050036814684
 MeshCollider:
   m_ObjectHideFlags: 0

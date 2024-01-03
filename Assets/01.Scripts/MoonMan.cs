@@ -11,9 +11,6 @@ public class MoonMan : MonoBehaviour
     [SerializeField]
     private float beforePunchwaitTime = 3f;
 
-    [SerializeField]
-    private float rotateSpeed = 1.0f;
-
     private Animator _animator;
 
     private void Awake()
@@ -31,7 +28,7 @@ public class MoonMan : MonoBehaviour
 
         yield return new WaitForSeconds(30f);
 
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,8 +40,9 @@ public class MoonMan : MonoBehaviour
         }
     }
 
-    private void OnAnimationStopEvent()
+    public void OnAnimationStopEvent()
     {
+        Debug.Log("dasda");
         StartCoroutine(AniStopCorou());
     }
 
@@ -54,14 +52,14 @@ public class MoonMan : MonoBehaviour
 
         float curTime = 0;
 
-        Quaternion startRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(PlayerManager.Instance.Player.transform.position);
-
         while (curTime <= punchStopTime)
         {
-            Debug.Log(transform.rotation);
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, curTime);
-            curTime += Time.deltaTime * rotateSpeed;
+            Vector3 lookDirection = PlayerManager.Instance.Player.transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+
+            transform.rotation = targetRotation;
+            curTime += Time.deltaTime;
+
             yield return null;
         }
         _animator.speed = 1.0f;
