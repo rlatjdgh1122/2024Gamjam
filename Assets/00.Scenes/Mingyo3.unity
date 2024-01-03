@@ -7899,7 +7899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba482c8bab3b6f74789e24a20502ce28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moon: {fileID: 8947007805159227586, guid: 38de99c051dcfd74ebd920fde3b4e542, type: 3}
+  _MoonMan: {fileID: 8979089502819011544, guid: 8da6aea05093c064eb3aead08f0ece82, type: 3}
+  _moonManSpawnPoint: {fileID: 1043914792}
 --- !u!4 &688510451
 Transform:
   m_ObjectHideFlags: 0
@@ -18266,6 +18267,37 @@ RectTransform:
   m_AnchoredPosition: {x: -542, y: 440.99997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1043914791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043914792}
+  m_Layer: 0
+  m_Name: MoonManPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043914792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043914791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.5, y: -7.3, z: 212.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1129690354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44693,3 +44725,4 @@ SceneRoots:
   - {fileID: 1543465193}
   - {fileID: 1774646543}
   - {fileID: 688510451}
+  - {fileID: 1043914792}

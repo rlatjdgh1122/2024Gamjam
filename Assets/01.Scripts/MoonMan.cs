@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Moon : MonoBehaviour
+public class MoonMan : MonoBehaviour
 {
     [SerializeField]
     private float waitTime = 3f;
@@ -21,6 +21,10 @@ public class Moon : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         _animator.SetTrigger("PunchTrigger");
+
+        yield return new WaitForSeconds(30f);
+
+        Destroy(this);
     }
 
     private void OnTriggerEnter(Collider other)
