@@ -17,6 +17,7 @@ public class BuringSystem : MonoBehaviour
 
     [SerializeField]
     private float maxBurningValue = 2;
+    public float MaxBurningValue => maxBurningValue;
     [SerializeField]
     private float burningValue;
     public float BurningValue
@@ -35,6 +36,12 @@ public class BuringSystem : MonoBehaviour
 
     private void Update()
     {
+        if(PlayerManager.Instance.IsDie)
+        {
+            _fireParticle.Play();
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             DecreaseBurningValue(5);
@@ -61,14 +68,15 @@ public class BuringSystem : MonoBehaviour
     {
         while(BurningValue <= maxBurningValue)
         {
-            BurningValue += 0.01f;
+            BurningValue += 0.1f;
 
-            if(BurningValue >= maxBurningValue * 0.25f)
+            if(BurningValue >= 3.0f)
             {
                 PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
                 _fireParticle = particle.GetComponent<ParticleSystem>();
                 particle.gameObject.transform.SetParent(transform, false);
-                particle.SetStartSize(burningValue * 0.3f);
+                particle.SetStartLifetime((maxBurningValue - BurningValue) * 0.1f);
+                Debug.Log((maxBurningValue - BurningValue) * 0.1f);
             }
 
             yield return new WaitForSeconds(0.1f);

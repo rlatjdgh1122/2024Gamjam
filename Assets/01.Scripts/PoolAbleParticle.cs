@@ -25,13 +25,12 @@ public class PoolAbleParticle : PoolableMono
 
     private IEnumerator DestroyCorou()
     {
-        Debug.Log(_mainModule.duration);
         yield return new WaitForSeconds(_mainModule.duration);
         PoolManager.Instance.Push(this);
     }
 
-    public void SetStartSize(float startSize)
+    public void SetStartLifetime(float startLifeTime)
     {
-        _mainModule.startSize = startSize;
+        _mainModule.startLifetime = startLifeTime;
     }
 }

@@ -949,6 +949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365611205}
   - component: {fileID: 365611204}
+  - component: {fileID: 365611206}
   m_Layer: 0
   m_Name: PlayerFollowCam
   m_TagString: Untagged
@@ -1011,6 +1012,19 @@ Transform:
   - {fileID: 300737931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365611206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365611203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followCamFOVMultipleValue: 4
 --- !u!1 &367751051
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,6 +6751,10 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5018322386981935230, guid: e8a34e57dec47184f860be859978a098, type: 3}
+      propertyPath: maxBurningValue
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7710309803149443280, guid: e8a34e57dec47184f860be859978a098, type: 3}
       propertyPath: m_Name
       value: Player (2)
@@ -6791,6 +6809,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8482876764318101519, guid: e8a34e57dec47184f860be859978a098, type: 3}
   m_PrefabInstance: {fileID: 1129690354}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1129690364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3216572056181083311, guid: e8a34e57dec47184f860be859978a098, type: 3}
+  m_PrefabInstance: {fileID: 1129690354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ae371c0eda3c14598ae0dcfccbd463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1319935533
 GameObject:
   m_ObjectHideFlags: 0
@@ -11702,6 +11731,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1539364783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539364784}
+  - component: {fileID: 1539364785}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1539364784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539364783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1543465193}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1539364785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539364783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44d8fbbecd4cbb459a2036ebaa90ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1543465191
 GameObject:
   m_ObjectHideFlags: 0
@@ -11749,7 +11822,8 @@ Transform:
   m_LocalPosition: {x: 922.34705, y: 566.0025, z: -24.319824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1539364784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1543465194
@@ -11778,6 +11852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolingListSO: {fileID: 11400000, guid: 0001cd14f4dcee9428f0ea08578a8458, type: 2}
+  distanceToEarth: 100
+  _mover: {fileID: 1129690364}
 --- !u!114 &1623211289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11790,7 +11866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ae371c0eda3c14598ae0dcfccbd463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 50
+  _maxSpeed: 100
+  _duration: 10
+  IsEnable: 1
+  IsSpeed: 1
 --- !u!1001 &1647534580
 PrefabInstance:
   m_ObjectHideFlags: 0

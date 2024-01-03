@@ -8,6 +8,20 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject Player { get; private set; }
 
+    private bool isDie;
+    public bool IsDie
+    {
+        get
+        {
+            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue) // 내구도 관련해서도 추가해야됨
+            {
+                isDie = true;
+            }
+            Debug.Log($"Value: {GetBuringSystem.BurningValue}");
+            return isDie;
+        }
+    }
+
     private PlayerMovement _playerMovement;
     public PlayerMovement GetPlayerMovement
     {
@@ -80,7 +94,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (_buringSystem == null)
             {
-                _buringSystem = Player.transform.Find("Visaul/Hips").GetComponent<BuringSystem>();
+                _buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
             }
             return _buringSystem;
         }
@@ -94,10 +108,6 @@ public class PlayerManager : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    private void Start()
-    {
         Player = GameObject.FindWithTag("Player");
     }
 }
