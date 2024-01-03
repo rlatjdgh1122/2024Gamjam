@@ -1,34 +1,35 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class Moon : PoolableMono
+public class Moon : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 10f;
+    private float waitTime = 3f;
 
-    private Vector3 targetVec;
+    private Animator _animator;
 
     private void Awake()
     {
-        Init();
+        _animator = GetComponent<Animator>();
+
+        StartCoroutine(PunchCoroutine());
     }
 
-    public override void Init()
+    private IEnumerator PunchCoroutine()
     {
-        StartCoroutine(DestroyCorou());
+        yield return new WaitForSeconds(waitTime);
+
+        _animator.SetTrigger("PunchTrigger");
     }
 
-    private IEnumerator DestroyCorou()
+    private void OnTriggerEnter(Collider other)
     {
-        float curTime = 0;
-        while (curTime < 10f)
+        if (other.gameObject.CompareTag("Player"))
         {
-            curTime += Time.deltaTime;
-            targetVec = PlayerManager.Instance.Player.transform.position - transform.position;
-            transform.position = Vector3.Lerp(transform.position, targetVec, Time.deltaTime * moveSpeed);
-            yield return null;
+            //주겨
+            Debug.Log("플레이어 충돌");
         }
-
-        PoolManager.Instance.Push(this);
     }
+
 }
