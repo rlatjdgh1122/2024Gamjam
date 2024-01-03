@@ -61,7 +61,7 @@ public class BuringSystem : MonoBehaviour
             }
         }
 
-        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= (PlayerManager.Instance.GetMoveToForward.MaxSpeed * 0.6f))
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= (PlayerManager.Instance.GetMoveToForward.MaxSpeed * 0.7f))
         {
             CanFire = true;
         }

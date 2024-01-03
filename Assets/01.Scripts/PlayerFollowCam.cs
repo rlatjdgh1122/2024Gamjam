@@ -50,7 +50,7 @@ public class PlayerFollowCam : MonoBehaviour
         totalMultipleValue =
             (PlayerManager.Instance.GetMoveToForward.MoveSpeed / 10f) * followCamFOVMultipleValue;
 
-        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= 60f)
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= (PlayerManager.Instance.GetMoveToForward.MaxSpeed * 0.4f))
         {
             if (isChecked == false)
             {
@@ -67,8 +67,6 @@ public class PlayerFollowCam : MonoBehaviour
                 StopCoroutine(CamZoom());
                 _followCam.m_Lens.FieldOfView = minLensValue;
                 speedParticle.localPosition = baseSpeedEffectPos;
-
-                speedParticle.gameObject.SetActive(false);
             }
             isChecked = false;
         }

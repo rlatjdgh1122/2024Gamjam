@@ -26,7 +26,7 @@ public class PlayerFowardMover : MonoBehaviour
 
     private void Start()
     {
-        MoveSpeed = 50;
+        MoveSpeed = 10;
     }
     public void ApplySpeed(int value)
     {
