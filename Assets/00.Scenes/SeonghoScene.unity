@@ -23849,10 +23849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6410f0d76cbb4024daa9ce6aa6fd19cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanFire: 0
   fireParticle: {fileID: 9158217313775459068, guid: 4d7e19c9fcb52be4bb9a8ba855ffe12d, type: 3}
   overlapSphereRadius: 1
+  firstSettingValue: 0.5
+  increaseValue: 0
+  waitTime: 0
   maxBurningValue: 2.5
-  burningValue: 0
 --- !u!1 &5031663463354196570
 GameObject:
   m_ObjectHideFlags: 0
@@ -25152,8 +25155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c886156faf3544eb2b41527f0fd70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  ReachedTime: 0
+  Target:
+  - {fileID: 0}
   moveSpeed: 30
   rotateSpeed: 100
 --- !u!54 &9032119015190158646
