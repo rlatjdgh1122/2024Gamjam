@@ -24,7 +24,7 @@ public class BurningSystem : MonoBehaviour
     [SerializeField]
     private float waitTime;
     [SerializeField]
-    private float maxBurningValue = 2;
+    private float maxBurningValue = 2;  
     public float MaxBurningValue => maxBurningValue;
 
     private List<ParticleSystem> _fireParticleList = new List<ParticleSystem>();

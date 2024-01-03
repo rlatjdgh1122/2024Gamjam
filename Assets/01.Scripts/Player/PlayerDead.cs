@@ -23,12 +23,12 @@ public class PlayerDead : MonoBehaviour
 
     private void Update()
     {
-        //if(PlayerManager.Instance.IsDie && !GameManager.Instance.GameOver)
-        //{
-        //    _particleSystem.Stop();
+        if (PlayerManager.Instance.IsDie && !GameManager.Instance.GameOver)
+        {
+            _particleSystem.Stop();
 
-        //    StartCoroutine(PlayParticle());
-        //}
+            StartCoroutine(PlayParticle());
+        }
     }
 
     private IEnumerator PlayParticle()
