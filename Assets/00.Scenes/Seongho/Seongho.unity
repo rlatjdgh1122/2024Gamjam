@@ -263,7 +263,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1500
-  field of view: 90
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2179,7 +2179,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8482876765030638960}
   m_Lens:
-    FieldOfView: 90
+    FieldOfView: 65
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1500
@@ -2225,6 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTargetValue: 50
   minLensValue: 65
   maxLensValue: 90
   zoomoutSpeedEffectPos: {x: 0, y: 0, z: 7}
@@ -7787,6 +7788,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 985851997}
   - {fileID: 1639523621}
   - {fileID: 939878019}
   - {fileID: 66892540}
@@ -13774,6 +13776,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4426350956269854, guid: 6a3df571b8d9bb245aaa130d58f32549, type: 3}
   m_PrefabInstance: {fileID: 939878018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &985851996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985851997}
+  m_Layer: 0
+  m_Name: Standard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985851997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985851996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -700}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 568074972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010007506
 GameObject:
   m_ObjectHideFlags: 0
@@ -47994,12 +48027,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target:
+  - {fileID: 985851997}
   - {fileID: 1639523621}
   - {fileID: 939878019}
   - {fileID: 66892540}
   - {fileID: 1893076599}
   - {fileID: 296294792}
-  - {fileID: 796038673}
   moveSpeed: 30
   rotateSpeed: 100
 --- !u!1 &8505615188817766239

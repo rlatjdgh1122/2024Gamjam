@@ -5,12 +5,12 @@ using UnityEngine;
 
 public enum PlanetEnum
 {
-    Earth,
-    Mars,
-    Jupiter,
-    Saturn,
-    Uranus,
-    Neptune
+    Earth, //瘤备
+    Mars, //拳己
+    Jupiter, //格己
+    Saturn, //配己
+    Uranus, //玫空己
+    Neptune //秦空己
 }
 
 public class PlanetEventManager : MonoBehaviour

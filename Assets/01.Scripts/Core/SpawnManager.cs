@@ -23,9 +23,9 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager Instance;
 
     public List<Setting> settings = new(); //행성들마다 생성
-    public Dictionary<PlanetEnum, Setting> planetLists = new(); //저장
-    private List<SpawnObstacle> dummyObjs = new(); //이전 스폰된 오브젝트를 지워줌
-    private List<GameObject> etcObjs = new(); //이전 스폰된 오브젝트를 지워줌
+    public Dictionary<PlanetEnum, Setting> planetListDic = new(); //저장
+    public Dictionary<PlanetEnum, List<SpawnObstacle>> dummyObjDic = new();
+    private Dictionary<PlanetEnum, List<GameObject>> etcObjDic = new(); //이전 스폰된 오브젝트를 지워줌
 
     private PlanetEnum curType = PlanetEnum.Neptune;
     private void Awake()
@@ -42,30 +42,28 @@ public class SpawnManager : MonoBehaviour
         int idx = 0;
         foreach (PlanetEnum type in Enum.GetValues(typeof(PlanetEnum)))
         {
-            planetLists.Add(type, settings[idx++]);
+            planetListDic.Add(type, settings[idx++]);
+            dummyObjDic.Add(type, new List<SpawnObstacle>());
+            etcObjDic.Add(type, new List<GameObject>());
         }
 
         Init();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Spawn(PlanetEnum.Neptune);
-        }
-    }
     public void Init()
     {
-        Despawn();
+        Despawn(PlanetEnum.Neptune);
         Spawn(PlanetEnum.Neptune);
     }
     public void Spawn(PlanetEnum planet)
     {
-        Despawn(); //확인용
+        if ((int)planet + 2 <= (int)PlanetEnum.Neptune)
+        {
+            Despawn(planet + 2);
+        }
 
         curType = planet;
 
-        var setting = planetLists[planet];
+        var setting = planetListDic[planet];
         var radius = setting.radius;
         var length = setting.length;
 
@@ -86,7 +84,7 @@ public class SpawnManager : MonoBehaviour
 
             obj.Spawn(randomPos);
 
-            dummyObjs.Add(obj);
+            dummyObjDic[planet].Add(obj);
         }
         for (int i = 0; i < trashCount; i++)
         {
@@ -98,41 +96,40 @@ public class SpawnManager : MonoBehaviour
 
             obj.Spawn(randomPos);
 
-            dummyObjs.Add(obj);
+            dummyObjDic[planet].Add(obj);
         }
 
         for (int i = 0; i < etcList.Count; i++)
         {
             etcList[i].gameObject.SetActive(true);
-            etcObjs.Add(etcList[i]);
+            etcObjDic[planet].Add(etcList[i]);
         }
     }
-    public void Despawn()
+    public void Despawn(PlanetEnum plent)
     {
-        if (dummyObjs.Count <= 0) return;
+        if (dummyObjDic[plent].Count <= 0) return;
 
-        foreach (var obj in dummyObjs)
-        {
-            PoolManager.Instance.Push(obj);
-        }
-        dummyObjs.Clear();
+        foreach (var value in dummyObjDic[plent])
+            PoolManager.Instance.Push(value);
 
-        if (etcObjs.Count <= 0) return;
+        dummyObjDic[plent].Clear();
 
-        foreach (var obj in etcObjs)
+        if (etcObjDic[plent].Count <= 0) return;
+
+        foreach (var obj in etcObjDic[plent])
         {
             Destroy(obj);
         }
-        etcObjs.Clear();
+        etcObjDic[plent].Clear();
     }
 
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (planetLists.Count <= 0) return;
+        if (planetListDic.Count <= 0) return;
 
-        var setting = planetLists[curType];
+        var setting = planetListDic[curType];
         var pos = setting.spawnPivot;
         int radius = setting.radius;
         int length = setting.length;

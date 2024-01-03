@@ -9,6 +9,10 @@ using UnityEngine;
 
 public class PlayerFollowCam : MonoBehaviour
 {
+    [Header("게임 설정")]
+    public float startTargetValue = 50f;
+
+    [Header("카메라 세팅 설정")]
     public float minLensValue = 65f;
     public float maxLensValue = 82f;
     public Vector3 zoomoutSpeedEffectPos;
@@ -43,6 +47,8 @@ public class PlayerFollowCam : MonoBehaviour
     private void Start()
     {
         _followCam.m_Lens.FieldOfView = minLensValue;
+        m_channelsPerlin.m_AmplitudeGain = 0;
+        m_channelsPerlin.m_FrequencyGain = 0;
     }
 
     private void LateUpdate()
@@ -50,7 +56,7 @@ public class PlayerFollowCam : MonoBehaviour
         totalMultipleValue =
             (PlayerManager.Instance.GetMoveToForward.MoveSpeed / 10f) * followCamFOVMultipleValue;
 
-        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= 60f)
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= startTargetValue)
         {
             if (isChecked == false)
             {
@@ -67,8 +73,6 @@ public class PlayerFollowCam : MonoBehaviour
                 StopCoroutine(CamZoom());
                 _followCam.m_Lens.FieldOfView = minLensValue;
                 speedParticle.localPosition = baseSpeedEffectPos;
-
-                speedParticle.gameObject.SetActive(false);
             }
             isChecked = false;
         }

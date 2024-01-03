@@ -9,7 +9,8 @@ public abstract class SpawnObstacle : PoolableMono
     public readonly int MaxDamage = 3;
     public readonly int MaxLowerTem = 3;
     public readonly int MaxLowerSpeed = 3;
-    public readonly int MaxSize = 5;
+    public readonly int MaxSize = 8;
+    public readonly int MinSize = 3;
     [Header("플레이어에게 영향을 줄 스탯")]
     //크기가 크면 크기를 많이 줄여주고 온도를 많이 낮줘줌
     public int damage = 3; //플레이어의 크기를 얼마나 줄여줄지
@@ -39,7 +40,7 @@ public abstract class SpawnObstacle : PoolableMono
         speed = Random.Range(0, (float)MaxSpeed); //랜덤으로 스피드
         dir = Random.insideUnitSphere * 1f; //랜덤 방향
 
-        size = Random.Range(1f, MaxSize);
+        size = Random.Range(MinSize, MaxSize);
         transform.localScale = new Vector3(size, size, size);
 
         damage = (int)size * MaxDamage;

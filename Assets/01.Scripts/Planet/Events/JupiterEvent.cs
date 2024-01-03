@@ -12,7 +12,7 @@ public class JupiterEvent : MonoBehaviour
     private void EnterJupiterAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Jupiter - 1);
-        Debug.Log("格己 瘤唱皑");
+        Debug.Log("促澜 青己 : 格己");
 
     }
 }
