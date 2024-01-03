@@ -11,7 +11,7 @@ public class MarsEvent : MonoBehaviour
 
     private void EnterMarsAreaEvent()
     {
-        SpawnManager.Instance.Spawn(PlanetEnum.Mars);
+        SpawnManager.Instance.Spawn(PlanetEnum.Mars - 1);
         Debug.Log("화성 지나감");
     }
 }

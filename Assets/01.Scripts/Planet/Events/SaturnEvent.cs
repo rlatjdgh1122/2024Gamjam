@@ -11,7 +11,7 @@ public class SaturnEvent : MonoBehaviour
 
     private void EnterSaturnAreaEvent()
     {
-        SpawnManager.Instance.Spawn(PlanetEnum.Saturn);
+        SpawnManager.Instance.Spawn(PlanetEnum.Saturn - 1);
         Debug.Log("토성 지나감");
 
     }

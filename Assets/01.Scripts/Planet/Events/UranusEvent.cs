@@ -11,7 +11,7 @@ public class UranusEvent : MonoBehaviour
 
     private void EnterUranusAreaEvent()
     {
-        SpawnManager.Instance.Spawn(PlanetEnum.Uranus);
+        SpawnManager.Instance.Spawn(PlanetEnum.Uranus - 1);
         Debug.Log("천왕성 지나감");
 
     }

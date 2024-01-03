@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (-1 * (transform.position.z - Target[curTargetIdx].transform.position.z) < 10f) //높이만 거리를 잼
             {
-                Debug.Log(curTargetIdx);
+                //Debug.Log(curTargetIdx);
                 var type = (int)PlanetEnum.Neptune - curTargetIdx;
                 PlanetEventManager.Instance.InvokePlanetEventHandler((PlanetEnum)type);
                 ++curTargetIdx;

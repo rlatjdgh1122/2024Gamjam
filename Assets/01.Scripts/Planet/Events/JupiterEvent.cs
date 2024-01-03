@@ -11,7 +11,7 @@ public class JupiterEvent : MonoBehaviour
 
     private void EnterJupiterAreaEvent()
     {
-        SpawnManager.Instance.Spawn(PlanetEnum.Jupiter);
+        SpawnManager.Instance.Spawn(PlanetEnum.Jupiter - 1);
         Debug.Log("목성 지나감");
 
     }
