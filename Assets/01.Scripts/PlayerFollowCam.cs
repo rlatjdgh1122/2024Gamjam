@@ -59,6 +59,7 @@ public class PlayerFollowCam : MonoBehaviour
             if (isChecked == false)
             {
                 //한 번 실행(enter)
+                PlayerManager.Instance.GetBuringSystem.SetShotParticle();
                 StartCoroutine(CamZoom());
                 StartCoroutine(SpeedAdap());
             }

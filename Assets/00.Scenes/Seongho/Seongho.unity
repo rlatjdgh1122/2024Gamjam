@@ -263,7 +263,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1500
-  field of view: 78.21939
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8482876765030638960}
   m_Lens:
-    FieldOfView: 78.21939
+    FieldOfView: 65
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1500
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedAdaptationTime: 3
-  zoominDelay: 0.5
+  zoominDelay: 2
   minLensValue: 65
   maxLensValue: 90
   zoomoutSpeedEffectPos: {x: 0, y: 0, z: 7}
