@@ -14,7 +14,7 @@ public class SpeedUI : MonoBehaviour
 
     private void Update()
     {
-        _speedText.text = (PlayerManager.Instance.GetMoveToForward.MoveSpeed * 200).ToString("N0") + " km/s";
+        _speedText.text = (PlayerManager.Instance.GetMoveToForward.MoveSpeed * 150).ToString("N0") + " km/s";
     }
 
 }

@@ -24,7 +24,7 @@ public class SpaceShip : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, _target.position) <= 900 && !IsLaunch)
+        if (Vector3.Distance(transform.position, _target.position) <= 1000 && !IsLaunch)
         {
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 3.5f);
             transform.Rotate(-_target.transform.position, 2);

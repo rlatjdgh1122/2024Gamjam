@@ -23,20 +23,18 @@ public class PlayerDead : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerManager.Instance.IsDie && !GameManager.Instance.GameOver)
-        {
-            _particleSystem.Stop();
+        //if(PlayerManager.Instance.IsDie && !GameManager.Instance.GameOver)
+        //{
+        //    _particleSystem.Stop();
 
-            StartCoroutine(PlayParticle());
-        }
+        //    StartCoroutine(PlayParticle());
+        //}
     }
 
     private IEnumerator PlayParticle()
     {
         GameManager.Instance.GameOver = true;
-        yield return new WaitForSeconds(2);
-        PlayerFollowCam.Instance.ShakeCam(_shakeDelay, _shakeValue);
-        yield return new WaitForSeconds(_shakeDelay);
+        yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0.5f;
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 1f;

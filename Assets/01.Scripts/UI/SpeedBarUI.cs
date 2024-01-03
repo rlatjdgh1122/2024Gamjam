@@ -24,7 +24,7 @@ public class SpeedBarUI : MonoBehaviour
 
     private void Update()
     {
-        _bar.fillAmount = PlayerManager.Instance.GetMoveToForward.MoveSpeed / 100;
+        _bar.fillAmount = PlayerManager.Instance.GetMoveToForward.MoveSpeed / 150;
 
         if (_bar.fillAmount >= 0.75f && changeColor)
         {

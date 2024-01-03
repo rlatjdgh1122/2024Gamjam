@@ -93,7 +93,8 @@ public class PlayerManager : MonoBehaviour
         {
             if (_buringSystem == null)
             {
-                _buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
+                //_buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
+                _buringSystem = GameObject.FindObjectOfType<BuringSystem>();
             }
             return _buringSystem;
         }

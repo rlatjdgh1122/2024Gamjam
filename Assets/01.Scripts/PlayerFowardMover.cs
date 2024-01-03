@@ -19,12 +19,14 @@ public class PlayerFowardMover : MonoBehaviour
         }
     }
 
+    public float MaxSpeed => _maxSpeed;
+
     public bool IsEnable = true;
     public bool IsSpeed = true;
 
     private void Start()
     {
-        MoveSpeed = 1;
+        MoveSpeed = 50;
     }
     public void ApplySpeed(int value)
     {

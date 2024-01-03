@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 8511805166223238000}
   - component: {fileID: 7048911379622468288}
   - component: {fileID: 7296038763641838306}
-  - component: {fileID: 5018322386981935230}
   m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
@@ -216,22 +215,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5018322386981935230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161060775644870281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6410f0d76cbb4024daa9ce6aa6fd19cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireParticle: {fileID: 9158217313775459068, guid: 4d7e19c9fcb52be4bb9a8ba855ffe12d, type: 3}
-  overlapSphereRadius: 1
-  maxBurningValue: 2.5
-  burningValue: 0
 --- !u!1 &347427785842267878
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7096842605173523045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadTop_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2330,7 +2313,8 @@ GameObject:
   - component: {fileID: 3243816187670330}
   - component: {fileID: 668209687205829873}
   - component: {fileID: 5550311300909539549}
-  m_Layer: 0
+  - component: {fileID: 9096750826320461307}
+  m_Layer: 8
   m_Name: Pluto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2360,7 +2344,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6656119475148635683}
-  m_Mesh: {fileID: 4300000, guid: e04feab758664ed47a2f46074348a542, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 55674ca5ceae68b4780c8bf80f7c533a, type: 3}
 --- !u!23 &3216764240053811448
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2381,7 +2365,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 662f90a2af7cd7a43bf03af105580021, type: 2}
+  - {fileID: 2100000, guid: 7daff79d87ff14745b2cb6f218b45828, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2518,6 +2502,25 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &9096750826320461307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6656119475148635683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6410f0d76cbb4024daa9ce6aa6fd19cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanFire: 0
+  fireParticle: {fileID: 9158217313775459068, guid: 4d7e19c9fcb52be4bb9a8ba855ffe12d, type: 3}
+  overlapSphereRadius: 1
+  firstSettingValue: 0.02
+  increaseValue: 0.2
+  waitTime: 0.07
+  maxBurningValue: 30
 --- !u!1 &6789640647465991675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,7 +2668,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c886156faf3544eb2b41527f0fd70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   moveSpeed: 30
   rotateSpeed: 100
 --- !u!114 &3216572056181083311
@@ -2681,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 100
-  _duration: 10
+  _duration: 4
   IsEnable: 1
   IsSpeed: 1
 --- !u!114 &8180939819783685319
@@ -2736,7 +2745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f6fcadf6772a54d97fb00c9a86fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempSystem: {fileID: 0}
   _shakeValue: 5
   _shakeDelay: 2
   _visual: {fileID: 4541259338846173211}
@@ -3254,7 +3262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271107289499016209, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 1271107289499016209, guid: 4b2c51321bcc8114e9d10a375615cfee, type: 3}
       propertyPath: m_LocalRotation.w
