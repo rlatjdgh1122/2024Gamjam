@@ -7,6 +7,8 @@ public class BuringSystem : MonoBehaviour
     private bool wasDetectLastFrame = true;
     private bool IsDetectObstacle;
 
+    public bool CanFire = false;
+
     ParticleSystem _fireParticle;
 
     [SerializeField]
@@ -16,9 +18,15 @@ public class BuringSystem : MonoBehaviour
     private float overlapSphereRadius;
 
     [SerializeField]
+    private float firstSettingValue = 0.5f;
+    [SerializeField]
+    private float increaseValue;
+    [SerializeField]
+    private float waitTime;
+    [SerializeField]
     private float maxBurningValue = 2;
     public float MaxBurningValue => maxBurningValue;
-    [SerializeField]
+    
     private float burningValue;
     public float BurningValue
     {
@@ -26,56 +34,70 @@ public class BuringSystem : MonoBehaviour
         {
             return burningValue;
         }
-        set
-        {
-            burningValue = Mathf.Clamp(value, 0, maxBurningValue);
-        }
+        private set { }
     }
 
     private Coroutine burningCoroutine = null;
 
     private void Update()
     {
-        if (wasDetectLastFrame && !IsDetectObstacle)
+
+        if (CanFire)
         {
-            burningCoroutine = StartCoroutine(BuringCorou());
+            if (wasDetectLastFrame && !IsDetectObstacle)
+            {
+                burningCoroutine = StartCoroutine(BuringCorou());
+            }
+
+            if (IsDetectObstacle && burningCoroutine != null)
+            {
+                StopCoroutine(burningCoroutine);
+            }
+
+            wasDetectLastFrame = IsDetectObstacle;
+            if (IsDetectObstacle)
+            {
+                IsDetectObstacle = false;
+            }
         }
 
-        if (IsDetectObstacle && burningCoroutine != null)
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= 60)
         {
-            StopCoroutine(burningCoroutine);
+            CanFire = true;
         }
-
-        wasDetectLastFrame = IsDetectObstacle;
-        if(IsDetectObstacle)
+        else
         {
-            IsDetectObstacle = false;
+            CanFire = false;
         }
     }
 
     private IEnumerator BuringCorou()
     {
-        while(BurningValue <= maxBurningValue)
+        while(burningValue <= maxBurningValue)
         {
-            BurningValue += 0.1f;
+            burningValue += increaseValue;
 
-            if(BurningValue >= 3.0f)
+            if(burningValue >= 3.0f)
             {
-                PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
-                _fireParticle = particle.GetComponent<ParticleSystem>();
-                particle.gameObject.transform.SetParent(transform, false);
-                particle.SetStartLifetime((maxBurningValue - BurningValue) * 0.1f);
+                ShotParticle();
             }
-
-            yield return new WaitForSeconds(0.1f);
+            
+            yield return new WaitForSeconds(waitTime);
         }
 
-        burningCoroutine = null;
+    }
+
+    private void ShotParticle()
+    {
+        PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
+        _fireParticle = particle.GetComponent<ParticleSystem>();
+        particle.gameObject.transform.SetParent(transform, false);
+        particle.SetStartLifetime(burningValue * firstSettingValue);
     }
 
     public void DecreaseBurningValue(float minusValue)
     {
-        BurningValue -= minusValue;
+        burningValue -= minusValue;
         if(_fireParticle != null)
         {
             _fireParticle.Stop();

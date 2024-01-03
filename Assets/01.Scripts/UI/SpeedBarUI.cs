@@ -28,13 +28,13 @@ public class SpeedBarUI : MonoBehaviour
 
         if (_bar.fillAmount >= 0.75f && changeColor)
         {
-            _bar.DOColor(_overheatColor, 2.5f); 
+            _bar.DOColor(_overheatColor, 3.5f); 
             changeColor = false;
         }
 
         if (_bar.fillAmount < 0.75f)
         {
-            _bar.DOColor(Color.white, 1.0f); 
+            _bar.DOColor(Color.yellow, 1.0f); 
             changeColor = true;
         }
 
