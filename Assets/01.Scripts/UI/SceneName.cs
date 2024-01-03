@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class SceneName 
 {
-    public const string Ingame = "";
+    public const string Ingame = "IntroStory";
 }
