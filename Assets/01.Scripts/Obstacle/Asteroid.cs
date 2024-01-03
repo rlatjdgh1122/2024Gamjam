@@ -20,7 +20,11 @@ public class Asteroid : SpawnObstacle
             {
                 //Compo.GetMoveToForward;
             }
-            PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
+            //
+            PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed); // 50 - 10 = 40
+
+            float decreaseValue = PlayerManager.Instance.GetBuringSystem.BurningValue / (PlayerManager.Instance.GetMoveToForward.MoveSpeed / lowerSpeed);
+            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue); // 100 - 20 = 80
 
             //카메라 쉐이크
             PlayerFollowCam.Instance.ShakeTest();
