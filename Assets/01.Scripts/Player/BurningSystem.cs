@@ -7,7 +7,7 @@ using UnityEngine;
 public class BurningSystem : MonoBehaviour
 {
     public bool CanFire = false;
-
+    public Collider coll;
     [SerializeField]
     private PoolAbleParticle fireParticle;
 
@@ -43,6 +43,10 @@ public class BurningSystem : MonoBehaviour
     [SerializeField] private float _effectTimer = 0.5f;
     private float _increaseValue = 0;
 
+    public void SetFalseVi()
+    {
+        coll.enabled = false;   
+    }
     private void Update()
     {
 
