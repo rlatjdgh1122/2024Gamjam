@@ -147,10 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2b93af0bf65e04b976f08126c29f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  lowerTem: 0
-  lowerSpeed: 0
-  maxSize: 5
+  MaxDamage: 0.2
+  MaxLowerTem: 3
+  MaxLowerSpeed: 3
+  MaxSize: 8
+  MinSize: 3
   MaxSpeed: 1
   _obstacleRadius: 20
   _obstacle:

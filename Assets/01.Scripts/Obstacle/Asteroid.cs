@@ -13,24 +13,28 @@ public class Asteroid : SpawnObstacle
     }
     public override void CollisonEvent(Collision player)
     {
-                if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //ÇÃ·¹ÀÌ¾îÀÇ ¿Âµµ, ¼Óµµ¸¦ ÁÙ¿©ÁÖ°í Å©±â¸¦ ÁÙ¿©ÁÜ
             //if (player.transform.root.TryGetComponent<PlayerManager>(out var Compo))
             {
                 //Compo.GetMoveToForward;
             }
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.2f);
+
+            //ë¯¼êµê°€ ì¶”ê°€í•œê±° 
+            /* PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.2f);
 
             float decreaseValue = PlayerManager.Instance.GetBuringSystem.BurningValue /
                                   (PlayerManager.Instance.GetMoveToForward.MoveSpeed / lowerSpeed);
-            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue);
+            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue); */
 
-            //Ä«¸Ş¶ó ½¦ÀÌÅ©
+            //í•´ë³´ê³  ë” ë‚˜ì€ê±° ã„±ã„±
+
+            //ë‚´ê°€ ì¶”ê°€í•œê±°
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
+            Debug.Log(damage);
+
             PlayerFollowCam.Instance.ShakeTest();
-
-            //³» ¿ÀºêÁ§Æ®´Â Á×°í ºÎ½¤Áö´Â ÆÄÆ¼Å¬ÀÌ ³ª¿Í¾ßÇÔ
             var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
             obj.Setting(transform, size / 2f);
 
