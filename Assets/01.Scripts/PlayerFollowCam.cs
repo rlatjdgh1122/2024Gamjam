@@ -27,6 +27,7 @@ public class PlayerFollowCam : MonoBehaviour
     private CinemachineVirtualCamera _followCam;
     public CinemachineVirtualCamera FollowCam => _followCam;
     private CinemachineBasicMultiChannelPerlin m_channelsPerlin;
+    private CinemachineFramingTransposer m_body;
     private Transform speedParticle;
 
     [SerializeField]
@@ -42,6 +43,7 @@ public class PlayerFollowCam : MonoBehaviour
 
         _followCam = GetComponent<CinemachineVirtualCamera>();
         m_channelsPerlin = _followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        m_body = _followCam.GetCinemachineComponent<CinemachineFramingTransposer>();
 
         var player = GameObject.Find("Player");
         _followCam.m_Follow = player.transform;
@@ -85,6 +87,11 @@ public class PlayerFollowCam : MonoBehaviour
             }
             isChecked = false;
         }
+    }
+
+    public void IncreaseEyeSight(float value)
+    {
+        m_body.m_CameraDistance -= value;
     }
 
     public void ShakeTest()

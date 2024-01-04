@@ -11,6 +11,13 @@ public class ETCClass
     public SpawnObstacle obj;
 }
 [System.Serializable]
+public class TrashClass
+{
+    [Range(0f, 1f)]
+    public float weight;
+    public SpawnObstacle obj;
+}
+[System.Serializable]
 public class Setting
 {
     public PlanetEnum type;
@@ -22,7 +29,7 @@ public class Setting
     public int asteroidCount;
     public List<SpawnObstacle> asteroidLists = new();
     public int trashCount;
-    public List<SpawnObstacle> trashLists = new();
+    public List<TrashClass> trashLists = new();
     public List<ETCClass> etcLists = new(); //예) 비행기, 블랙홀 등
 }
 public class SpawnManager : MonoBehaviour
@@ -96,8 +103,8 @@ public class SpawnManager : MonoBehaviour
         }
         for (int i = 0; i < trashCount; i++)
         {
-            var name = trashList[Random.Range(0, trashList.Count)].name; //돌
-            var obj = PoolManager.Instance.Pop(name) as SpawnObstacle;
+            var name = RandomTrashObject(trashList);
+            var obj = PoolManager.Instance.Pop(name.name) as SpawnObstacle;
 
             var randomPos = setting.spawnPivot.position + Random.insideUnitSphere * radius +
            new Vector3(0, 0, Random.Range(-length, length));
@@ -117,6 +124,45 @@ public class SpawnManager : MonoBehaviour
             obj.Spawn(pos);
 
             etcObjDic[planet].Add(etcList[i]);
+        }
+    }
+    public SpawnObstacle RandomTrashObject(List<TrashClass> lists)
+    {
+        SpawnObstacle obj = null;
+
+        float totalValue = 0f;
+        float randomValue = 0f;
+        float curValue = 0f;
+
+        foreach (var list in lists)
+        {
+            totalValue += list.weight;
+        }
+
+        if (totalValue <= 0f)
+        {
+            Debug.LogError("당장 스폰매니저에서 가중치 설정해라.");
+        }
+        randomValue = Random.Range(0, totalValue);
+
+        foreach (var list in lists)
+        {
+            curValue += list.weight;
+
+            if (randomValue <= curValue)
+            {
+                obj = list.obj;
+                break;
+            }
+        }
+        if (obj != null)
+        {
+            return obj;
+        }
+        else
+        {
+            Debug.LogError("없어.");
+            return null;
         }
     }
     public void Despawn(PlanetEnum plent)

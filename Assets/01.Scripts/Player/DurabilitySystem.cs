@@ -11,7 +11,9 @@ public class DurabilitySystem : MonoBehaviour
     [SerializeField]
     private float firstSettingValue;
     [SerializeField]
-    public float MaxValue;
+    private float maxValue;
+    [SerializeField]
+    private DurabilityUI _duabilityUI;
 
     public float DurabilityValue
     {
@@ -21,7 +23,7 @@ public class DurabilitySystem : MonoBehaviour
         }
         set
         {
-            durabilityValue = Mathf.Clamp(value, 0, MaxValue);
+            durabilityValue = Mathf.Clamp(value, 0, maxValue);
         }
     }
 
@@ -33,10 +35,6 @@ public class DurabilitySystem : MonoBehaviour
     public void ChangeValue(float decreaseValue)
     {
         DOTween.To(() => DurabilityValue, x => DurabilityValue = x, DurabilityValue + decreaseValue, 1.0f).SetEase(Ease.OutQuart);
-    }
-
-    public void MinusValue(float value)
-    {
-        DurabilityValue -= value;
+        _duabilityUI.IncreaseValue();
     }
 }

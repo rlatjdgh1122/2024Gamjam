@@ -32,7 +32,7 @@ public class SpeedUI : MonoBehaviour
             canSpeedText = true;
         }
 
-        _speedText.text = $"{_currentSpeed.ToString("N0")} km/s";
+        _speedText.text = $"{_currentSpeed.ToString("N0")} au/s";
     }
 
 }
