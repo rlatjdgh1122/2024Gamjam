@@ -20,6 +20,7 @@ public class LoadStory : MonoBehaviour
     [SerializeField] private Image _curSprite;
     [SerializeField] private Image _panel;
     [SerializeField] private TextMeshProUGUI _curTex;
+    [SerializeField] private TextMeshProUGUI _skipTex;
     [SerializeField] private float _delay;
 
     public List<Story> storyList = new();
@@ -29,6 +30,17 @@ public class LoadStory : MonoBehaviour
     private void Start()
     {
         StartCoroutine(TextOuput());
+        _skipTex.DOFade(0f, 2f).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void Update()
+    {
+
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            FinishStory();
+        }
     }
 
     private IEnumerator TextOuput()
@@ -45,8 +57,7 @@ public class LoadStory : MonoBehaviour
             yield return new WaitForSeconds(storyList[i].StoryContent.Length * storyList[i].Delay + _delay);
         }
 
-        _panel.DOFade(1, 2f).OnComplete(() => SceneManager.LoadScene(SceneName.InGame));
-
+        FinishStory();
     }
 
     IEnumerator textPrint(float delay)
@@ -63,5 +74,10 @@ public class LoadStory : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+    }
+
+    private void FinishStory()
+    {
+        _panel.DOFade(1, 2f).OnComplete(() => SceneManager.LoadScene(SceneName.InGame));
     }
 }
