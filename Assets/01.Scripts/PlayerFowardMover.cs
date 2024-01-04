@@ -35,6 +35,11 @@ public class PlayerFowardMover : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerManager.Instance.IsDie)
+        {
+            return;
+        }
+
         if (IsSpeed)
         {
             MoveSpeed += _duration * Time.deltaTime;
@@ -50,5 +55,6 @@ public class PlayerFowardMover : MonoBehaviour
         {
             transform.Translate(Vector3.forward * Time.deltaTime * MoveSpeed);
         }
+
     }
 }
