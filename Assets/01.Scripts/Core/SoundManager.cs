@@ -4,7 +4,15 @@ using UnityEngine;
 
 public enum SFX
 {
-
+    Clap,
+    Freeze,
+    Fire,
+    GetItem,
+    HeavyExplosion,
+    SmallExplosion,
+    ImojiSound,
+    MoonMan,
+    Rocket,
 }
 
 public class SoundManager : MonoBehaviour
@@ -17,7 +25,7 @@ public class SoundManager : MonoBehaviour
     Dictionary<string, AudioClip> _audioClipsDisc; //사운드 이펙드들을 딕셔너리로 관리
     Dictionary<AudioClip, AudioSource> _audioClipToAudioSourceDisc; //사운드 이펙드들을 딕셔너리로 관리
     AudioSource _bgmPlayer; //배경 음악 플레이어
-    //AudioSource _sfxPlayer; //사운드 이펙트 플레이어
+    AudioSource _sfxPlayer; //사운드 이펙트 플레이어
 
     private void Awake()
     {
@@ -29,7 +37,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
 
         _bgmPlayer = transform.Find("BGMPlayer").GetComponent<AudioSource>();
-        //_sfxPlayer = transform.Find("SFXPlayer").GetComponent<AudioSource>();
+        _sfxPlayer = transform.Find("SFXPlayer").GetComponent<AudioSource>();
 
         _audioClipsDisc = new Dictionary<string, AudioClip>();
         _audioClipToAudioSourceDisc = new();
@@ -92,7 +100,7 @@ public class SoundManager : MonoBehaviour
 
     public void SetVolumeSFX(float volume)
     {
-        //_sfxPlayer.volume = volume;
+        _sfxPlayer.volume = volume;
 
         foreach (var item in _audioClipToAudioSourceDisc)
         {
