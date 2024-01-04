@@ -45,7 +45,7 @@ public class LoadStory : MonoBehaviour
             yield return new WaitForSeconds(storyList[i].StoryContent.Length * storyList[i].Delay + _delay);
         }
 
-        _panel.DOFade(1, 2f).OnComplete(() => SceneManager.LoadScene(SceneName.InGame));
+        _panel.DOFade(1, 2f).OnComplete(() => FinishStory());
 
     }
 
@@ -63,5 +63,10 @@ public class LoadStory : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+    }
+
+    private void FinishStory()
+    {
+        SceneManager.LoadScene(SceneName.InGame);
     }
 }
