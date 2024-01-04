@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class ScoreSystem : MonoBehaviour
     private PlayerFowardMover _playerFowardMover => PlayerManager.Instance.GetMoveToForward;
     private DurabilitySystem _durabilitySystem => PlayerManager.Instance.GetDurabilitySystem;
 
+    private RenderTexture _renderTexture;
+
+    [SerializeField]
+    private Transform playerPos;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
             ScorePopUpOnOff();
+            PlayerSetPos();
         }
 
         Debug.Log(isOn);
@@ -39,5 +46,15 @@ public class ScoreSystem : MonoBehaviour
     private void FillStars()
     {
 
+    }
+
+
+    private void PlayerSetPos()
+    {
+        PlayerFollowCam.Instance.gameObject.SetActive(false);
+        PlayerManager.Instance.Player.transform.position = playerPos.position;
+        PlayerManager.Instance.GetPlayerMovement.enabled = false;
+        PlayerManager.Instance.GetMoveToForward.enabled = false;
+        PlayerManager.Instance.GetBuringSystem.enabled = false;
     }
 }
