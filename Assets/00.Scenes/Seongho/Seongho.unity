@@ -263,7 +263,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1500
-  field of view: 80
+  field of view: 89.84203
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -687,7 +687,7 @@ Transform:
   m_GameObject: {fileID: 86766118}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 513.6}
+  m_LocalPosition: {x: -233.95, y: 0, z: -700}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8482876765030638960}
   m_Lens:
-    FieldOfView: 80
+    FieldOfView: 89.84203
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1500
@@ -13625,7 +13625,7 @@ Transform:
   m_GameObject: {fileID: 816296769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -580.1}
+  m_LocalPosition: {x: -31.11, y: 11.98, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24703,7 +24703,7 @@ MonoBehaviour:
     spawnPivot: {fileID: 679202068}
     radius: 150
     length: 1000
-    asteroidCount: 350
+    asteroidCount: 150
     asteroidLists:
     - {fileID: 4466647946218225455, guid: e7728b3cf3ec5b048b3ed784559494b3, type: 3}
     - {fileID: 4756437192090518393, guid: b1c16be4b4222e244a3027ff40a1f8ea, type: 3}
@@ -24718,17 +24718,21 @@ MonoBehaviour:
     - {fileID: 7029703805499908404, guid: 3e3c7089a512f66428d7f45fc0174863, type: 3}
     trashCount: 100
     trashLists:
-    - {fileID: 6865600118136395360, guid: 45731edcece33bc43b2b91bf0fb25387, type: 3}
-    - {fileID: 2425887811562528592, guid: 76513c25594435d43a833757da820be3, type: 3}
-    - {fileID: 3255077870605150445, guid: a8984dd5f6b0b534db84473e4eb196b7, type: 3}
-    - {fileID: 6182666729502802362, guid: 8cd8f7c82cc8d0a4eae4dd965c9d30a7, type: 3}
-    - {fileID: 8887028167760345450, guid: ac11ae55a516010479ff1be47f264ed8, type: 3}
-    - {fileID: 1404667946185312029, guid: cca9b2e6e9e8d6844a1209573e9992d6, type: 3}
+    - weight: 0.1
+      obj: {fileID: 6865600118136395360, guid: 45731edcece33bc43b2b91bf0fb25387, type: 3}
+    - weight: 0.25
+      obj: {fileID: 2425887811562528592, guid: 76513c25594435d43a833757da820be3, type: 3}
+    - weight: 0.3
+      obj: {fileID: 3255077870605150445, guid: a8984dd5f6b0b534db84473e4eb196b7, type: 3}
+    - weight: 0.3
+      obj: {fileID: 8887028167760345450, guid: ac11ae55a516010479ff1be47f264ed8, type: 3}
+    - weight: 0.5
+      obj: {fileID: 1404667946185312029, guid: cca9b2e6e9e8d6844a1209573e9992d6, type: 3}
     etcLists:
     - radius: 150
       objPos: {fileID: 389453062}
       obj: {fileID: 6217761444734017580, guid: 333e2ce96d7845a44bf11e530383ec87, type: 3}
-    - radius: 50
+    - radius: 0
       objPos: {fileID: 816296770}
       obj: {fileID: 5046525709052660764, guid: 277b3ec2ce8d4d34d92fb9970297d2a8, type: 3}
     - radius: 300

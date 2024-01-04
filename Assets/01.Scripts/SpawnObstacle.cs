@@ -1,6 +1,3 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -25,11 +22,12 @@ public abstract class SpawnObstacle : ETC
 
     [Header("내 스탯")]
     public int MaxSpeed; //움직임의 속도
+    public int rotateSpeed; //회전의 속도
     protected Vector3 dir; //움직일 방향
 
     protected float speed = 0;
 
-    [Header("스폰 설정")]
+    [Header("스폰 설정")] //준서가 잘 안다.
     [SerializeField] private float _obstacleRadius;
 
     [SerializeField] private LayerMask _obstacle;
@@ -50,13 +48,13 @@ public abstract class SpawnObstacle : ETC
         damage = (int)size * (MaxDamage / MaxSize);
         lowerTem = (int)size * MaxLowerTem;
         lowerSpeed = (int)size * MaxLowerSpeed * 3;
-    }
+    }   
     protected virtual void Update()
     {
         //움직이는 코드
         transform.Translate(dir.normalized * speed * Time.deltaTime);
         //회전하는 코드
-        transform.Rotate(dir.normalized, speed * 50f * Time.deltaTime);
+        transform.Rotate(dir.normalized, rotateSpeed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
