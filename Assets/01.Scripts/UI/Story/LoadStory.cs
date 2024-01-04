@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class Story
@@ -17,7 +18,9 @@ public class Story
 public class LoadStory : MonoBehaviour
 {
     [SerializeField] private Image _curSprite;
+    [SerializeField] private Image _panel;
     [SerializeField] private TextMeshProUGUI _curTex;
+    [SerializeField] private float _delay;
 
     public List<Story> storyList = new();
 
@@ -39,8 +42,11 @@ public class LoadStory : MonoBehaviour
 
             StartCoroutine(textPrint(storyList[i].Delay));
 
-            yield return new WaitForSeconds(storyList[i].StoryContent.Length * 0.125f + 2f);
+            yield return new WaitForSeconds(storyList[i].StoryContent.Length * storyList[i].Delay + _delay);
         }
+
+        _panel.DOFade(1, 2f).OnComplete(() => SceneManager.LoadScene(SceneName.InGame));
+
     }
 
     IEnumerator textPrint(float delay)
