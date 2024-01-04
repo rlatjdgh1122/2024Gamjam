@@ -20,15 +20,7 @@ public class PlanetController : MonoBehaviour
                 var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
                 PlayerFollowCam.Instance.ShakeCam(.8f, 50f);
                 obj.Setting(collision.contacts[0].point, 1200f);
-                Invoke("ShowEndPanel", 3f);
             }
-
-            //플레이어 죽이기
         }
-    }
-
-    private void ShowEndPanel()
-    {
-        ScoreSystem.Instance.ScorePopUpOnOff();
     }
 }
