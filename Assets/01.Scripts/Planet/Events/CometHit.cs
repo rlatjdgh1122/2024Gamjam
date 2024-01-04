@@ -17,7 +17,7 @@ public class CometHit : MonoBehaviour
     private int _maxKeyCount = 20;
     private int _currentkeyCount = 0;
     private float _plutoDis;
-    private float _clearTime = 7f;
+    private float _clearTime = 4f;
     private float _currentTime = 0;
 
     float originSpeed;
@@ -98,6 +98,12 @@ public class CometHit : MonoBehaviour
     void GameOver()
     {
         PlayerManager.Instance.GetPlayerDead.DeadImmedieatly();
+        Invoke("ShowPanel", 1.5f);
+    }
+
+    private void ShowPanel()
+    {
+        _pressCanvas.SetActive(false);
         UIManager.Instance.DieReasonUI.UpdateIMG(DieReasonType.LoseKeyBoardBattle);
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ public class DieReasonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dieReasonTMP;
 
+    private CanvasGroup _canvasGroup;
+
     private void Awake()
     {
         int idx = 0;
@@ -41,6 +44,8 @@ public class DieReasonUI : MonoBehaviour
         {
             _dieReasonDic.Add(dieReason, _dieReasonInfoList[idx++]);
         }
+
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void UpdateIMG(DieReasonType dieReason)
@@ -54,5 +59,7 @@ public class DieReasonUI : MonoBehaviour
         {
             Debug.LogError("Cant Change Die ReasonInfo Sprite");
         }
+
+        _canvasGroup.DOFade(1, 1f);
     }
 }

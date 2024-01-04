@@ -12,7 +12,12 @@ public class PlayerDeadTrigger : MonoBehaviour
         {
             Debug.Log("²Î!");
             PlayerManager.Instance.GetPlayerDead.DeadImmedieatly();
-            UIManager.Instance.DieReasonUI.UpdateIMG(reasonType);
+            Invoke("ShowPanel", 1.5f);
         }
+    }
+
+    private void ShowPanel()
+    {
+        UIManager.Instance.DieReasonUI.UpdateIMG(reasonType);
     }
 }
