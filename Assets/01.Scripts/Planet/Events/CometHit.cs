@@ -46,6 +46,7 @@ public class CometHit : MonoBehaviour
         {
             if (!checkSpeed)
             {
+                SoundManager.Instance.PlaySFXSound(SFX.ImojiSound);
                 originSpeed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
                 checkSpeed = true; 
             }

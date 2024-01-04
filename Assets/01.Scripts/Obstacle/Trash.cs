@@ -17,6 +17,7 @@ public class Trash : SpawnObstacle
         //내 오브젝트는 죽고 부숴지는 파티클이 나와야함
         if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
             //내가 추가한거
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
             Debug.Log(damage);

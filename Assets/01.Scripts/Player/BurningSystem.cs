@@ -38,6 +38,7 @@ public class BurningSystem : MonoBehaviour
     }
 
     float timer = 0;
+    bool sound = false;
 
     [SerializeField] private float _effectTimer = 0.5f;
     private float _increaseValue = 0;
@@ -47,6 +48,7 @@ public class BurningSystem : MonoBehaviour
 
         if (CanFire)
         {
+            SoundManager.Instance.PlaySFXSound(SFX.Fire);
             burningValue = PlayerManager.Instance.GetMoveToForward.MoveSpeed * 0.03f;
             _increaseValue += Time.deltaTime * settingValue;
 
