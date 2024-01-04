@@ -48,6 +48,6 @@ public class PlayerDead : MonoBehaviour
         _visual.SetActive(false);
         _explosionParticle.Play();
 
-        ScoreSystem.Instance.ScorePopUpOnOff();
+        //ScoreSystem.Instance.ScorePopUpOnOff();
     }
 }

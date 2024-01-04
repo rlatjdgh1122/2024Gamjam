@@ -98,5 +98,6 @@ public class CometHit : MonoBehaviour
     void GameOver()
     {
         PlayerManager.Instance.GetPlayerDead.DeadImmedieatly();
+        UIManager.Instance.DieReasonUI.UpdateIMG(DieReasonType.LoseKeyBoardBattle);
     }
 }

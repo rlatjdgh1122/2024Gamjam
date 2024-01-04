@@ -11,10 +11,13 @@ public class MarsAliens : MonoBehaviour
 
     [SerializeField]
     private float fireDistance;
+    [SerializeField]
+    private float attackSpeed = 0.5f;
 
     private Vector3 dir;
 
     private bool canshoot = true;
+    private bool canEnable = false;
 
     private void Start()
     {
@@ -23,9 +26,12 @@ public class MarsAliens : MonoBehaviour
 
     private void Update()
     {
-        distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
+        if (Vector3.Distance(transform.position, _target.transform.position) <= distanceToTarget)
+        {
+            canEnable = true;
+        }
         
-        if(canshoot)
+        if (canshoot)
         {
             StartCoroutine(EnemySpawn());
         }
@@ -36,7 +42,6 @@ public class MarsAliens : MonoBehaviour
         float randomX = Random.Range(-30f, 30f);
         float randomY = Random.Range(-15f, 15f);
         float randomZ = Random.Range(30f, 120f);
-        float randomCool = Random.Range(0, 2f);
         Tomato bullet = PoolManager.Instance.Pop(_bullet.name) as Tomato;
         Debug.Log(randomY); 
 
@@ -44,7 +49,7 @@ public class MarsAliens : MonoBehaviour
         bullet.SetDir(new Vector3(randomX, randomY, randomZ).normalized);
 
         canshoot = false;
-        yield return new WaitForSeconds(randomCool);
+        yield return new WaitForSeconds(attackSpeed);
         canshoot = true;
     }
 

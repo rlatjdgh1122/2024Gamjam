@@ -11,6 +11,7 @@ public enum DieReasonType
     HitLocket,
     HitMeteor,
     HitMoonMan,
+    HitEarth
     //»´µû±¸ Ã³¸Â±â¶û »ç±Í´Â°Å Ãß°¡ ÇØ¾ß´ï¤¤
 }
 
