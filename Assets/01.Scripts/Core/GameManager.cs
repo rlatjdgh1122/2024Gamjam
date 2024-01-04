@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerFowardMover _mover;
 
+    [SerializeField]
+    private TextMeshProUGUI _timeText;
+
+    public int TimeI = 0;
+
     private void Awake()
     {
         if (Instance != null)
@@ -22,6 +28,7 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         MakePool();
+
     }
 
     private void MakePool()
@@ -42,5 +49,13 @@ public class GameManager : MonoBehaviour
 
             distanceToEarth = Mathf.Max(0, distanceToEarth);
         }
+
+        TimeI = (int)Time.time;
+
+        int minutes = TimeI / 60;          // 분
+        int remainingSeconds = TimeI % 60; // 초
+
+        if (minutes > 0) { _timeText.SetText($"{minutes}: {remainingSeconds}"); } //분으로 나타낼 수 있다면 분까지 나타낸다.
+        else { _timeText.SetText($"{remainingSeconds}"); }
     }
 }

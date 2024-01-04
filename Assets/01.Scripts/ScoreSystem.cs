@@ -32,16 +32,19 @@ public class ScoreSystem : MonoBehaviour
     private ParticleImage sizeParticleIMG;
     [SerializeField]
     private ParticleImage speedParticleIMG;
-
+    [SerializeField]
+    private ParticleImage timeParticleIMG;  
     private float speed;
     private float size;
+    private float time;
 
     public void ScorePopUpOnOff()
     {
         speed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
         size = PlayerManager.Instance.GetDurabilitySystem.DurabilityValue;
+        time = GameManager.Instance.TimeI;
 
-        //PlayerManager.Instance.GetMoveToForward.enabled = false; //일단 임시로 여기서 끔
+        PlayerManager.Instance.GetMoveToForward.enabled = false; //일단 임시로 여기서 끔
 
         if (isOn)
         {
@@ -51,10 +54,7 @@ public class ScoreSystem : MonoBehaviour
         {
             _scorePopUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                starIMGList[0].DOFillAmount(1, 2.0f).OnComplete(() =>
-                {
-                    StartCoroutine(SetStars());
-                });
+                StartCoroutine(SetStars());
             });
 
         }
@@ -63,14 +63,33 @@ public class ScoreSystem : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    ScorePopUpOnOff();
-        //}
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ScorePopUpOnOff();
+        }
     }
 
     private IEnumerator SetStars()
     {
+        timeParticleIMG.rateOverLifetime = (time / 60) * 0.1f;
+        timeParticleIMG.Play();
+        if (time <= 180f)
+        {
+            FillStars(0, 1f);
+        }
+        else if(time >= 780f)
+        {
+            FillStars(0, 0.1f);
+        }
+        else
+        {
+            FillStars(0, (time / 60) * 0.1f);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        sizeParticleIMG.rateOverLifetime = size * 10f;
+        sizeParticleIMG.Play();
         if (size >= 1)
         {
             FillStars(1, 1f);
@@ -80,11 +99,10 @@ public class ScoreSystem : MonoBehaviour
             FillStars(1, size);
         }
 
-        sizeParticleIMG.rateOverLifetime = size * 10f;
-        sizeParticleIMG.Play();
-
         yield return new WaitForSeconds(2f);
 
+        speedParticleIMG.rateOverLifetime = speed * 0.1f;
+        speedParticleIMG.Play();
         if (speed >= 100)
         {
             FillStars(2, 1f);
@@ -94,8 +112,7 @@ public class ScoreSystem : MonoBehaviour
             FillStars(2, speed * 0.01f);
         }
 
-        speedParticleIMG.rateOverLifetime = speed * 0.1f;
-        speedParticleIMG.Play();
+        
     }
 
 
