@@ -36,15 +36,6 @@ public class ScoreSystem : MonoBehaviour
     private float speed;
     private float size;
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ScorePopUpOnOff();
-        }
-
-    }
-
     public void ScorePopUpOnOff()
     {
         speed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
@@ -60,13 +51,10 @@ public class ScoreSystem : MonoBehaviour
         {
             _scorePopUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                // if(만약 클리어라면)
                 starIMGList[0].DOFillAmount(1, 2.0f).OnComplete(() =>
                 {
                     StartCoroutine(SetStars());
                 });
-                // else //게임오버면
-                // StartCoroutine(SetPlanetScale());
             });
 
         }

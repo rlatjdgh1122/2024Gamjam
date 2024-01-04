@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,24 +11,34 @@ public enum DieReasonType
     HitLocket,
     HitMeteor,
     HitMoonMan,
+    //»´µû±¸ Ã³¸Â±â¶û »ç±Í´Â°Å Ãß°¡ ÇØ¾ß´ï¤¤
+}
 
+[Serializable]
+public struct DieRasonInFo
+{
+    public Sprite DieReasonIMG;
+    public string DieReasonText;
 }
 
 public class DieReasonUI : MonoBehaviour
 {
     [SerializeField]
-    private List<Image> _dieReasonImageList = new List<Image>();
+    private List<DieRasonInFo> _dieReasonInfoList = new List<DieRasonInFo>();
 
-    private Dictionary<DieReasonType, Image> _dieReasonDic = new Dictionary<DieReasonType, Image>();
+    private Dictionary<DieReasonType, DieRasonInFo> _dieReasonDic = new Dictionary<DieReasonType, DieRasonInFo>();
 
     [SerializeField]
     private Image dieReasonIMG;
+    [SerializeField]
+    private TextMeshProUGUI dieReasonTMP;
 
     private void Awake()
     {
+        int idx = 0;
         foreach(DieReasonType dieReason in Enum.GetValues(typeof(DieReasonType)))
         {
-            _dieReasonDic.Add(dieReason, dieReasonIMG);
+            _dieReasonDic.Add(dieReason, _dieReasonInfoList[idx++]);
         }
     }
 
@@ -35,11 +46,12 @@ public class DieReasonUI : MonoBehaviour
     {
         try
         {
-            dieReasonIMG.sprite = _dieReasonDic[dieReason].sprite;
+            dieReasonIMG.sprite = _dieReasonDic[dieReason].DieReasonIMG;
+            dieReasonTMP.SetText(_dieReasonDic[dieReason].DieReasonText);
         }
         catch
         {
-            Debug.LogError("Cant Change Die Reason Image Sprite");
+            Debug.LogError("Cant Change Die ReasonInfo Sprite");
         }
     }
 }
