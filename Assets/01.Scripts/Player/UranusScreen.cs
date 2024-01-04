@@ -9,13 +9,14 @@ public class UranusScreen : MonoBehaviour
 
     [SerializeField] private BurningSystem _burningSystem;
     [SerializeField] private Material _iceMat;
-    [SerializeField] private float _iceSpeed;
 
-    public bool CanFire;
+    [SerializeField] private float _meltingSpeed;
+    [SerializeField] private float _freezingSpeed;
 
     public float Temperature { get; private set; }
-    public bool Ice = false;
-    public bool IceDeath = false;
+    public bool Ice { get; set; }
+    public bool IceEventEnd { get; set; }
+    public bool IceDeath { get; private set; }
 
     private float _maxValue = 50;
 
@@ -33,18 +34,32 @@ public class UranusScreen : MonoBehaviour
 
         if (Ice)
         {
-            if (!CanFire)
+            if (!_burningSystem.CanFire)
             {
-                Temperature -= Time.deltaTime * _iceSpeed;
+                Temperature -= Time.deltaTime * _freezingSpeed;
             }
             else
             {
-                Temperature += Time.deltaTime * _iceSpeed;
+                Temperature += Time.deltaTime * _meltingSpeed;
             }
+            Debug.Log(Temperature);
 
             Temperature = Mathf.Clamp(Temperature, 3.5f, _maxValue);
 
             _iceMat.SetFloat("_Sides", Temperature);
+        }
+
+        if(IceEventEnd)
+        {
+            Temperature += Time.deltaTime * _meltingSpeed;
+            Temperature = Mathf.Clamp(Temperature, 3.5f, _maxValue);
+
+            _iceMat.SetFloat("_Sides", Temperature);
+
+            if(Temperature == _maxValue)
+            {
+                Ice = false;
+            }
         }
 
         if(Temperature <= 3.5f)
