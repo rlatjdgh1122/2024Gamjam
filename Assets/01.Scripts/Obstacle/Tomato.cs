@@ -20,7 +20,7 @@ public class Tomato : PoolableMono
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))  
         {
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-3);
             Debug.Log("플레이어 충돌처리 해라");
@@ -39,7 +39,7 @@ public class Tomato : PoolableMono
 
         Vector3 startPos = transform.position;
 
-        float randomDistance = Random.Range(300, 1000);
+        float randomDistance = 10;
 
         float startTime = Time.time;
 

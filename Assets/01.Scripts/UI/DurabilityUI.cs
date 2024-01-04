@@ -13,13 +13,28 @@ public class DurabilityUI : MonoBehaviour
     private void Awake()
     {
         _fill = GetComponent<Image>();
-    }
+        _fill.fillAmount = PlayerManager.Instance.GetDurabilitySystem.MaxValue;
 
+        IncreaseValue();
+    }
     public void IncreaseValue()
     {
-        _fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue * 0.75f, 0.75f);
+        StartCoroutine(Corou());
+        //_fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue, 0.75f);
     }
 
+    private IEnumerator Corou()
+    {
+        float timer = 0f;
+        float startValue = _fill.fillAmount;
+        while (timer < .75f)
+        {
+            timer += Time.deltaTime;
+            _fill.fillAmount = Mathf.Lerp(startValue, PlayerManager.Instance.GetDurabilitySystem.DurabilityValue, timer / .75f);
+
+            yield return null;
+        }
+    }
     private void Update()
     {
         if (PlayerManager.Instance.IsDie && !dead)

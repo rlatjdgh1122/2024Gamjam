@@ -19,7 +19,7 @@ public class SizeUpItem : SpawnObstacle
             //플레이어 속도를 줄여줌
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
             //플레이어 크기를 늘려줌
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(UpperSize);
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(10f);
 
             //파티클 할가말가
             // var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
