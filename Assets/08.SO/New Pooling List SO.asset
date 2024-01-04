@@ -81,3 +81,13 @@ MonoBehaviour:
     poolCount: 10
   - prefab: {fileID: 8825509149735581711, guid: 95655c8e4ad5d004e9f06e06f61da77a, type: 3}
     poolCount: 10
+  - prefab: {fileID: 383259044060221833, guid: 61a64fc3bb0972247887b89ac3114b11, type: 3}
+    poolCount: 10
+  - prefab: {fileID: 7105651098907409202, guid: 5ce201b0413608d4f93bc467ad206602, type: 3}
+    poolCount: 10
+  - prefab: {fileID: 1912267106755829255, guid: 6788417cae70f2343827b65b3013a49f, type: 3}
+    poolCount: 10
+  - prefab: {fileID: 9151791476396580410, guid: 6734f3cb730689446af7d66a1d8b78d1, type: 3}
+    poolCount: 10
+  - prefab: {fileID: 7819537172089260424, guid: 632f6f8ab7bcd52488c315cfaad4e18f, type: 3}
+    poolCount: 10

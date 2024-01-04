@@ -137,7 +137,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   CanSpawn: 0
-  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}
+  _particle: {fileID: 7105651098907409202, guid: 5ce201b0413608d4f93bc467ad206602, type: 3}
 --- !u!65 &2609797302228961125
 BoxCollider:
   m_ObjectHideFlags: 0

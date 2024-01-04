@@ -159,4 +159,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   CanSpawn: 0
-  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}
+  _particle: {fileID: 383259044060221833, guid: 61a64fc3bb0972247887b89ac3114b11, type: 3}
