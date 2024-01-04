@@ -25,6 +25,7 @@ public class PlayerFollowCam : MonoBehaviour
     public static PlayerFollowCam Instance;
 
     private CinemachineVirtualCamera _followCam;
+    public CinemachineVirtualCamera FollowCam => _followCam;
     private CinemachineBasicMultiChannelPerlin m_channelsPerlin;
     private Transform speedParticle;
 
@@ -43,6 +44,7 @@ public class PlayerFollowCam : MonoBehaviour
         m_channelsPerlin = _followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         var player = GameObject.Find("Player");
+        _followCam.m_Follow = player.transform;
         speedParticle = player.transform.Find("SpeedLineEffect");
     }
 

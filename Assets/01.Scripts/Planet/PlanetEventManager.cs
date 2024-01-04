@@ -10,7 +10,8 @@ public enum PlanetEnum
     Jupiter, //목성
     Saturn, //토성
     Uranus, //천왕성
-    Neptune //해왕성
+    Neptune, //해왕성
+    EarthCloser, //지구에 일정이상 가까워질때
 }
 
 public class PlanetEventManager : MonoBehaviour

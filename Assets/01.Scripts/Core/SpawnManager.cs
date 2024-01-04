@@ -49,6 +49,7 @@ public class SpawnManager : MonoBehaviour
         int idx = 0;
         foreach (PlanetEnum type in Enum.GetValues(typeof(PlanetEnum)))
         {
+            if (idx > 5) continue;
             planetListDic.Add(type, settings[idx++]);
             dummyObjDic.Add(type, new List<SpawnObstacle>());
             etcObjDic.Add(type, new List<ETCClass>());
@@ -99,7 +100,7 @@ public class SpawnManager : MonoBehaviour
             var obj = PoolManager.Instance.Pop(name) as SpawnObstacle;
 
             var randomPos = setting.spawnPivot.position + Random.insideUnitSphere * radius +
-           new Vector3(0, Random.Range(-length, length), 0);
+           new Vector3(0, 0, Random.Range(-length, length));
 
             obj.Spawn(randomPos);
 
