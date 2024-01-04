@@ -52,5 +52,11 @@ public class PlayerDead : MonoBehaviour
         PlayerManager.Instance.GetMoveToForward.MoveSpeed = 0;
         PlayerManager.Instance.GetMoveToForward.IsSpeed = false;
         //ScoreSystem.Instance.ScorePopUpOnOff();
+        Invoke("ShowPanel", 1.5f);
+    }
+
+    private void ShowPanel()
+    {
+        UIManager.Instance.DieReasonUI.UpdateIMG(DieReasonType.FireDead);
     }
 }
