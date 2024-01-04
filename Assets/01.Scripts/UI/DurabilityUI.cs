@@ -10,21 +10,25 @@ public class DurabilityUI : MonoBehaviour
 
     bool dead = false;
 
+    Sequence fillSeq;
+
     private void Awake()
     {
         _fill = GetComponent<Image>();
+        fillSeq = DOTween.Sequence();
     }
 
     public void IncreaseValue()
     {
-        _fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue * 0.75f, 0.75f);
+        fillSeq.Append(_fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue * 0.75f, 0.75f));
     }
 
     private void Update()
     {
         if (PlayerManager.Instance.IsDie && !dead)
         {
-            _fill.DOFillAmount(0, 0.5f);
+            fillSeq.Kill();
+            fillSeq.Append(_fill.DOFillAmount(0, 0.5f));
             dead = true;
         }
     }

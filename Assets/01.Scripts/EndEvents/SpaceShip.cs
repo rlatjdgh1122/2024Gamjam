@@ -26,6 +26,7 @@ public class SpaceShip : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _target.position) <= 1000 && !IsLaunch)
         {
+            SoundManager.Instance.PlaySFXSound(SFX.Rocket);
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 3.5f);
             transform.Rotate(-_target.transform.position, 2);
             ShotParticle();

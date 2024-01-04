@@ -721,16 +721,16 @@ MonoBehaviour:
   MaxDamage: 0.03
   MaxLowerTem: 3
   MaxLowerSpeed: 3
-  MaxSize: 1.5
-  MinSize: 1.5
+  MaxSize: 4.5
+  MinSize: 4.5
   MaxSpeed: 3
-  rotateSpeed: 0
+  rotateSpeed: 25
   _obstacleRadius: 50
   _obstacle:
     serializedVersion: 2
     m_Bits: 64
   CanSpawn: 0
-  _particle: {fileID: 0}
+  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}
 --- !u!65 &8603025103951386655
 BoxCollider:
   m_ObjectHideFlags: 0

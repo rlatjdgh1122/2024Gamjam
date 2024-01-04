@@ -152,10 +152,10 @@ MonoBehaviour:
   MaxSize: 3
   MinSize: 3
   MaxSpeed: 3
-  rotateSpeed: 0
+  rotateSpeed: 25
   _obstacleRadius: 20
   _obstacle:
     serializedVersion: 2
     m_Bits: 64
   CanSpawn: 0
-  _particle: {fileID: 0}
+  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}

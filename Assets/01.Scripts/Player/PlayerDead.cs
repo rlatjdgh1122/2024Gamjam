@@ -35,6 +35,7 @@ public class PlayerDead : MonoBehaviour
     public void DeadImmedieatly()
     {
         GameOver = true;
+        SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
@@ -46,12 +47,12 @@ public class PlayerDead : MonoBehaviour
     {
         GameOver = true;
         yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
         PlayerManager.Instance.GetMoveToForward.MoveSpeed = 0;
         PlayerManager.Instance.GetMoveToForward.IsSpeed = false;
-        //ScoreSystem.Instance.ScorePopUpOnOff();
         Invoke("ShowPanel", 1.5f);
     }
 
