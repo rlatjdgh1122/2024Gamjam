@@ -16,6 +16,7 @@ public class SizeUpItem : SpawnObstacle
     {
         if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            SoundManager.Instance.PlaySFXSound(SFX.GetItem);
             //플레이어 속도를 줄여줌
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
             //플레이어 크기를 늘려줌

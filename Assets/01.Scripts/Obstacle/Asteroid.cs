@@ -19,6 +19,7 @@ public class Asteroid : SpawnObstacle
             {
                 //Compo.GetMoveToForward;
             }
+            SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
 
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);

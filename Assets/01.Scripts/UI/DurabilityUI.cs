@@ -15,12 +15,11 @@ public class DurabilityUI : MonoBehaviour
         _fill = GetComponent<Image>();
         _fill.fillAmount = PlayerManager.Instance.GetDurabilitySystem.MaxValue;
 
-        IncreaseValue();
+         IncreaseValue();
     }
     public void IncreaseValue()
     {
         StartCoroutine(Corou());
-        //_fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue, 0.75f);
     }
 
     private IEnumerator Corou()
@@ -39,7 +38,8 @@ public class DurabilityUI : MonoBehaviour
     {
         if (PlayerManager.Instance.IsDie && !dead)
         {
-            _fill.DOFillAmount(0, 0.5f);
+            fillSeq.Kill();
+            fillSeq.Append(_fill.DOFillAmount(0, 0.5f));
             dead = true;
         }
     }

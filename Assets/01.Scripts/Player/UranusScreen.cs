@@ -20,6 +20,8 @@ public class UranusScreen : MonoBehaviour
 
     private float _maxValue = 50;
 
+    bool sound = false;
+
     private void Awake()
     {
         Instance = this;
