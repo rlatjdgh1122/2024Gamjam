@@ -178,9 +178,9 @@ public class SpawnManager : MonoBehaviour
 
         foreach (var obj in etcObjDic[plent])
         {
-            PoolManager.Instance.Push(obj.obj);
+            //PoolManager.Instance.Push(obj.obj);
         }
-        etcObjDic[plent].Clear();
+       // etcObjDic[plent].Clear();
     }
 
 

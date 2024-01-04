@@ -68,7 +68,7 @@ public class ScoreSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            PlayerManager.Instance.IsDie = true;
+            ScorePopUpOnOff();
         }
     }
 
