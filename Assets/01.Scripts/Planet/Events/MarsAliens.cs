@@ -11,6 +11,8 @@ public class MarsAliens : MonoBehaviour
 
     [SerializeField]
     private float _attackSpeed;
+    [SerializeField]
+    private float _rotateSpeed;
 
     [SerializeField]
     private float fireDistance;
@@ -32,16 +34,13 @@ public class MarsAliens : MonoBehaviour
         {
             StartCoroutine(EnemySpawn());
         }
-    }
 
-    private void FixedUpdate()
-    {
         dir = _target.position - _firePos.position;
         Vector3 moveDir = new Vector3(dir.x, _firePos.position.y, dir.z);
 
         Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotateSpeed);
     }
 
     private IEnumerator EnemySpawn()
