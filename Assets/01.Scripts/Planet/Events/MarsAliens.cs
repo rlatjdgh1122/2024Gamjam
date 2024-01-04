@@ -9,6 +9,9 @@ public class MarsAliens : MonoBehaviour
     [SerializeField] Tomato _bullet;
     private float distanceToTarget;
 
+    [SerializeField]
+    private float fireDistance;
+
     private Vector3 dir;
 
     private bool canshoot = true;
@@ -22,7 +25,7 @@ public class MarsAliens : MonoBehaviour
     {
         distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
 
-        if(canshoot)
+        if(fireDistance > distanceToTarget && canshoot)
         {
             StartCoroutine(EnemySpawn());
         }
@@ -30,8 +33,8 @@ public class MarsAliens : MonoBehaviour
 
     private void FixedUpdate()
     {
-        dir = _target.position - transform.position;
-        Vector3 moveDir = new Vector3(dir.x, transform.position.y, dir.z);
+        dir = _target.position - _firePos.position;
+        Vector3 moveDir = new Vector3(dir.x, _firePos.position.y, dir.z);
 
         Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 
@@ -47,5 +50,11 @@ public class MarsAliens : MonoBehaviour
         canshoot = false;
         yield return new WaitForSeconds(2f);
         canshoot = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, fireDistance);
     }
 }
