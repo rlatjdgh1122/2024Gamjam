@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,13 +12,31 @@ public class MoonMan : MonoBehaviour
     [SerializeField]
     private float beforePunchwaitTime = 3f;
 
+    [SerializeField]
+    private Transform target;
+
     private Animator _animator;
+
+    bool isReady = false;
+    bool canPunch = false;
+
+    Vector3 lookDirection;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
 
-        StartCoroutine(PunchCoroutine());
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, target.position) <= 1000f && !isReady)
+        {
+            StartCoroutine(PunchCoroutine());
+            isReady = true;
+        }
+
+        if (canPunch)
+            PunchFoward();
     }
 
     private IEnumerator PunchCoroutine()
@@ -29,15 +48,6 @@ public class MoonMan : MonoBehaviour
         yield return new WaitForSeconds(30f);
 
         Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //주겨
-            Debug.Log("플레이어 충돌");
-        }
     }
 
     public void OnAnimationStopEvent()
@@ -54,14 +64,24 @@ public class MoonMan : MonoBehaviour
 
         while (curTime <= punchStopTime)
         {
-            Vector3 lookDirection = PlayerManager.Instance.Player.transform.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            // 타겟 방향으로 회전
+            Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
 
-            transform.rotation = targetRotation;
             curTime += Time.deltaTime;
 
             yield return null;
         }
-        _animator.speed = 1.0f;
+
+        lookDirection = new Vector3(target.transform.position.x, target.transform.position.y - 100f, target.transform.position.z);
+        _animator.speed = .7f;
+        canPunch = true;
+    }
+
+
+    public void PunchFoward()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, lookDirection, 12f);
+        //transform.DOMove(target.transform.position, 40f).SetEase(Ease.OutCirc);
     }
 }

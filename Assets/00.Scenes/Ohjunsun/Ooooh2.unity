@@ -702,7 +702,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1316521303}
   - component: {fileID: 1316521302}
-  - component: {fileID: 1316521301}
   m_Layer: 0
   m_Name: PlayerFollowCam
   m_TagString: Untagged
@@ -710,29 +709,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1316521301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316521300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedAdaptationTime: 3
-  zoominDelay: 0.5
-  adaptationLensValue: 80
-  apdaptationSpeedEffectPos: {x: 0, y: 0, z: 0}
-  minLensValue: 65
-  maxLensValue: 82
-  zoomoutDelay: 1
-  zoomoutSpeedEffectPos: {x: 0, y: 0, z: 0}
-  baseSpeedEffectPos: {x: 0, y: 0, z: 0}
-  followCamFOVMultipleValue: 2
-  totalMultipleValue: 0
 --- !u!114 &1316521302
 MonoBehaviour:
   m_ObjectHideFlags: 0
