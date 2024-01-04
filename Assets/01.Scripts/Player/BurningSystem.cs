@@ -78,18 +78,21 @@ public class BurningSystem : MonoBehaviour
 
     private IEnumerator BuringCorou()
     {
-        while(burningValue <= maxBurningValue)
-        {
-            burningValue += increaseValue;
+        float elapsedTime = 0f;
 
-            if(/*burningValue >= 3.0f*/ canShotParticle)
+        while (burningValue <= maxBurningValue)
+        {
+            elapsedTime += Time.deltaTime;
+
+            burningValue += increaseValue * Time.deltaTime;
+
+            if (canShotParticle)
             {
                 ShotParticle();
             }
-            
-            yield return new WaitForSeconds(waitTime);
-        }
 
+            yield return null; // or yield return new WaitForEndOfFrame(); if you want to sync with the end of the frame
+        }
     }
 
     private void ShotParticle()

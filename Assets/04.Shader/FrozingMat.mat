@@ -49,7 +49,7 @@ Material:
     - _Freezing: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sides: 3.5
+    - _Sides: 49.7272
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &6672407475631536712

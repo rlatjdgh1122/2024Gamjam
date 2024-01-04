@@ -13,6 +13,6 @@ public class UranusEvent : MonoBehaviour
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Uranus - 1);
         Debug.Log("다음 행성 : 천왕성");
-        UranusScreen.Instance.ice = true;
+        UranusScreen.Instance.Ice = true;
     }
 }

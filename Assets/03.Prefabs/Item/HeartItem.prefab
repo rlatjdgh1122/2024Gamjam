@@ -70,7 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 528f2d53042650547879ed52964363f1, type: 2}
     - target: {fileID: 919132149155446097, guid: 52de4add2ad16ab459b428eb2e76e4df, type: 3}
       propertyPath: m_Name
-      value: Heart 1
+      value: HeartItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52de4add2ad16ab459b428eb2e76e4df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,31 +24,27 @@ public class MarsAliens : MonoBehaviour
     private void Update()
     {
         distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
-
-        if(fireDistance > distanceToTarget && canshoot)
+        
+        if(canshoot)
         {
             StartCoroutine(EnemySpawn());
         }
     }
 
-    private void FixedUpdate()
-    {
-        dir = _target.position - _firePos.position;
-        Vector3 moveDir = new Vector3(dir.x, _firePos.position.y, dir.z);
-
-        Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 3);
-    }
-
     private IEnumerator EnemySpawn()
     {
+        float randomX = Random.Range(-30f, 30f);
+        float randomY = Random.Range(-15f, 15f);
+        float randomZ = Random.Range(30f, 120f);
+        float randomCool = Random.Range(0, 2f);
         Tomato bullet = PoolManager.Instance.Pop(_bullet.name) as Tomato;
+        Debug.Log(randomY); 
+
         bullet.transform.position = _firePos.position;
-        bullet.SetDir(dir.normalized);
+        bullet.SetDir(new Vector3(randomX, randomY, randomZ).normalized);
 
         canshoot = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(randomCool);
         canshoot = true;
     }
 

@@ -13,11 +13,17 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
-            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue) // 내구도 관련해서도 추가해야됨
+            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue || UranusScreen.Instance.IceDeath) // 내구도 관련해서도 추가해야됨
             {
                 isDie = true;
+                Debug.Log(isDie);
             }
             return isDie;
+        }
+
+        set
+        {
+            IsDie = value;
         }
     }
 
@@ -100,6 +106,20 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private PlayerDead _playerDead;
+    public PlayerDead GetPlayerDead
+    {
+        get
+        {
+            if (_playerDead == null)
+            {
+                //_buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
+                _playerDead = GameObject.FindObjectOfType<PlayerDead>();
+            }
+            return _playerDead;
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null)
@@ -108,6 +128,6 @@ public class PlayerManager : MonoBehaviour
         }
         Instance = this;
 
-        Player = GameObject.FindWithTag("Player");
+        Player = GameObject.Find("Player");
     }
 }
