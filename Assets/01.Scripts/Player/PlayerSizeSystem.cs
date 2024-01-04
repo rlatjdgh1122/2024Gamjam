@@ -13,6 +13,6 @@ public class PlayerSizeSystem : MonoBehaviour
 
     private void Update()
     {
-        sizeApplyObj.localScale = new Vector3(_durability.DurabilityValue, _durability.DurabilityValue, _durability.DurabilityValue);
+        sizeApplyObj.localScale = new Vector3(_durability.DurabilityValue + 0.4f, _durability.DurabilityValue + 0.4f, _durability.DurabilityValue + 0.4f);
     }
 }

@@ -20,7 +20,7 @@ public class SpeedUI : MonoBehaviour
         //if (!canSpeedText)
         //    _currentSpeed = Mathf.Lerp(_currentSpeed, PlayerManager.Instance.GetMoveToForward.MaxSpeed * 150 * 0.4f, Time.deltaTime * _speedChangeRate);
         if (canSpeedText)
-            _currentSpeed = Mathf.Lerp(_currentSpeed, PlayerManager.Instance.GetMoveToForward.MoveSpeed * 150, Time.deltaTime);
+            _currentSpeed = PlayerManager.Instance.GetMoveToForward.MoveSpeed * 150;
 
         if (_currentSpeed < PlayerManager.Instance.GetMoveToForward.MaxSpeed * 150 * 0.4f && !canSpeedText)
         {
@@ -32,7 +32,7 @@ public class SpeedUI : MonoBehaviour
             canSpeedText = true;
         }
 
-        _speedText.text = $"{_currentSpeed.ToString("N0")} km/s";
+        _speedText.text = $"{_currentSpeed.ToString("N0")} au/s";
     }
 
 }
