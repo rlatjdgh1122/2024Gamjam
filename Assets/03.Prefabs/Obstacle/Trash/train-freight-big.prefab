@@ -724,7 +724,7 @@ MonoBehaviour:
   MaxSize: 1.5
   MinSize: 1.5
   MaxSpeed: 3
-  _obstacleRadius: 20
+  _obstacleRadius: 50
   _obstacle:
     serializedVersion: 2
     m_Bits: 64

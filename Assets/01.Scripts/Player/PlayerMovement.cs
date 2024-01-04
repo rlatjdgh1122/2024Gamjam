@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,12 +7,32 @@ public class PlayerMovement : MonoBehaviour
     private int curTargetIdx = 0;
 
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float startSpeed = 30f;
     [SerializeField]
     public float rotateSpeed = 100f;
 
     private Transform visualTrm;
 
+    private float _speed = 0f;
+    public float MoveSpeed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+    private Coroutine setSpeed;
+    public void SetSpeed(float duration, float value)
+    {
+        if (setSpeed != null)
+            StopCoroutine(setSpeed);
+        setSpeed = StartCoroutine(SetSpeedCorou(duration, value));
+    }
+
+    private IEnumerator SetSpeedCorou(float duration, float value)
+    {
+        MoveSpeed = value;
+        yield return new WaitForSeconds(duration);
+        MoveSpeed = startSpeed;
+    }
     float horizontalInput;
     float verticalInput;
 
@@ -26,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         originQ = visualTrm.rotation;
+
+        MoveSpeed = startSpeed;
     }
 
     void Update()
@@ -35,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         // ¿Ãµø
         Vector3 moveDirection = new Vector3(horizontalInput, verticalInput, 0f).normalized;
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        transform.Translate(moveDirection * MoveSpeed * Time.deltaTime);
 
         Vector3 rotation = new Vector3(verticalInput, -horizontalInput, 0f) * rotateSpeed * Time.deltaTime;
         visualTrm.Rotate(rotation);

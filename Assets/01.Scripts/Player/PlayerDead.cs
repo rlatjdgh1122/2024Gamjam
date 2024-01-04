@@ -47,5 +47,7 @@ public class PlayerDead : MonoBehaviour
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
+
+        ScoreSystem.Instance.ScorePopUpOnOff();
     }
 }
