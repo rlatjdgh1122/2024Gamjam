@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSizeSystem : MonoBehaviour
 {
     private DurabilitySystem _durability;
-
+    public Transform sizeApplyObj;
     private void Awake()
     {
         _durability = GetComponent<DurabilitySystem>();
@@ -13,6 +13,6 @@ public class PlayerSizeSystem : MonoBehaviour
 
     private void Update()
     {
-        transform.localScale = new Vector3(_durability.DurabilityValue, _durability.DurabilityValue, _durability.DurabilityValue);
+        sizeApplyObj.localScale = new Vector3(_durability.DurabilityValue, _durability.DurabilityValue, _durability.DurabilityValue);
     }
 }

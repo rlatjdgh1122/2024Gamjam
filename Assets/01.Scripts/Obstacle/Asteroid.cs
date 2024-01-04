@@ -13,7 +13,7 @@ public class Asteroid : SpawnObstacle
     }
     public override void CollisonEvent(Collision player)
     {
-                if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //플레이어의 온도, 속도를 줄여주고 크기를 줄여줌
             //if (player.transform.root.TryGetComponent<PlayerManager>(out var Compo))
@@ -21,8 +21,8 @@ public class Asteroid : SpawnObstacle
                 //Compo.GetMoveToForward;
             }
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.2f);
-
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
+            Debug.Log(damage);
             //카메라 쉐이크
             PlayerFollowCam.Instance.ShakeTest();
 
