@@ -9,6 +9,7 @@ public class PlayerDead : MonoBehaviour
     [SerializeField] private float _shakeDelay;
     [SerializeField] private GameObject _visual;
 
+    public bool GameOver;
     private ParticleSystem _particleSystem;
     private ParticleSystem _explosionParticle;
 
@@ -23,7 +24,7 @@ public class PlayerDead : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerManager.Instance.IsDie && !GameManager.Instance.GameOver)
+        if (PlayerManager.Instance.IsDie && !GameOver)
         {
             _particleSystem.Stop();
 
@@ -33,7 +34,7 @@ public class PlayerDead : MonoBehaviour
 
     public void DeadImmedieatly()
     {
-        GameManager.Instance.GameOver = true;
+        GameOver = true;
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
@@ -41,11 +42,8 @@ public class PlayerDead : MonoBehaviour
 
     private IEnumerator PlayParticle()
     {
-        GameManager.Instance.GameOver = true;
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 0.5f;
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 1f;
+        GameOver = true;
+        yield return new WaitForSeconds(1f);
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
