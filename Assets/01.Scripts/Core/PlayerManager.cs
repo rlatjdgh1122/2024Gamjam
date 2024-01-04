@@ -13,17 +13,11 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
-            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue || UranusScreen.Instance.IceDeath) // 내구도 관련해서도 추가해야됨
+            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue || UranusScreen.Instance.IceDeath || GetDurabilitySystem.DurabilityValue <= 0.4f) // 내구도 관련해서도 추가해야됨
             {
                 isDie = true;
-                Debug.Log(isDie);
             }
             return isDie;
-        }
-
-        set
-        {
-            IsDie = value;
         }
     }
 
