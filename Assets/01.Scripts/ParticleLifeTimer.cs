@@ -20,6 +20,11 @@ public class ParticleLifeTimer : PoolableMono
         transform.position = trm.position;
         transform.localScale = new Vector3(size, size, size);
     }
+    public void Setting(Vector3 pos, float size)
+    {
+        transform.position = pos;
+        transform.localScale = new Vector3(size, size, size);
+    }
     public override void Init()
     {
         ps.time = 0f;
