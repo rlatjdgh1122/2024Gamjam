@@ -1,3 +1,5 @@
+using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +8,8 @@ public class Tomato : PoolableMono
 {
     [SerializeField] float speed = 5f;
 
-    Rigidbody _rigidbody;
-
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     IEnumerator DestroyTomato()
@@ -23,19 +22,34 @@ public class Tomato : PoolableMono
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-3);
             Debug.Log("플레이어 충돌처리 해라");
         }
-        PoolManager.Instance.Push(this);
+        //PoolManager.Instance.Push(this);
     }
 
     public override void Init()
     {
-
+        
     }
 
-    public void SetDir(Vector3 dir)
+    public IEnumerator SetDir(Vector3 dir)
     {
-        _rigidbody.velocity = dir * speed;
-        StartCoroutine(DestroyTomato());
+        float elapsedTime = 0;
+
+        Vector3 startPos = transform.position;
+
+        float randomDistance = Random.Range(300, 1000);
+
+        float startTime = Time.time;
+
+        while (Time.time - startTime < 5f)
+        {
+            float t = (Time.time - startTime) / 5f;
+            transform.position = Vector3.Lerp(startPos, dir * randomDistance, t);
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        //StartCoroutine(DestroyTomato());
     }
 }
