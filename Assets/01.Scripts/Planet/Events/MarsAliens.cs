@@ -4,27 +4,16 @@ using UnityEngine;
 
 public class MarsAliens : MonoBehaviour
 {
-    private Transform _target;
     [SerializeField] Transform _firePos;
     [SerializeField] Tomato _bullet;
-    private float distanceToTarget;
 
     [SerializeField]
     private float fireDistance;
 
-    private Vector3 dir;
-
     private bool canshoot = true;
-
-    private void Start()
-    {
-        _target = PlayerManager.Instance.Player.transform;
-    }
 
     private void Update()
     {
-        distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
-        
         if(canshoot)
         {
             StartCoroutine(EnemySpawn());
