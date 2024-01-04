@@ -28,7 +28,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SPACEALTERNATIVE_0
+  m_Name: Press_Space_Anim
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
