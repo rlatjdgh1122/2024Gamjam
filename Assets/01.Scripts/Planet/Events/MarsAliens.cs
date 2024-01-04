@@ -10,6 +10,9 @@ public class MarsAliens : MonoBehaviour
     private float distanceToTarget;
 
     [SerializeField]
+    private float _attackSpeed;
+
+    [SerializeField]
     private float fireDistance;
 
     private Vector3 dir;
@@ -48,7 +51,7 @@ public class MarsAliens : MonoBehaviour
         bullet.SetDir(dir.normalized);
 
         canshoot = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_attackSpeed);
         canshoot = true;
     }
 
