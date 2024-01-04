@@ -12,6 +12,11 @@ public class MarsAliens : MonoBehaviour
 
     int cnt = 0;
 
+    [Header("RandomVec")]
+    [SerializeField] float xMin, xMax;
+    [SerializeField] float yMin, yMax;
+    [SerializeField] float zMin, zMax;
+
     private bool canshoot = true;
     private bool canshoot2
     {
@@ -37,9 +42,9 @@ public class MarsAliens : MonoBehaviour
     private IEnumerator EnemySpawn()
     {
         cnt++;
-        float randomX = Random.Range(-30f, 30f);
-        float randomY = Random.Range(-15f, 15f);
-        float randomZ = Random.Range(30f, 120f);
+        float randomX = Random.Range(xMin, xMax);
+        float randomY = Random.Range(yMin, yMax);
+        float randomZ = Random.Range(zMin, zMax);
         Tomato bullet = PoolManager.Instance.Pop(_bullet.name) as Tomato;
 
         bullet.transform.position = _firePos.position;

@@ -18,19 +18,24 @@ public class Tomato : PoolableMono
         PoolManager.Instance.Push(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-3);
+            Debug.Log("EHd");
+            SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
+            PlayerManager.Instance.GetMoveToForward.ApplySpeed(1);
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.05f);
+            PlayerFollowCam.Instance.ShakeTest();
             Debug.Log("플레이어 충돌처리 해라");
         }
-        //PoolManager.Instance.Push(this);
+
+        PoolManager.Instance.Push(this);
     }
 
     public override void Init()
     {
-        
+
     }
 
     public IEnumerator SetDir(Vector3 dir)
@@ -41,15 +46,14 @@ public class Tomato : PoolableMono
 
         float randomDistance = Random.Range(300, 1000);
 
-        float startTime = Time.time;
-
-        while (Time.time - startTime < 5f)
+        while (elapsedTime < 5f)
         {
-            float t = (Time.time - startTime) / 5f;
-            transform.position = Vector3.Lerp(startPos, dir * randomDistance, t);
-            yield return null; // 다음 프레임까지 대기
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / 5f;
+            transform.position = Vector3.Lerp(startPos, startPos + (dir * randomDistance), t);
+            yield return null;
         }
 
-        //StartCoroutine(DestroyTomato());
+        StartCoroutine(DestroyTomato());
     }
 }
