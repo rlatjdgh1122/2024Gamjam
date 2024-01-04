@@ -28,9 +28,12 @@ public class DurabilitySystem : MonoBehaviour
         }
     }
 
+    public float MaxValue => maxValue;
+    public float FirstSettingValue => firstSettingValue;
     private void Start()
     {
         durabilityValue = firstSettingValue;
+
     }
 
     public void ChangeValue(float decreaseValue)

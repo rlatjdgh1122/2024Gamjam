@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
             }
             return isDie;
         }
+        set { isDie = value; }
     }
 
     private PlayerMovement _playerMovement;

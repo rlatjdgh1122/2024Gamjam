@@ -18,19 +18,25 @@ public class Tomato : PoolableMono
         PoolManager.Instance.Push(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-3);
-            Debug.Log("ÇÃ·¹ÀÌ¾î Ãæµ¹Ã³¸® ÇØ¶ó");
+            Debug.Log("EHd");
+            SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
+            PlayerManager.Instance.GetMoveToForward.ApplySpeed(1);
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.05f);
+            PlayerFollowCam.Instance.ShakeTest();
+            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½æµ¹Ã³ï¿½ï¿½ ï¿½Ø¶ï¿½");
+
+            PoolManager.Instance.Push(this);
         }
-        //PoolManager.Instance.Push(this);
+
     }
 
     public override void Init()
     {
-        
+
     }
 
     public IEnumerator SetDir(Vector3 dir)
@@ -39,17 +45,16 @@ public class Tomato : PoolableMono
 
         Vector3 startPos = transform.position;
 
-        float randomDistance = Random.Range(300, 1000);
+        float randomDistance = 10;
 
-        float startTime = Time.time;
-
-        while (Time.time - startTime < 5f)
+        while (elapsedTime < 5f)
         {
-            float t = (Time.time - startTime) / 5f;
-            transform.position = Vector3.Lerp(startPos, dir * randomDistance, t);
-            yield return null; // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / 5f;
+            transform.position = Vector3.Lerp(startPos, startPos + (dir * randomDistance), t);
+            yield return null;
         }
 
-        //StartCoroutine(DestroyTomato());
+        StartCoroutine(DestroyTomato());
     }
 }

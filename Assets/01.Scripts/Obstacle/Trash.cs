@@ -22,7 +22,7 @@ public class Trash : SpawnObstacle
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
             Debug.Log(damage);
 
-            PlayerFollowCam.Instance.ShakeCam(.3f, 1f);
+            PlayerFollowCam.Instance.ShakeTest();
 
             if (_particle != null)
             {

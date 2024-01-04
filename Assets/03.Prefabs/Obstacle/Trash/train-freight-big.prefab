@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934d61260366c6c49963ca9908c15782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDamage: 0.05
+  MaxDamage: 0.15
   MaxLowerTem: 3
   MaxLowerSpeed: 3
   MaxSize: 4.5
@@ -730,7 +730,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   CanSpawn: 0
-  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}
+  _particle: {fileID: 7819537172089260424, guid: 632f6f8ab7bcd52488c315cfaad4e18f, type: 3}
 --- !u!65 &8603025103951386655
 BoxCollider:
   m_ObjectHideFlags: 0
