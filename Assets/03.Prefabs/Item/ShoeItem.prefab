@@ -233,14 +233,15 @@ MonoBehaviour:
   MaxDamage: 3
   MaxLowerTem: 3
   MaxLowerSpeed: 3
-  MaxSize: 3
-  MinSize: 1
+  MaxSize: 0.5
+  MinSize: 0.5
   MaxSpeed: 0
+  rotateSpeed: 0
   _obstacleRadius: 0
   _obstacle:
     serializedVersion: 2
     m_Bits: 0
   CanSpawn: 0
   duration: 3
-  value: 1000
+  value: 100
   _particle: {fileID: 0}
