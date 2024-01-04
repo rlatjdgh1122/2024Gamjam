@@ -4,6 +4,13 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
+public class ETCClass
+{
+    public float radius;
+    public Transform objPos;
+    public SpawnObstacle obj;
+}
+[System.Serializable]
 public class Setting
 {
     public PlanetEnum type;
@@ -16,7 +23,7 @@ public class Setting
     public List<SpawnObstacle> asteroidLists = new();
     public int trashCount;
     public List<SpawnObstacle> trashLists = new();
-    public List<GameObject> etcLists = new(); //예) 비행기, 블랙홀 등
+    public List<ETCClass> etcLists = new(); //예) 비행기, 블랙홀 등
 }
 public class SpawnManager : MonoBehaviour
 {
@@ -25,7 +32,7 @@ public class SpawnManager : MonoBehaviour
     public List<Setting> settings = new(); //행성들마다 생성
     public Dictionary<PlanetEnum, Setting> planetListDic = new(); //저장
     public Dictionary<PlanetEnum, List<SpawnObstacle>> dummyObjDic = new();
-    private Dictionary<PlanetEnum, List<GameObject>> etcObjDic = new(); //이전 스폰된 오브젝트를 지워줌
+    private Dictionary<PlanetEnum, List<ETCClass>> etcObjDic = new(); //이전 스폰된 오브젝트를 지워줌
 
     private PlanetEnum curType = PlanetEnum.Neptune;
     private void Awake()
@@ -44,7 +51,7 @@ public class SpawnManager : MonoBehaviour
         {
             planetListDic.Add(type, settings[idx++]);
             dummyObjDic.Add(type, new List<SpawnObstacle>());
-            etcObjDic.Add(type, new List<GameObject>());
+            etcObjDic.Add(type, new List<ETCClass>());
         }
 
         Init();
@@ -101,7 +108,13 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0; i < etcList.Count; i++)
         {
-            etcList[i].gameObject.SetActive(true);
+            var item = etcList[i];
+            var name = item.obj.name;
+            var pos = item.objPos.position + Random.insideUnitSphere * item.radius;
+
+            var obj = PoolManager.Instance.Pop(name) as SpawnObstacle;
+            obj.Spawn(pos);
+
             etcObjDic[planet].Add(etcList[i]);
         }
     }
@@ -118,7 +131,7 @@ public class SpawnManager : MonoBehaviour
 
         foreach (var obj in etcObjDic[plent])
         {
-            Destroy(obj);
+            PoolManager.Instance.Push(obj.obj);
         }
         etcObjDic[plent].Clear();
     }

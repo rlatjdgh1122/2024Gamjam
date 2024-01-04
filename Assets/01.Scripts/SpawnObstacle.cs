@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class SpawnObstacle : PoolableMono
+public abstract class SpawnObstacle : ETC
 {
-    public readonly int MaxDamage = 3;
-    public readonly int MaxLowerTem = 3;
-    public readonly int MaxLowerSpeed = 3;
-    public readonly int MaxSize = 8;
-    public readonly int MinSize = 3;
+
     [Header("플레이어에게 영향을 줄 스탯")]
+
     //크기가 크면 크기를 많이 줄여주고 온도를 많이 낮줘줌
-    public int damage = 3; //플레이어의 크기를 얼마나 줄여줄지
-    public int lowerTem = 3; //플레이어의 온도를 얼마나 낮춰줄건지
-    public int lowerSpeed = 3; //플레이어의 속도를 얼마나 낮춰줄건지
-    public int maxSize = 5;
+    public float MaxDamage = 3; //플레이어의 크기를 얼마나 줄여줄지
+    public int MaxLowerTem = 3; //플레이어의 온도를 얼마나 낮춰줄건지
+    public int MaxLowerSpeed = 3; //플레이어의 속도를 얼마나 낮춰줄건지
+    public int MaxSize = 8;
+    public int MinSize = 3;
+
+    protected float size = 0f;
+
+    protected float damage = 3;
+    protected int lowerTem = 3;
+    protected int lowerSpeed = 3;
+    protected int maxSize = 5;
 
     [Header("내 스탯")]
     public int MaxSpeed; //움직임의 속도
@@ -31,7 +36,6 @@ public abstract class SpawnObstacle : PoolableMono
 
     public bool CanSpawn;
 
-    protected float size = 0f;
     protected virtual void Start()
     {
         var rb = GetComponent<Rigidbody>();
@@ -43,7 +47,7 @@ public abstract class SpawnObstacle : PoolableMono
         size = Random.Range(MinSize, MaxSize);
         transform.localScale = new Vector3(size, size, size);
 
-        damage = (int)size * MaxDamage;
+        damage = (int)size * (MaxDamage / MaxSize);
         lowerTem = (int)size * MaxLowerTem;
         lowerSpeed = (int)size * MaxLowerSpeed * 3;
     }

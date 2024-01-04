@@ -498,7 +498,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 622133290, guid: 807bf18e598b97a4198514a0acbf410e, type: 3}
+  m_Sprite: {fileID: 199608238, guid: 7f827a54f6ca6b34f9e33b310354a0db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -722,6 +722,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAdaptationTime: 3
+  zoominDelay: 0.5
+  adaptationLensValue: 80
+  apdaptationSpeedEffectPos: {x: 0, y: 0, z: 0}
+  minLensValue: 65
+  maxLensValue: 82
+  zoomoutDelay: 1
+  zoomoutSpeedEffectPos: {x: 0, y: 0, z: 0}
+  baseSpeedEffectPos: {x: 0, y: 0, z: 0}
   followCamFOVMultipleValue: 2
   totalMultipleValue: 0
 --- !u!114 &1316521302

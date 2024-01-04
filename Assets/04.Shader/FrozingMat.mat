@@ -46,10 +46,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Emission: 0.6
-    - _Freezing: 1
+    - _Freezing: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sides: 50
+    - _Sides: 3.5
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &6672407475631536712
