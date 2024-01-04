@@ -14,8 +14,7 @@ public enum DieReasonType
     HitMoonMan,
     HitEarth,
     FireDead,
-    SmalleDead,
-    FallInLove
+    SmalleDead
     //»´µû±¸ Ã³¸Â±â¶û »ç±Í´Â°Å Ãß°¡ ÇØ¾ß´ï¤¤
 }
 
@@ -47,12 +46,17 @@ public class DieReasonUI : MonoBehaviour
         {
             _dieReasonDic.Add(dieReason, _dieReasonInfoList[idx++]);
         }
+    }
 
+    private void Start()
+    {
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void UpdateIMG(DieReasonType dieReason)
     {
+        _canvasGroup.DOFade(1, 1f);
+
         try
         {
             dieReasonIMG.sprite = _dieReasonDic[dieReason].DieReasonIMG;
@@ -62,7 +66,5 @@ public class DieReasonUI : MonoBehaviour
         {
             Debug.LogError("Cant Change Die ReasonInfo Sprite");
         }
-
-        _canvasGroup.DOFade(1, 1f);
     }
 }

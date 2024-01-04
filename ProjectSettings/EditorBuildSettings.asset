@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Ohjunsun/IntroScene.unity
     guid: c0c6069596ebef9478011e09ba1dd2ee
+  - enabled: 1
+    path: Assets/00.Scenes/IntroStory.unity
+    guid: fdbc2d8f2df893e40a2ee63469e2bca8
   m_configObjects: {}

@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +35,7 @@ public class PlayerDead : MonoBehaviour
     public void DeadImmedieatly()
     {
         GameOver = true;
+        SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
@@ -47,20 +47,12 @@ public class PlayerDead : MonoBehaviour
     {
         GameOver = true;
         yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
         PlayerFollowCam.Instance.ShakeCam(1f, 30);
         _visual.SetActive(false);
         _explosionParticle.Play();
-        
+        PlayerManager.Instance.GetMoveToForward.MoveSpeed = 0;
         PlayerManager.Instance.GetMoveToForward.IsSpeed = false;
-
-        yield return new WaitForSeconds(2f);
-        //ScoreSystem.Instance.ScorePopUpOnOff();
-        yield return new WaitForSeconds(1f);
-        DOTween.To(() => GameManager.Instance.TimeI, s => GameManager.Instance.TimeI = s, 0, 3f);
-        yield return new WaitForSeconds(2f);
-        DOTween.To(() => PlayerManager.Instance.GetDurabilitySystem.DurabilityValue, s => PlayerManager.Instance.GetDurabilitySystem.DurabilityValue = s, 0, 3f);
-        yield return new WaitForSeconds(2f);
-        DOTween.To(() => PlayerManager.Instance.GetMoveToForward.MoveSpeed, s => PlayerManager.Instance.GetMoveToForward.MoveSpeed = s, 0, 3f);
         Invoke("ShowPanel", 1.5f);
     }
 

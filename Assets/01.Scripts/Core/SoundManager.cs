@@ -36,6 +36,8 @@ public class SoundManager : MonoBehaviour
 
         Instance = this;
 
+        DontDestroyOnLoad(this);
+
         _bgmPlayer = transform.Find("BGMPlayer").GetComponent<AudioSource>();
         _sfxPlayer = transform.Find("SFXPlayer").GetComponent<AudioSource>();
 

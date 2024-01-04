@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,28 +10,26 @@ public class DurabilityUI : MonoBehaviour
 
     bool dead = false;
 
+    Sequence fillSeq;
+
     private void Awake()
     {
         _fill = GetComponent<Image>();
+        fillSeq = DOTween.Sequence();
     }
 
     public void IncreaseValue()
     {
-        _fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue * 0.75f, 0.75f);
+        fillSeq.Append(_fill.DOFillAmount(PlayerManager.Instance.GetDurabilitySystem.DurabilityValue * 0.75f, 0.75f));
     }
 
     private void Update()
     {
         if (PlayerManager.Instance.IsDie && !dead)
         {
+            fillSeq.Kill();
+            fillSeq.Append(_fill.DOFillAmount(0, 0.5f));
             dead = true;
-            StartCoroutine(UnFillCorou());
         }
-    }
-
-    private IEnumerator UnFillCorou()
-    {
-        yield return new WaitForSeconds(5f);
-        _fill.DOFillAmount(0, 2f);
     }
 }

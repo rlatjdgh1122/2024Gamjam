@@ -32,6 +32,7 @@ public class MoonMan : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) <= 1000f && !isReady)
         {
             StartCoroutine(PunchCoroutine());
+            SoundManager.Instance.PlaySFXSound(SFX.MoonMan);
             isReady = true;
         }
 

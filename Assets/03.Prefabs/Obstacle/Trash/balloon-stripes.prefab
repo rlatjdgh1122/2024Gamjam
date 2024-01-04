@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668707536655408596}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79479966ed920fa469777515cd73e750, type: 2}
+  - {fileID: 2100000, guid: fc01ece84ec843b4f8eb38a680256561, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,12 +150,13 @@ MonoBehaviour:
   MaxDamage: 0.03
   MaxLowerTem: 3
   MaxLowerSpeed: 3
-  MaxSize: 1
-  MinSize: 1
+  MaxSize: 4
+  MinSize: 4
   MaxSpeed: 3
+  rotateSpeed: 0
   _obstacleRadius: 20
   _obstacle:
     serializedVersion: 2
     m_Bits: 64
   CanSpawn: 0
-  _particle: {fileID: 0}
+  _particle: {fileID: 8536714032781938505, guid: 805e572aa7d9930438f9ffe6d2099456, type: 3}
