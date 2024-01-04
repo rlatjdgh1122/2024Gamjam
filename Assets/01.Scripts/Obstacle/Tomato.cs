@@ -2,36 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomato : MonoBehaviour
+public class Tomato : PoolableMono
 {
     [SerializeField] float speed = 5f;
 
-    Vector3 dir;
-    GameObject target;
+    Rigidbody _rigidbody;
+    Vector3 _dir;
 
-    private void Start()
+    private void Awake()
     {
-        target = GameObject.Find("Target");
-        dir = target.transform.position - transform.position;
-    }
-
-    private void Update()
-    {
-        transform.position += dir * speed * Time.deltaTime;
-        StartCoroutine(DestroyTomato());
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     IEnumerator DestroyTomato()
     {
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(30f);
+        PoolManager.Instance.Push(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject == target)
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("충돌");
+            Debug.Log("플레이어 충돌처리 해라");
         }
+        PoolManager.Instance.Push(this);
+    }
+
+    public override void Init()
+    {
+
+    }
+
+    public void SetDir(Vector3 dir)
+    {
+        _dir = dir;
+        _rigidbody.velocity = dir * speed;
+        StartCoroutine(DestroyTomato());
     }
 }

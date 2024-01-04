@@ -1972,10 +1972,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c37f33007bec1429a13935b4b1f878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  FirePos: {fileID: 983221599933924521}
-  Bullet: {fileID: 7664131833674802101, guid: 48841a4659d90b64e8ef9555bdc5a3f6, type: 3}
-  TargetDistance: 100
+  _firePos: {fileID: 983221599933924521}
+  _bullet: {fileID: 2393592742877352735, guid: 48841a4659d90b64e8ef9555bdc5a3f6, type: 3}
+  fireDistance: 312.89
 --- !u!1 &8744578166762147964
 GameObject:
   m_ObjectHideFlags: 0
