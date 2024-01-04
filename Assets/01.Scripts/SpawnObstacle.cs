@@ -13,8 +13,8 @@ public abstract class SpawnObstacle : ETC
     public float MaxDamage = 3; //플레이어의 크기를 얼마나 줄여줄지
     public int MaxLowerTem = 3; //플레이어의 온도를 얼마나 낮춰줄건지
     public int MaxLowerSpeed = 3; //플레이어의 속도를 얼마나 낮춰줄건지
-    public int MaxSize = 8;
-    public int MinSize = 3;
+    public float MaxSize = 8;
+    public float MinSize = 3;
 
     protected float size = 0f;
 

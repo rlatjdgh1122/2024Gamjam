@@ -1,7 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,12 +45,16 @@ public class PlayerMovement : MonoBehaviour
             visualTrm.rotation = Quaternion.Lerp(visualTrm.rotation, originQ, Time.deltaTime);
         }
 
-        if (curTargetIdx <= 5)
+        if (curTargetIdx <= 6)
         {
             if (-1 * (transform.position.z - Target[curTargetIdx].transform.position.z) < 10f) //높이만 거리를 잼
             {
                 //Debug.Log(curTargetIdx);
                 var type = (int)PlanetEnum.Neptune - curTargetIdx;
+                if (type == -1)
+                {
+                    type = (int)PlanetEnum.EarthCloser;
+                }
                 PlanetEventManager.Instance.InvokePlanetEventHandler((PlanetEnum)type);
                 ++curTargetIdx;
             }
