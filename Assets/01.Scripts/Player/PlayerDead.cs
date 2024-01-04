@@ -31,6 +31,14 @@ public class PlayerDead : MonoBehaviour
         }
     }
 
+    public void DeadImmedieatly()
+    {
+        GameManager.Instance.GameOver = true;
+        PlayerFollowCam.Instance.ShakeCam(1f, 30);
+        _visual.SetActive(false);
+        _explosionParticle.Play();
+    }
+
     private IEnumerator PlayParticle()
     {
         GameManager.Instance.GameOver = true;

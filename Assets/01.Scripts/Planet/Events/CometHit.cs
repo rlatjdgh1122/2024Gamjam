@@ -20,6 +20,10 @@ public class CometHit : MonoBehaviour
     private float _clearTime = 7f;
     private float _currentTime = 0;
 
+    float originSpeed;
+    bool isEnd = false;
+    bool checkSpeed = false;
+
     //private Sequence _seq;
 
     private void Awake()
@@ -31,30 +35,26 @@ public class CometHit : MonoBehaviour
 
     private void Start()
     {
-        _pluto = GameObject.Find("Target");
+        _pluto = FindObjectOfType<PlayerMovement>().gameObject;
     }
 
     private void Update()
     {
         _plutoDis = Vector3.Distance(transform.position, _pluto.transform.position);
         
-        if (_plutoDis < 10f)
+        if (_plutoDis <= 500f)
         {
+            if (!checkSpeed)
+            {
+                originSpeed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
+                checkSpeed = true; 
+            }
+            PlayerManager.Instance.GetMoveToForward.IsSpeed = false;
+            PlayerManager.Instance.GetMoveToForward.MoveSpeed = 0;
             transform.DOScale(_maxSize, _duration);
             _pressCanvas.SetActive(true);
 
-            //_seq.Append(_pressText.DOFade(0, 0.5f))
-            //    .Append(_pressText.DOFade(1, 0.5f));
-
-            _pressText.DOFade(0, 0.5f).OnComplete(() =>
-            {
-                _pressText.DOFade(1, 0.5f).OnComplete(() =>
-                {
-                    _pressText.DOKill();
-                });
-            }); 
             
-
             FastTyping();
         }
     }
@@ -78,19 +78,25 @@ public class CometHit : MonoBehaviour
         }
         else
         {
-            GameOver();
+            if (!isEnd)
+            {
+                GameOver();
+                isEnd = true;
+            }
         }
     }
 
     void ClearGame()
     {
-        //내용을 채우시오~
-        Debug.Log("게임 클리어!");
+        transform.DOScale(0, _duration);
+        PlayerManager.Instance.GetMoveToForward.MoveSpeed = originSpeed;
+        PlayerManager.Instance.GetMoveToForward.IsSpeed = true;
+        _pressCanvas.SetActive(false);
+        enabled = false;
     }
 
     void GameOver()
     {
-        //내용을 채우시오~
-        Debug.Log("게임 오버!");
+        PlayerManager.Instance.GetPlayerDead.DeadImmedieatly();
     }
 }

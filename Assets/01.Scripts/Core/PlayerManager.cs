@@ -19,6 +19,11 @@ public class PlayerManager : MonoBehaviour
             }
             return isDie;
         }
+
+        set
+        {
+            IsDie = value;
+        }
     }
 
     private PlayerMovement _playerMovement;
@@ -97,6 +102,20 @@ public class PlayerManager : MonoBehaviour
                 _buringSystem = GameObject.FindObjectOfType<BurningSystem>();
             }
             return _buringSystem;
+        }
+    }
+
+    private PlayerDead _playerDead;
+    public PlayerDead GetPlayerDead
+    {
+        get
+        {
+            if (_playerDead == null)
+            {
+                //_buringSystem = Player.transform.Find("Visual/Hips").GetComponent<BuringSystem>();
+                _playerDead = GameObject.FindObjectOfType<PlayerDead>();
+            }
+            return _playerDead;
         }
     }
 
