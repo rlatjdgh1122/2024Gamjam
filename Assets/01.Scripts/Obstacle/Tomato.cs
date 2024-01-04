@@ -35,7 +35,7 @@ public class Tomato : PoolableMono
 
     public void SetDir(Vector3 dir)
     {
-        _rigidbody.velocity = dir * speed;
+        _rigidbody.AddForce(dir * speed, ForceMode.Impulse);
         StartCoroutine(DestroyTomato());
     }
 }

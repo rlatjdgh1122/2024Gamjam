@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class BurningSystem : MonoBehaviour
 {
-    private bool wasDetectLastFrame = true;
-    private bool IsDetectObstacle;
-
     public bool CanFire = false;
 
     [SerializeField]
@@ -18,11 +15,9 @@ public class BurningSystem : MonoBehaviour
     private float overlapSphereRadius;
 
     [SerializeField]
-    private float firstSettingValue = 0.5f;
+    private float settingValue = 0.5f;
     [SerializeField]
     private float increaseValue;
-    [SerializeField]
-    private float waitTime;
     [SerializeField]
     private float maxBurningValue = 2;  
     public float MaxBurningValue => maxBurningValue;
@@ -42,31 +37,29 @@ public class BurningSystem : MonoBehaviour
         private set { }
     }
 
-    private Coroutine burningCoroutine = null;
+    float timer = 0;
+
+    [SerializeField] private float _effectTimer = 0.5f;
+    private float _increaseValue = 0;
 
     private void Update()
     {
 
         if (CanFire)
         {
-            if (wasDetectLastFrame && !IsDetectObstacle)
+            burningValue = PlayerManager.Instance.GetMoveToForward.MoveSpeed * 0.03f;
+            _increaseValue += Time.deltaTime * settingValue;
+
+            if (timer >= _effectTimer)
             {
-                burningCoroutine = StartCoroutine(BuringCorou());
+                ShotParticle(_increaseValue);
+                timer = 0;
             }
 
-            if (IsDetectObstacle && burningCoroutine != null)
-            {
-                StopCoroutine(burningCoroutine);
-            }
-
-            wasDetectLastFrame = IsDetectObstacle;
-            if (IsDetectObstacle)
-            {
-                IsDetectObstacle = false;
-            }
+            timer += Time.deltaTime * increaseValue;
         }
 
-        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= (PlayerManager.Instance.GetMoveToForward.MaxSpeed * 0.7f))
+        if (PlayerManager.Instance.GetMoveToForward.MoveSpeed >= (PlayerManager.Instance.GetMoveToForward.MaxSpeed * 0.6f))
         {
             CanFire = true;
         }
@@ -76,47 +69,17 @@ public class BurningSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator BuringCorou()
-    {
-        float elapsedTime = 0f;
-
-        while (burningValue <= maxBurningValue)
-        {
-            elapsedTime += Time.deltaTime;
-
-            burningValue += increaseValue * Time.deltaTime;
-
-            if (canShotParticle)
-            {
-                ShotParticle();
-            }
-
-            yield return null; // or yield return new WaitForEndOfFrame(); if you want to sync with the end of the frame
-        }
-    }
-
-    private void ShotParticle()
+    private void ShotParticle(float value)
     {
         PoolAbleParticle particle = PoolManager.Instance.Pop(fireParticle.name) as PoolAbleParticle;
         _fireParticleList.Add(particle.GetComponent<ParticleSystem>());
         particle.gameObject.transform.SetParent(transform, false);
-        particle.SetStartLifetime(burningValue * firstSettingValue);
+        particle.SetStartLifetime(value);
     }
 
-    public void DecreaseBurningValue(float minusValue)
+    public void DecreaseBurningValue()
     {
-        burningValue -= minusValue;
-        for(int i = 0; i < _fireParticleList.Count; i++)
-        {
-            _fireParticleList[i]?.Stop();
-        }
-        _fireParticleList.Clear();
-        canShotParticle = false;
-    }
-
-    public void SetDetectObstacle()
-    {
-        IsDetectObstacle = true;
+        _increaseValue = 0;
     }
 
     public void SetShotParticle()

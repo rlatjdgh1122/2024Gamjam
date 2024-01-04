@@ -25,7 +25,7 @@ public class Asteroid : SpawnObstacle
 
             float decreaseValue = PlayerManager.Instance.GetBuringSystem.BurningValue /
                                   (PlayerManager.Instance.GetMoveToForward.MoveSpeed / lowerSpeed);
-            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue);
+            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue();
 
             PlayerFollowCam.Instance.ShakeTest();
             var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
