@@ -7,7 +7,6 @@ public class Tomato : PoolableMono
     [SerializeField] float speed = 5f;
 
     Rigidbody _rigidbody;
-    Vector3 _dir;
 
     private void Awake()
     {
@@ -36,7 +35,6 @@ public class Tomato : PoolableMono
 
     public void SetDir(Vector3 dir)
     {
-        _dir = dir;
         _rigidbody.velocity = dir * speed;
         StartCoroutine(DestroyTomato());
     }
