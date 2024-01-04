@@ -9,7 +9,7 @@ public class UranusObjstacle : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-Random.Range(.05f,.15f));
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-Random.Range(.05f,.75f));
             PlayerFollowCam.Instance.ShakeTest();
         }
     }

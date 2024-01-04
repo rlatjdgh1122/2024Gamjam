@@ -28,9 +28,10 @@ public class Tomato : PoolableMono
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.05f);
             PlayerFollowCam.Instance.ShakeTest();
             Debug.Log("�÷��̾� �浹ó�� �ض�");
+
+            PoolManager.Instance.Push(this);
         }
 
-        PoolManager.Instance.Push(this);
     }
 
     public override void Init()
