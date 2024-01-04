@@ -48,7 +48,6 @@ public class BurningSystem : MonoBehaviour
 
         if (CanFire)
         {
-            SoundManager.Instance.PlaySFXSound(SFX.Fire);
             burningValue = PlayerManager.Instance.GetMoveToForward.MoveSpeed * 0.03f;
             _increaseValue += Time.deltaTime * settingValue;
 

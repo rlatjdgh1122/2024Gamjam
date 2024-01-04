@@ -128,8 +128,8 @@ MonoBehaviour:
   MaxDamage: 0.05
   MaxLowerTem: 3
   MaxLowerSpeed: 3
-  MaxSize: 5
-  MinSize: 5
+  MaxSize: 9
+  MinSize: 9
   MaxSpeed: 3
   rotateSpeed: 25
   _obstacleRadius: 0

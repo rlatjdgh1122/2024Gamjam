@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DurabilitySystem : MonoBehaviour
@@ -39,5 +40,13 @@ public class DurabilitySystem : MonoBehaviour
     {
         DOTween.To(() => DurabilityValue, x => DurabilityValue = x, DurabilityValue + decreaseValue, 1.0f).SetEase(Ease.OutQuart);
         _duabilityUI.IncreaseValue();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            ChangeValue(3);
+        }
     }
 }
