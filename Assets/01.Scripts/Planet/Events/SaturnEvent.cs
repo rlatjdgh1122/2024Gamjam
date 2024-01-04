@@ -13,7 +13,7 @@ public class SaturnEvent : MonoBehaviour
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Saturn - 1);
         Debug.Log("다음 행성 : 토성");
-        UranusScreen.Instance.ice = false;
+        UranusScreen.Instance.Ice = false;
 
     }
 }

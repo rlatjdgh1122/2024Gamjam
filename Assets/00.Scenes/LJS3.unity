@@ -17012,6 +17012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a277a5ee5650f4c9d2fb9e515151f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeApplyObj: {fileID: 0}
 --- !u!114 &342380609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27611,6 +27612,55 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &424146683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424146685}
+  - component: {fileID: 424146684}
+  m_Layer: 0
+  m_Name: Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &424146684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424146683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef70e1660d85b4f43be95ed42ed292ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _burningSystem: {fileID: 0}
+  _iceMat: {fileID: 2100000, guid: 8f8ba0aec0bc9c54ab583f4996f90561, type: 2}
+  _iceSpeed: 3
+  Ice: 0
+  IceDeath: 0
+--- !u!4 &424146685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424146683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426267669
 GameObject:
   m_ObjectHideFlags: 0
@@ -42957,11 +43007,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ebeb1c716e5e41bfb9d1c26d8b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAdaptationTime: 3
+  zoominDelay: 0.5
+  adaptationLensValue: 80
+  apdaptationSpeedEffectPos: {x: 0, y: 0, z: 0}
   minLensValue: 65
   maxLensValue: 90
+  zoomoutDelay: 1
   zoomoutSpeedEffectPos: {x: 0, y: 0, z: 7}
   baseSpeedEffectPos: {x: 0, y: 0, z: 15}
-  zoomDelay: 1
   followCamFOVMultipleValue: 2
   totalMultipleValue: 0
 --- !u!114 &557206034
@@ -120270,10 +120324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef70e1660d85b4f43be95ed42ed292ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _burningSystem: {fileID: 0}
   _iceMat: {fileID: 2100000, guid: 8f8ba0aec0bc9c54ab583f4996f90561, type: 2}
   _iceSpeed: 5
-  _temperature: 0
-  ice: 0
+  Ice: 0
+  IceDeath: 0
 --- !u!1 &1580151618
 GameObject:
   m_ObjectHideFlags: 0
@@ -167152,3 +167207,4 @@ SceneRoots:
   - {fileID: 1543465193}
   - {fileID: 1774646543}
   - {fileID: 1756723821}
+  - {fileID: 424146685}

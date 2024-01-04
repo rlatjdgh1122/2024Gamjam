@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class UranusScreen : MonoBehaviour
 {
-    [SerializeField] private Material _iceMat;
-    [SerializeField] private float _iceSpeed;
-    public float Temperature { get; private set; }
-
     public static UranusScreen Instance;
 
-    private float _maxValue = 50;
+    [SerializeField] private BurningSystem _burningSystem;
+    [SerializeField] private Material _iceMat;
+    [SerializeField] private float _iceSpeed;
 
-    public bool ice = false;
+    public bool CanFire;
+
+    public float Temperature { get; private set; }
+    public bool Ice = false;
+    public bool IceDeath = false;
+
+    private float _maxValue = 50;
 
     private void Awake()
     {
@@ -23,22 +27,29 @@ public class UranusScreen : MonoBehaviour
         _iceMat.SetInt("_Freezing", 0);
     }
 
-    public void ResetProperty()
-    {
-        Temperature = _maxValue;
-    }
-
     private void Update()
     {
-        _iceMat.SetInt("_Freezing", ice ? 1 : 0);
+        _iceMat.SetInt("_Freezing", Ice ? 1 : 0);
 
-        if (ice)
+        if (Ice)
         {
-            Temperature -= Time.deltaTime * _iceSpeed;
+            if (!CanFire)
+            {
+                Temperature -= Time.deltaTime * _iceSpeed;
+            }
+            else
+            {
+                Temperature += Time.deltaTime * _iceSpeed;
+            }
 
             Temperature = Mathf.Clamp(Temperature, 3.5f, _maxValue);
 
             _iceMat.SetFloat("_Sides", Temperature);
+        }
+
+        if(Temperature <= 3.5f)
+        {
+            IceDeath = true;
         }
     }
 }
