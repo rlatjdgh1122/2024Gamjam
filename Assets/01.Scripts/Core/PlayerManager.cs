@@ -108,6 +108,6 @@ public class PlayerManager : MonoBehaviour
         }
         Instance = this;
 
-        Player = GameObject.Find("Player");
+        Player = GameObject.FindWithTag("Player");
     }
 }
