@@ -13,9 +13,10 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
-            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue) // 내구도 관련해서도 추가해야됨
+            if (GetBuringSystem.BurningValue >= GetBuringSystem.MaxBurningValue || UranusScreen.Instance.IceDeath) // 내구도 관련해서도 추가해야됨
             {
                 isDie = true;
+                Debug.Log(isDie);
             }
             return isDie;
         }
@@ -127,6 +128,6 @@ public class PlayerManager : MonoBehaviour
         }
         Instance = this;
 
-        Player = GameObject.FindWithTag("Player");
+        Player = GameObject.Find("Player");
     }
 }

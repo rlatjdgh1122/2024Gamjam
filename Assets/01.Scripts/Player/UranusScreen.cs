@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class UranusScreen : MonoBehaviour
 {
-    [SerializeField] private Material _iceMat;
-    [SerializeField] private float _iceSpeed;
-    public float Temperature { get; private set; }
-
     public static UranusScreen Instance;
 
-    private float _maxValue = 50;
+    [SerializeField] private BurningSystem _burningSystem;
+    [SerializeField] private Material _iceMat;
 
-    public bool ice = false;
+    [SerializeField] private float _meltingSpeed;
+    [SerializeField] private float _freezingSpeed;
+
+    public float Temperature { get; private set; }
+    public bool Ice { get; set; }
+    public bool IceEventEnd { get; set; }
+    public bool IceDeath { get; private set; }
+
+    private float _maxValue = 50;
 
     private void Awake()
     {
@@ -23,22 +28,43 @@ public class UranusScreen : MonoBehaviour
         _iceMat.SetInt("_Freezing", 0);
     }
 
-    public void ResetProperty()
-    {
-        Temperature = _maxValue;
-    }
-
     private void Update()
     {
-        _iceMat.SetInt("_Freezing", ice ? 1 : 0);
+        _iceMat.SetInt("_Freezing", Ice ? 1 : 0);
 
-        if (ice)
+        if (Ice)
         {
-            Temperature -= Time.deltaTime * _iceSpeed;
+            if (!_burningSystem.CanFire)
+            {
+                Temperature -= Time.deltaTime * _freezingSpeed;
+            }
+            else
+            {
+                Temperature += Time.deltaTime * _meltingSpeed;
+            }
+            Debug.Log(Temperature);
 
             Temperature = Mathf.Clamp(Temperature, 3.5f, _maxValue);
 
             _iceMat.SetFloat("_Sides", Temperature);
+        }
+
+        if(IceEventEnd)
+        {
+            Temperature += Time.deltaTime * _meltingSpeed;
+            Temperature = Mathf.Clamp(Temperature, 3.5f, _maxValue);
+
+            _iceMat.SetFloat("_Sides", Temperature);
+
+            if(Temperature == _maxValue)
+            {
+                Ice = false;
+            }
+        }
+
+        if(Temperature <= 3.5f)
+        {
+            IceDeath = true;
         }
     }
 }
