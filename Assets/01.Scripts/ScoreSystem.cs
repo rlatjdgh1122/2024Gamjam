@@ -28,14 +28,8 @@ public class ScoreSystem : MonoBehaviour
 
     private bool isOn = false;
 
-    private PlayerFowardMover _playerFowardMover => PlayerManager.Instance.GetMoveToForward;
-    private DurabilitySystem _durabilitySystem => PlayerManager.Instance.GetDurabilitySystem;
-
-    private RenderTexture _renderTexture;
-
     [SerializeField]
     private ParticleImage sizeParticleIMG;
-
     [SerializeField]
     private ParticleImage speedParticleIMG;
 
@@ -90,7 +84,9 @@ public class ScoreSystem : MonoBehaviour
             FillStars(1, size);
         }
 
-        Debug.Log(size);
+        sizeParticleIMG.rateOverLifetime = size * 10f;
+        sizeParticleIMG.Play();
+
         yield return new WaitForSeconds(2f);
 
         if (speed >= 100)
@@ -102,7 +98,8 @@ public class ScoreSystem : MonoBehaviour
             FillStars(2, speed * 0.01f);
         }
 
-        Debug.Log(speed * 0.01f);
+        speedParticleIMG.rateOverLifetime = speed * 0.1f;
+        speedParticleIMG.Play();
     }
 
 
