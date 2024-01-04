@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
 
     public void MoveAndRotate()
     {
-        transform.DOMoveX(_xDir, 5f).OnComplete(() => transform.DORotate(new Vector3(0, _dir, 0), 1));
+        transform.DOMoveX(_xDir, 5f).OnComplete(() => transform.DORotate(new Vector3(0, _dir, 0), 1)).OnComplete(() => SoundManager.Instance.PlaySFXSound(SFX.Clap));
     }
 
     private void Update()

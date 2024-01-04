@@ -10,11 +10,25 @@ public class MarsAliens : MonoBehaviour
     [SerializeField]
     private float fireDistance;
 
+    int cnt = 0;
+
     private bool canshoot = true;
+    private bool canshoot2
+    {
+        get
+        {
+            if(cnt <= 300 && Vector3.Distance(PlayerManager.Instance.Player.transform.position, transform.position) <= fireDistance)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
 
     private void Update()
     {
-        if(canshoot)
+        if(canshoot && canshoot2)
         {
             StartCoroutine(EnemySpawn());
         }
@@ -22,18 +36,17 @@ public class MarsAliens : MonoBehaviour
 
     private IEnumerator EnemySpawn()
     {
+        cnt++;
         float randomX = Random.Range(-30f, 30f);
         float randomY = Random.Range(-15f, 15f);
         float randomZ = Random.Range(30f, 120f);
-        float randomCool = Random.Range(0, 2f);
         Tomato bullet = PoolManager.Instance.Pop(_bullet.name) as Tomato;
-        Debug.Log(randomY); 
 
         bullet.transform.position = _firePos.position;
-        bullet.SetDir(new Vector3(randomX, randomY, randomZ).normalized);
+        StartCoroutine(bullet.SetDir(new Vector3(randomX, randomY, randomZ).normalized));
 
         canshoot = false;
-        yield return new WaitForSeconds(randomCool);
+        yield return new WaitForSeconds(0.1f);
         canshoot = true;
     }
 

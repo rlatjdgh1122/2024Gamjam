@@ -41,7 +41,7 @@ public class ScoreSystem : MonoBehaviour
         speed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
         size = PlayerManager.Instance.GetDurabilitySystem.DurabilityValue;
 
-        PlayerManager.Instance.GetMoveToForward.enabled = false; //일단 임시로 여기서 끔
+        //PlayerManager.Instance.GetMoveToForward.enabled = false; //일단 임시로 여기서 끔
 
         if (isOn)
         {
@@ -59,6 +59,14 @@ public class ScoreSystem : MonoBehaviour
 
         }
         isOn = !isOn;
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    ScorePopUpOnOff();
+        //}
     }
 
     private IEnumerator SetStars()
