@@ -21,18 +21,11 @@ public class Asteroid : SpawnObstacle
             }
             PlayerManager.Instance.GetMoveToForward.ApplySpeed(lowerSpeed);
 
-            //민교가 추가한거 
-            /* PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-0.2f);
+            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
 
             float decreaseValue = PlayerManager.Instance.GetBuringSystem.BurningValue /
                                   (PlayerManager.Instance.GetMoveToForward.MoveSpeed / lowerSpeed);
-            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue); */
-
-            //해보고 더 나은거 ㄱㄱ
-
-            //내가 추가한거
-            PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-damage);
-            Debug.Log(damage);
+            PlayerManager.Instance.GetBuringSystem.DecreaseBurningValue(decreaseValue);
 
             PlayerFollowCam.Instance.ShakeTest();
             var obj = PoolManager.Instance.Pop(_particle.name) as ParticleLifeTimer;
