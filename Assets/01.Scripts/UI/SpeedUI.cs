@@ -17,6 +17,10 @@ public class SpeedUI : MonoBehaviour
 
     private void Update()
     {
+        if(PlayerManager.Instance.IsDie)
+        {
+            return;
+        }
         //if (!canSpeedText)
         //    _currentSpeed = Mathf.Lerp(_currentSpeed, PlayerManager.Instance.GetMoveToForward.MaxSpeed * 150 * 0.4f, Time.deltaTime * _speedChangeRate);
         if (canSpeedText)

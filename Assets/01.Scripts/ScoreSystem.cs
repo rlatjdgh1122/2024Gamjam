@@ -26,6 +26,9 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField]
     private List<Image> starIMGList = new List<Image>();
 
+    [SerializeField]
+    private List<ParticleSystem> sparkleTrm = new List<ParticleSystem>();
+
     private bool isOn = false;
 
     [SerializeField]
@@ -65,7 +68,7 @@ public class ScoreSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ScorePopUpOnOff();
+            PlayerManager.Instance.IsDie = true;
         }
     }
 
@@ -111,8 +114,6 @@ public class ScoreSystem : MonoBehaviour
         {
             FillStars(2, speed * 0.01f);
         }
-
-        
     }
 
 

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,8 +25,14 @@ public class DurabilityUI : MonoBehaviour
     {
         if (PlayerManager.Instance.IsDie && !dead)
         {
-            _fill.DOFillAmount(0, 0.5f);
             dead = true;
+            StartCoroutine(UnFillCorou());
         }
+    }
+
+    private IEnumerator UnFillCorou()
+    {
+        yield return new WaitForSeconds(5f);
+        _fill.DOFillAmount(0, 2f);
     }
 }

@@ -50,7 +50,10 @@ public class GameManager : MonoBehaviour
             distanceToEarth = Mathf.Max(0, distanceToEarth);
         }
 
-        TimeI = (int)Time.time;
+        if (!PlayerManager.Instance.IsDie)
+        {
+            TimeI = (int)Time.time;
+        }
 
         int minutes = TimeI / 60;          // Ка
         int remainingSeconds = TimeI % 60; // УЪ
