@@ -42,7 +42,7 @@ public class CometHit : MonoBehaviour
     {
         _plutoDis = Vector3.Distance(transform.position, _pluto.transform.position);
         
-        if (_plutoDis <= 500f)
+        if (_plutoDis <= 500f && !isEnd)
         {
             if (!checkSpeed)
             {
@@ -81,6 +81,7 @@ public class CometHit : MonoBehaviour
         {
             if (!isEnd)
             {
+                _pressCanvas.SetActive(false);
                 GameOver();
                 isEnd = true;
             }

@@ -27,32 +27,48 @@ public class LoadStory : MonoBehaviour
 
     private string text;
 
+    private bool isSkipText;
+
+    private int _idx = 0;
+
+    private Coroutine _coroutine;
+
     private void Start()
     {
-        StartCoroutine(TextOuput());
+        _coroutine = StartCoroutine(TextOuput(0));
         _skipTex.DOFade(0f, 2f).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void Update()
     {
-
-
         if(Input.GetKeyDown(KeyCode.Space))
         {
             FinishStory();
         }
+        else if(Input.anyKeyDown)
+        {
+            if(isSkipText)
+            {
+                isSkipText = false;
+                StopCoroutine(_coroutine);
+                _coroutine = StartCoroutine(TextOuput(_idx));
+            }
+            else
+            {
+                isSkipText = true;
+            }
+        }
     }
 
-    private IEnumerator TextOuput()
+    private IEnumerator TextOuput(int idx)
     {
-        for (int i = 0; i < storyList.Count; ++i)
+        for (int i = idx; i < storyList.Count; ++i)
         {
             _curSprite.sprite = storyList[i].Img;
             _curTex.text = storyList[i].StoryContent;
             text = _curTex.text;
             _curTex.text = " ";
-
-            StartCoroutine(textPrint(storyList[i].Delay));
+            StartCoroutine(TextPrint(storyList[i].Delay));
 
             yield return new WaitForSeconds(storyList[i].StoryContent.Length * storyList[i].Delay + _delay);
         }
@@ -60,12 +76,18 @@ public class LoadStory : MonoBehaviour
         FinishStory();
     }
 
-    IEnumerator textPrint(float delay)
+    IEnumerator TextPrint(float delay)
     {
         int count = 0;
 
         while (count != text.Length)
         {
+            if (isSkipText)
+            {
+                _curTex.SetText(" " + text);
+                break;
+            }
+
             if (count < text.Length)
             {
                 _curTex.text += text[count].ToString();
@@ -74,6 +96,7 @@ public class LoadStory : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+        _idx++;
     }
 
     private void FinishStory()
