@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         curTime = 0;
-        Debug.Log("start");
     }
 
     private void MakePool()
