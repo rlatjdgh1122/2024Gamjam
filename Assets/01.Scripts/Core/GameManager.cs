@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _timeText;
 
-    public int TimeI = 0;
+    public float curTime = 0;
 
     private void Awake()
     {
@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         Instance = this;
         MakePool();
 
+    }
+
+    private void Start()
+    {
+        curTime = 0;
     }
 
     private void MakePool()
@@ -52,11 +57,11 @@ public class GameManager : MonoBehaviour
 
         if (!PlayerManager.Instance.IsDie)
         {
-            TimeI = (int)Time.time;
+            curTime += Time.deltaTime;
         }
 
-        int minutes = TimeI / 60;          // 분
-        int remainingSeconds = TimeI % 60; // 초
+        int minutes = (int)curTime / 60;          // 분
+        int remainingSeconds = (int)curTime % 60; // 초
 
         if (minutes > 0) { _timeText.SetText($"{minutes}: {remainingSeconds}"); } //분으로 나타낼 수 있다면 분까지 나타낸다.
         else { _timeText.SetText($"{remainingSeconds}"); }

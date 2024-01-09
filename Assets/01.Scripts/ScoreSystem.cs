@@ -45,7 +45,7 @@ public class ScoreSystem : MonoBehaviour
     {
         speed = PlayerManager.Instance.GetMoveToForward.MoveSpeed;
         size = PlayerManager.Instance.GetDurabilitySystem.DurabilityValue;
-        time = GameManager.Instance.TimeI;
+        time = GameManager.Instance.curTime;
 
         PlayerManager.Instance.GetMoveToForward.enabled = false; //일단 임시로 여기서 끔
 
