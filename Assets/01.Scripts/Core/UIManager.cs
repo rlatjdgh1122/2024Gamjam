@@ -18,4 +18,5 @@ public class UIManager : MonoBehaviour
 
     public List<StageUI> StageUIs;
     public DieReasonUI DieReasonUI;
+    public PlanetTextUI PlanetUI;
 }
