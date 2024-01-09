@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class EarthEvent : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _MoonMan;
-
-    [SerializeField]
-    private Transform _moonManSpawnPoint;
-
     private void Start()
     {
         PlanetEventManager.Instance.AddEvent(PlanetEnum.Earth, EnterEarthAreaEvent);
@@ -25,10 +19,7 @@ public class EarthEvent : MonoBehaviour
 
     private void EnterEarthAreaEvent()
     {
-        //SpawnManager.Instance.Spawn(PlanetEnum.Earth);
-        Debug.Log("Å¸°Ù : Áö±¸");
 
-        //GameObject moonMan = Instantiate(_MoonMan, _moonManSpawnPoint.position, Quaternion.Euler(0, 180, 0));
 
     }
 }
