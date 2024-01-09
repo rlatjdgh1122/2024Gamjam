@@ -68,7 +68,7 @@ public class LoadStory : MonoBehaviour
             _curTex.text = storyList[i].StoryContent;
             text = _curTex.text;
             _curTex.text = " ";
-            StartCoroutine(textPrint(storyList[i].Delay));
+            StartCoroutine(TextPrint(storyList[i].Delay));
 
             yield return new WaitForSeconds(storyList[i].StoryContent.Length * storyList[i].Delay + _delay);
         }
@@ -76,7 +76,7 @@ public class LoadStory : MonoBehaviour
         FinishStory();
     }
 
-    IEnumerator textPrint(float delay)
+    IEnumerator TextPrint(float delay)
     {
         int count = 0;
 
