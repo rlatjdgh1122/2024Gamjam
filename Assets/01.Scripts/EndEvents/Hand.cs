@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,14 @@ public class Hand : MonoBehaviour
 
     public void MoveAndRotate()
     {
-        transform.DOMoveX(_xDir, 5f).OnComplete(() => transform.DORotate(new Vector3(0, _dir, 0), 1)).OnComplete(() => SoundManager.Instance.PlaySFXSound(SFX.Clap));
+        StartCoroutine(ClapCoroutine());
+        transform.DOMoveX(_xDir, 5f);
+    }
+
+    private IEnumerator ClapCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        transform.DORotate(new Vector3(0, _dir, 0), 1).OnComplete(() => SoundManager.Instance.PlaySFXSound(SFX.Clap));
     }
 
     private void Update()
