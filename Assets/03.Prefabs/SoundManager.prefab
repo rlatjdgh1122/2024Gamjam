@@ -312,4 +312,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f9de8d8dd3474dc458afe3e45ceb4e54, type: 3}
   - {fileID: 8300000, guid: 27a5659e7eff9ab4db5c7f7750dd0476, type: 3}
   - {fileID: 8300000, guid: bd0be30b2c442d14fb2c2f08269fd230, type: 3}
+  - {fileID: 8300000, guid: 96074855d915c5b47b14d6c6907a4675, type: 3}
   _backgroundSound: {fileID: 8300000, guid: d0175579546cad949a47419ee7a1932a, type: 3}
