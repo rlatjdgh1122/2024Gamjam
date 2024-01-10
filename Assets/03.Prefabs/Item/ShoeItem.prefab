@@ -233,7 +233,7 @@ MonoBehaviour:
   MaxDamage: 3
   MaxLowerTem: 3
   MaxLowerSpeed: 3
-  MaxSize: 0.5
+  MaxSize: 3
   MinSize: 0.5
   MaxSpeed: 0
   rotateSpeed: 0
