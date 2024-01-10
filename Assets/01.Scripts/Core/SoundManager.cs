@@ -13,6 +13,7 @@ public enum SFX
     ImojiSound,
     MoonMan,
     Rocket,
+    ButtonClick
 }
 
 public class SoundManager : MonoBehaviour
@@ -36,7 +37,7 @@ public class SoundManager : MonoBehaviour
 
         Instance = this;
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         _bgmPlayer = transform.Find("BGMPlayer").GetComponent<AudioSource>();
         _sfxPlayer = transform.Find("SFXPlayer").GetComponent<AudioSource>();
@@ -59,6 +60,11 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayBGMSound();
+    }
+
+    public void PlaySFX()
+    {
+        PlaySFXSound(SFX.ButtonClick);
     }
 
     public void PlaySFXSound(SFX sfx) //사운드 이펙트 재생 시 딕셔너리에 있는 클립의 이름으로 특정하여 재생
