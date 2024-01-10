@@ -232,7 +232,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   CanSpawn: 0
-  UpperSize: 0.5
+  UpperSize: 0.3
 --- !u!135 &3197052844211973184
 SphereCollider:
   m_ObjectHideFlags: 0
