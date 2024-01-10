@@ -41,16 +41,19 @@ public class LoadStory : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             FinishStory();
         }
-        else if(Input.anyKeyDown)
+        else if (Input.anyKeyDown)
         {
-            if(isSkipText)
+            if (isSkipText)
             {
                 isSkipText = false;
-                StopCoroutine(_coroutine);
+
+                if (_coroutine != null)
+                    StopCoroutine(_coroutine);
+
                 _coroutine = StartCoroutine(TextOuput(_idx));
             }
             else

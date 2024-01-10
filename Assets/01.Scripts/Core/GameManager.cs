@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         int minutes = (int)curTime / 60;          // 분
         int remainingSeconds = (int)curTime % 60; // 초
 
-        if (minutes > 0) { _timeText.SetText($"{minutes}: {remainingSeconds}"); } //분으로 나타낼 수 있다면 분까지 나타낸다.
-        else { _timeText.SetText($"{remainingSeconds}"); }
+        if (minutes > 0) { _timeText.SetText($"{minutes}분 {remainingSeconds}초"); } //분으로 나타낼 수 있다면 분까지 나타낸다.
+        else { _timeText.SetText($"{remainingSeconds}초"); }
     }
 }

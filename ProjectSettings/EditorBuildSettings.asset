@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/00.Scenes/RealScene/IntroStory.unity
     guid: fdbc2d8f2df893e40a2ee63469e2bca8
   - enabled: 1
-    path: Assets/00.Scenes/Wonseok.unity
-    guid: fb2c6d951b1c6474d8073f5f27d9dee1
+    path: Assets/00.Scenes/RealScene/MainScene.unity
+    guid: 2faf6dff4008ad04e8b77564f14108a7
   m_configObjects: {}

@@ -153,7 +153,7 @@ MonoBehaviour:
   MaxSize: 3.1
   MinSize: 3.1
   MaxSpeed: 3
-  rotateSpeed: 0
+  rotateSpeed: 15
   _obstacleRadius: 20
   _obstacle:
     serializedVersion: 2
