@@ -9,6 +9,8 @@ public class UranusObjstacle : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            SoundManager.Instance.PlaySFXSound(SFX.SmallExplosion);
+
             PlayerManager.Instance.GetDurabilitySystem.ChangeValue(-Random.Range(.05f,.75f));
             PlayerFollowCam.Instance.ShakeTest();
         }
