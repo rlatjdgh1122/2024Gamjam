@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public float curTime = 0;
 
+    public bool isPlaying;
+
     private void Awake()
     {
         if (Instance != null)
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         curTime = 0;
+        isPlaying = true;
     }
 
     private void MakePool()
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
             distanceToEarth = Mathf.Max(0, distanceToEarth);
         }
 
-        if (!PlayerManager.Instance.IsDie)
+        if (!PlayerManager.Instance.IsDie && isPlaying)
         {
             curTime += Time.deltaTime;
         }

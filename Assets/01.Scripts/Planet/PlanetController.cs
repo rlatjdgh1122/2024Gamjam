@@ -17,6 +17,8 @@ public class PlanetController : MonoBehaviour
 
             PlayerManager.Instance.GetBuringSystem.SetFalseVi();
 
+            GameManager.Instance.isPlaying = false;
+
             if (_particle != null)
             {
                 ScoreSystem.Instance.ScorePopUpOnOff();
