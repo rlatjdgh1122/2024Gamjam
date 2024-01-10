@@ -20,6 +20,6 @@ public class EarthEvent : MonoBehaviour
     private void EnterEarthAreaEvent()
     {
 
-
+        UIManager.Instance.PlanetUI.SetWarningText(PlanetEnum.Earth);
     }
 }

@@ -12,6 +12,6 @@ public class NeptuneEvent : MonoBehaviour
     private void EnterNeptuneAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Neptune - 1);
-        Debug.Log("다음 행성 : 해왕성");
+        UIManager.Instance.PlanetUI.SetWarningText(PlanetEnum.Neptune);
     }
 }

@@ -12,7 +12,8 @@ public class SaturnEvent : MonoBehaviour
     private void EnterSaturnAreaEvent()
     {
         SpawnManager.Instance.Spawn(PlanetEnum.Saturn - 1);
-        Debug.Log("다음 행성 : 토성");
+        UIManager.Instance.PlanetUI.SetWarningText(PlanetEnum.Saturn);
+
         UranusScreen.Instance.Ice = false;
         UranusScreen.Instance.IceEventEnd = true;
 
