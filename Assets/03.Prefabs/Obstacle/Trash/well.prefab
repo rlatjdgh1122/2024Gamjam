@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934d61260366c6c49963ca9908c15782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDamage: 0.1
+  MaxDamage: 0.2
   MaxLowerTem: 3
   MaxLowerSpeed: 3
   MaxSize: 8
