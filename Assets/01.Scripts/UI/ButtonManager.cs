@@ -12,6 +12,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(SceneName.IntroStory);
     }
 
+    public void PlaySFX()
+    {
+        SoundManager.Instance.PlaySFXSound(SFX.ButtonClick);
+    }
+
     public void Explain()
     {
         _canvas.SetActive(true);
