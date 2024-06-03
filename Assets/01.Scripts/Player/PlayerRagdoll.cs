@@ -15,6 +15,8 @@ public class PlayerRagdoll : MonoBehaviour
         while (true)
         {
             yield return null;
+
+            // 계속 변하는 값이 필요해서 삼각함수 활용
             Vector3 randomVec = new Vector3(Mathf.Sin(Time.time) * value,
                                             Mathf.Cos(Time.time) * value,
                                             Mathf.Sin(Time.time) * value);
