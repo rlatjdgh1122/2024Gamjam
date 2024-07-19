@@ -1,38 +1,35 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EscPanel : MonoBehaviour
 {
-    [SerializeField] private float _backFadeDuration;
-    private Image _backImg;
+    [SerializeField] private float _backFadeDuration = 0.5f;
+
+    private Image _backImage;
     private RectTransform _visualSetting;
     private RectTransform _setting;
-
     private CanvasGroup _volumeSetting;
     private CanvasGroup _canvasGroup;
 
-    private float x = 100;
-    private float y = 100;
+    private readonly Vector2 _visualSettingInitialSize = new Vector2(100, 100);
+    private readonly Vector2 _visualSettingOpenSize = new Vector2(550, 700);
+    private readonly Vector2 _visualSettingExpandedSize = new Vector2(850, 600);
 
-    private Sequence _seq;
-
-    private bool _escPanel = false;
-    private bool _volumePanel = false;
+    private Sequence _sequence;
+    private bool _isEscPanelActive = false;
+    private bool _isVolumePanelActive = false;
 
     private void Awake()
     {
-        _seq = DOTween.Sequence();
+        _sequence = DOTween.Sequence();
 
         Transform esc = transform.Find("ESC");
-        _backImg = esc.GetComponent<Image>();
+        _backImage = esc.GetComponent<Image>();
         _visualSetting = esc.Find("VisualSetting").GetComponent<RectTransform>();
         _setting = esc.Find("Setting").GetComponent<RectTransform>();
-        _volumeSetting = esc.Find("SoundSetting").GetComponent <CanvasGroup>();
+        _volumeSetting = esc.Find("SoundSetting").GetComponent<CanvasGroup>();
         _canvasGroup = _setting.GetComponent<CanvasGroup>();
     }
 
@@ -40,13 +37,13 @@ public class EscPanel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!_escPanel)
+            if (!_isEscPanelActive)
             {
-                ShowEsc();
+                ShowEscPanel();
             }
-            if(_volumePanel)
+            else if (_isVolumePanelActive)
             {
-                ResetSetting();
+                ResetSettingPanel();
             }
         }
     }
@@ -54,85 +51,78 @@ public class EscPanel : MonoBehaviour
     public void RestartScene()
     {
         Time.timeScale = 1;
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
-    public void ShowEsc()
+    public void ShowEscPanel()
     {
-        _escPanel = true;
-
-        if (_seq != null && _seq.IsActive())
+        if (_sequence.IsActive())
             return;
 
-        _seq = DOTween.Sequence();
-        _seq.PrependCallback(() => _backImg.gameObject.SetActive(true))
-            .Append(_backImg.DOFade(0.8f, _backFadeDuration))
-            .AppendCallback(() => _visualSetting.gameObject.SetActive(true))
-            .AppendCallback(() =>
-                _visualSetting.DOSizeDelta(new Vector2(550, 700), _backFadeDuration))
-            .AppendInterval(_backFadeDuration)
-            .AppendCallback(() =>
-            {
-                _setting.gameObject.SetActive(true);
-                _canvasGroup.alpha = 1f;
-            })
-            .OnComplete(() =>
-            {
-                _seq.Kill();
-                Time.timeScale = 0;
-                });
+        _isEscPanelActive = true;
+
+        _sequence = DOTween.Sequence();
+        _sequence.PrependCallback(() => _backImage.gameObject.SetActive(true))
+                 .Append(_backImage.DOFade(0.8f, _backFadeDuration))
+                 .AppendCallback(() => _visualSetting.gameObject.SetActive(true))
+                 .Append(_visualSetting.DOSizeDelta(_visualSettingOpenSize, _backFadeDuration))
+                 .AppendInterval(_backFadeDuration)
+                 .AppendCallback(() =>
+                 {
+                     _setting.gameObject.SetActive(true);
+                     _canvasGroup.alpha = 1f;
+                 })
+                 .OnComplete(() =>
+                 {
+                     Time.timeScale = 0;
+                     _sequence.Kill();
+                 });
     }
 
-    public void Continue()
+    public void ContinueGame()
     {
-        if (_seq != null && _seq.IsActive())
+        if (_sequence.IsActive())
             return;
-
-        _seq = DOTween.Sequence();
 
         Time.timeScale = 1f;
-        _seq.PrependCallback(() =>
+
+        _sequence = DOTween.Sequence();
+        _sequence.PrependCallback(() =>
         {
             _canvasGroup.alpha = 0f;
-            _canvasGroup.DOFade(0, _backFadeDuration);
-
             _setting.gameObject.SetActive(false);
         })
-        .AppendInterval(_backFadeDuration)
-        .AppendCallback(() =>
-                _visualSetting.DOSizeDelta(new Vector2(x, y), _backFadeDuration))
-        .AppendCallback(() => _visualSetting.gameObject.SetActive(false))
-        .Append(_backImg.DOFade(0, _backFadeDuration))
-        .AppendCallback(() =>
-        {
-            _backImg.gameObject.SetActive(false);
-            })
-        .OnComplete(() => _seq.Kill());
+                 .Append(_canvasGroup.DOFade(0, _backFadeDuration))
+                 .AppendInterval(_backFadeDuration)
+                 .Append(_visualSetting.DOSizeDelta(_visualSettingInitialSize, _backFadeDuration))
+                 .AppendCallback(() => _visualSetting.gameObject.SetActive(false))
+                 .Append(_backImage.DOFade(0, _backFadeDuration))
+                 .AppendCallback(() => _backImage.gameObject.SetActive(false))
+                 .OnComplete(() => _sequence.Kill());
 
-        _escPanel = false;
+        _isEscPanelActive = false;
     }
 
-    public void Setting()
+    public void OpenSettings()
     {
-        _visualSetting.DOSizeDelta(new Vector2(850, 600), _backFadeDuration);
+        _visualSetting.DOSizeDelta(_visualSettingExpandedSize, _backFadeDuration);
         _volumeSetting.gameObject.SetActive(true);
         _setting.gameObject.SetActive(false);
-        _volumePanel = true;
+        _isVolumePanelActive = true;
     }
-    public void ResetSetting()
+
+    public void ResetSettingPanel()
     {
-        _volumePanel = false;
-        _visualSetting.DOSizeDelta(new Vector2(550, 700), _backFadeDuration);
+        _isVolumePanelActive = false;
+        _visualSetting.DOSizeDelta(_visualSettingOpenSize, _backFadeDuration);
         _volumeSetting.gameObject.SetActive(false);
         _setting.gameObject.SetActive(true);
     }
 
-    public void GotoMainMenu()
+    public void GoToMainMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneName.Intro);
+        SceneManager.LoadScene("Intro");
     }
 
     public void ExitGame()
